@@ -511,7 +511,7 @@ def graphV_dataset(id,searchValue):
     user_request = "some_param"
     query_body = {
         "from" : 0,
-        "size" : 1000,
+        "size" : 100,
         "query": {
             "bool": {
                 "must": {
@@ -569,7 +569,7 @@ def graphV_webSearch(id,searchValue):
     user_request = "some_param"
     query_body = {
         "from" : 0,
-        "size" : 1000,
+        "size" : 100,
         "query": {
             "bool": {
                 "must": {
@@ -624,7 +624,7 @@ def graphV_webAPI(id,searchValue):
     user_request = "some_param"
     query_body = {
         "from" : 0,
-        "size" : 1000,
+        "size" : 100,
         "query": {
             "bool": {
                 "must": {

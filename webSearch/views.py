@@ -257,8 +257,8 @@ aggregares={
 
 def uploadFromJsonStream(request):
 
-    libpath="/home/siamak/res (1).json"
-    #libpath="/home/siamak/Downloads/res9.json"
+    #libpath="/home/siamak/res (1).json"
+    libpath="/home/siamak/Downloads/res (1).json"
     title_txt=[]
     organization_ss=[]
     created_ss=[]
