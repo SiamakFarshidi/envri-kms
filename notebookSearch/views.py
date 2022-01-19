@@ -1,20 +1,21 @@
-from django.shortcuts import render
+from django.forms.widgets import NullBooleanSelect, Widget
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-import json
-from github import Github
+from django.shortcuts import render
+import simplejson
 from urllib.request import urlopen
 import urllib
-from github import RateLimitExceededException
-import shlex
-import subprocess
-import requests
-import gitlab
-import os
-import time
-import pandas as pd
-import re
+from datetime import datetime
+from elasticsearch import Elasticsearch
+from glob import glob
+from elasticsearch_dsl import Search, Q, Index
+from elasticsearch_dsl.query import MatchAll
+from django.core import serializers
+import numpy as np
+
+import json
+es = Elasticsearch("http://localhost:9200")
 #-------------------------------------------------------------------------------------------
-ACCESS_TOKEN_Github= "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"
+ACCESS_TOKEN_Github= "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"
 ACCESS_TOKEN_Gitlab= "glpat-RLNz1MhmyeR7jcox_dyA"
 
 # http request authentication
@@ -34,12 +35,105 @@ def genericsearch(request):
     if (term=="*"):
         term=""
     #response_data= search_github_by_url(term)
-    response_data=search_repository_github(term)
+ #   response_data=search_repository_github(term)
     #search_projects_Gitlab(term)
 
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
-    return render(request,'notebook_results.html',response_data)
+ #   indexFile= open("notebooks.json","w+")
+ #   indexFile.write(json.dumps(response_data))
+ #   indexFile.close()
 
+#    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+    try:
+        term = request.GET['term']
+    except:
+        term = ''
+
+    try:
+        page = request.GET['page']
+    except:
+        page = 0
+
+    try:
+        filter = request.GET['filter']
+    except:
+        filter = ''
+
+    try:
+        facet = request.GET['facet']
+    except:
+        facet = ''
+
+
+
+    if filter!="" and facet!="":
+        request.session['filters'].append( {"term": {facet+".keyword": filter}})
+    else:
+        if 'filters' in request.session:
+            del request.session['filters']
+        request.session['filters']=[]
+
+    page=(int(page)-1)*10
+    result={}
+    if term=="*" or term=="top10":
+        result = es.search(
+            index="notebooks",
+            body={
+                "from" : page,
+                "size" : 10,
+                "query": {
+                    "bool" : {
+                        "must" : {
+                            "match_all": {}
+                        }
+                    }
+                }
+            }
+        )
+    else:
+        user_request = "some_param"
+        query_body = {
+            "from" : page,
+            "size" : 10,
+            "query": {
+                "bool": {
+                    "must": {
+                        "multi_match" : {
+                            "query": term,
+                            "fields": [ "name", "description"],
+                            "type": "best_fields",
+                            "minimum_should_match": "50%"
+                        }
+                    },
+                }
+            }
+        }
+
+        result = es.search(index="notebooks", body=query_body)
+    lstResults=[]
+
+
+    for searchResult in result['hits']['hits']:
+        lstResults.append(searchResult['_source'])
+
+    numHits=result['hits']['total']['value']
+
+    upperBoundPage=round(np.ceil(numHits/10)+1)
+    if(upperBoundPage>10):
+        upperBoundPage=11
+
+    facets=[]
+    return render(request,'notebook_results.html',
+                  {
+                      "facets":facets,
+                      "results":lstResults,
+                      "NumberOfHits": numHits,
+                      "page_range": range(1,upperBoundPage),
+                      "cur_page": (page/10+1),
+                      "searchTerm":term
+                  }
+                  )
 #-------------------------------------------------------------------------------------------
 def search_projects_Gitlab(keyword):
     #    cURL = r'curl --header "PRIVATE-TOKEN:'+ACCESS_TOKEN_Gitlab+'" "https://gitlab.example.com/api/v4/search?scope=projects&search='+keyword+'"'
@@ -89,6 +183,17 @@ def search_repository_github(keywords):
 #-------------------------------------------------------------------------------------------
 def github_index_pipeline(request):
     g = Github(ACCESS_TOKEN_Github)
+    try:
+        keywords = request.GET['term']
+    except:
+        keywords = ''
+    response_data= {}
+
+    if (keywords=="*"):
+        keywords=""
+
+
+
     keywords = [keyword.strip() for keyword in keywords.split(',')]
     keywords.append("Jupyter Notebook")
     query = '+'.join(keywords) + '+in:readme+in:description'
@@ -122,7 +227,7 @@ def github_index_pipeline(request):
             time.sleep(sleep_time)
             continue
     indexFile= open(indexPath,"w+")
-    indexFile.write(data)
+    indexFile.write(json.dumps(data))
     indexFile.close()
     return  "Github indexing finished!"
 #-------------------------------------------------------------------------------------------

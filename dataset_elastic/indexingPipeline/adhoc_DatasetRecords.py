@@ -3,7 +3,6 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Index
 import json
 import shlex
-import json
 import subprocess
 import requests
 import os

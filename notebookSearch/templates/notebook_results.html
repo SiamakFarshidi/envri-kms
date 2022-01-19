@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Web API</title>
+    <title>Notebook Search</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <a href="../genericpages/genericpages?page=home">
-                        <img class="img-fluid" src="{% static 'images/ENVRI-WHITE-LOGO.png' %}" style="width:65px;  padding:6px;margin-top:-5px;" alt="Theme-Logo" />
+                        <img class="img-fluid" src="{% static 'images/ENVRI-WHITE-LOGO.png' %}" style="width:65px; padding:6px;margin-top:-5px;" alt="Theme-Logo" />
                     </a>
                     <a class="mobile-options">
                         <i class="ti-more"></i>
@@ -147,49 +147,49 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Search Space</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="">
-                                <a href="../webSearch/genericsearch?term=top10">
+                                <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1" >
                                     <span class="pcoded-micon"><i class="ti-world"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Webpages</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../dataset_elastic/genericsearch?term=top10">
+                                <a href="../dataset_elastic/genericsearch?term={{ searchTerm }}&page=1">
                                     <span class="pcoded-micon"><i class="ti-ruler-pencil"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Datasets</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0)">
+                                <a href="../webAPI/genericsearch?term={{ searchTerm }}&page=1" >
                                     <span class="pcoded-micon"><i class="ti-control-shuffle"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Web APIs</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="active">
-                                <a href="javascript:void(0)">
+                                <a href="javascript:void(0)" >
                                     <span class="pcoded-micon"><i class="ti-package"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Notebooks</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0)">
+                                <a href="javascript:void(0)" >
                                     <span class="pcoded-micon"><i class="ti-menu-alt"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Catalogs</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0)">
+                                <a href="javascript:void(0)" >
                                     <span class="pcoded-micon"><i class="ti-linux"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Software</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0)">
+                                <a href="javascript:void(0)" >
                                     <span class="pcoded-micon"><i class="ti-gallery"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Images</span>
                                     <span class="pcoded-mcaret"></span>
@@ -199,14 +199,14 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Visualization</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li>
-                                <a href="javascript:void(0)">
+                                <a href="../genericpages/genericpages?page=graphV&term={{ searchTerm }}">
                                     <span class="pcoded-micon"><i class="ti-vector"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Graph based</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="../genericpages/genericpages?page=pieChart&term={{ searchTerm }}">
                                     <span class="pcoded-micon"><i class="ti-pie-chart"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pie chart</span>
                                     <span class="pcoded-mcaret"></span>
@@ -218,21 +218,21 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Info</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li>
-                                <a href="../genericpages/genericpages?page=publications">
+                                <a href="../genericpages/genericpages?page=publications&term={{ searchTerm }}" >
                                     <span class="pcoded-micon"><i class="ti-write"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Publications</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../genericpages/genericpages?page=RnD">
+                                <a href="../genericpages/genericpages?page=RnD&term={{ searchTerm }}" >
                                     <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">R&amp;D team</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="map-google.html">
+                                <a href="map-google.html"  >
                                     <span class="pcoded-micon"><i class="ti-comments"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Feedback</span>
                                     <span class="pcoded-mcaret"></span>
@@ -243,64 +243,72 @@
                 </nav>
                 <div class="pcoded-content">
                     <div class="pcoded-inner-content">
+
                         <div class="main-body">
                             <div class="page-wrapper" id="MessageBox">
-                                {% if results_count > 0 %}
-                                    I found <b>{{ results_count}}</b> results for you!
+                                {% if NumberOfHits > 0 %}
+                                I found <b>{{ NumberOfHits}}</b> results for you!
                                 {% elif NumberOfHits == 1 %}
-                                    I found only <b>one</b> result for you!
+                                I found only <b>one</b> result for you!
                                 {% else %}
-                                    I couldn't find <b>anything</b> for you!
+                                I couldn't find <b>anything</b> for you!
                                 {% endif %}
                                 <br>
                                 <br>
 
-                                {%for resultItem in hits %}
+                                {%for resultItem in results %}
 
-                                    <div class="page-body">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="card">
-                                                    <div class="card-header">
+                                <div class="page-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card">
+                                                <div class="card-header">
 
-                                                        <h5 class="m-b-10 titleTrimming">
-
-                                                            <a href="{{ resultItem.html_url }}" target="_blank"  style="color:darkblue;">
-                                                                <img src="{% static 'images/api.jpg' %}" style="width:15px; left: 10px; margin-right:6px;"/>
-                                                            {%for title in resultItem.name %}
-                                                                    {{ title }} .
-                                                            {% endfor %}
+                                                    <h5 class="m-b-10 titleTrimming">
+                                                        <a href="{{ resultItem.html_url}}" target="_blank"  style="color:darkblue;">
+                                                            <img src="{% static 'images/JPNk.png' %}" style="width:25px; left: 10px; margin-right:6px;"/>
+                                                            {{ resultItem.name }}
                                                         </a>
-                                                        </h5>
-                                                        <div class="card-header-right">
-                                                            <ul class="list-unstyled card-option">
-                                                                <li><i class="fa fa-chevron-left"></i></li>
-                                                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                <li><i class="fa fa-times close-card"></i></li>
-                                                            </ul>
-                                                        </div>
+                                                    </h5>
+                                                    <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                            <li><i class="fa fa-chevron-left"></i></li>
+                                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                                            <li><i class="fa fa-refresh reload-card"></i></li>
+                                                            <li><i class="fa fa-times close-card"></i></li>
+                                                        </ul>
                                                     </div>
-                                                    <div class="card-block">
-                                                        <br>
-                                                        <p class="show-read-more">
-                                                            {%for text in resultItem.description %}
-                                                                {{ text }}
-                                                            {% endfor %}
-                                                        </p>
-
-
-                                                    </div>
-                                                    <ul class="b-t-default" style="padding:20px;">
-
-
+                                                </div>
+                                                <div class="card-block">
+                                                    <p class="show-read-more">
+                                                        {{ resultItem.description }}
+                                                    </p>
+                                                    <ul class="breadcrumb-title b-t-default p-t-10">
+                                                        <li class="breadcrumb-item"><a href="#!">
+                                                            <div style="display:inline-block;"> Size: {{ resultItem.size }} KB</div>
+                                                            <span style="padding:10px; color:lightgray;"> | </span>
+                                                            <div style="display:inline-block;"> Stars: {{ resultItem.stars }}</div>
+                                                            <span style="padding:10px; color:lightgray;"> | </span>
+                                                            <div style="display:inline-block;"> <a href="{{ resultItem.git_url }}" target="_blank"> Git </a> </div>
+                                                        </a>
+                                                        </li>
                                                     </ul>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                {% endfor %}
+                            </div>
+                            <div style="text-align:center; margin-bottom:40px;">
+                                {%for page in page_range %}
+                                {% if page == cur_page %}
+                                <input type="button" class="btn btn-grd-primary" style="font-weight:bold; width:30px; padding:5px;" value="{{ page }}">
+                                {% else %}
+                                <input type="button" class="btn btn-primary btn-outline-primary" style="font-weight:bold; width:30px; padding:5px;" value="{{ page }}" onclick="btnPage({{ page }});">
+                                {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
@@ -331,6 +339,32 @@
 <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
 <script>
 //---------------------------------------------------------------------
+
+function clearSearchBoxes(){
+    sessionStorage.setItem("searchValue", "");
+}
+//---------------------------------------------------------------------
+function facetSearch(facet,filter){
+    // Construct URLSearchParams object instance from current URL querystring.
+    var queryParams = new URLSearchParams(window.location.search);
+    // Set new or modify existing parameter value.
+    queryParams.set("filter", filter);
+    queryParams.set("facet", facet);
+    // Replace current querystring with the new one.
+    history.replaceState(null, null, "?"+queryParams.toString());
+    location.reload();
+}
+//---------------------------------------------------------------------
+function btnPage(page){
+    // Construct URLSearchParams object instance from current URL querystring.
+    var queryParams = new URLSearchParams(window.location.search);
+    // Set new or modify existing parameter value.
+    queryParams.set("page", page);
+    // Replace current querystring with the new one.
+    history.replaceState(null, null, "?"+queryParams.toString());
+    location.reload();
+}
+//---------------------------------------------------------------------
 function search(searchBoxNum){
     var searchValue =""
     if (searchBoxNum==1){
@@ -348,6 +382,7 @@ function search(searchBoxNum){
         // Construct URLSearchParams object instance from current URL querystring.
         var queryParams = new URLSearchParams(window.location.search);
         // Set new or modify existing parameter value.
+        queryParams.set("page", 1);
         queryParams.set("term", searchValue);
         // Replace current querystring with the new one.
         history.replaceState(null, null, "?"+queryParams.toString());
@@ -355,8 +390,8 @@ function search(searchBoxNum){
     }
 }
 //--------------------------------------------------------------------- Iniitialization
-    document.getElementById('searchbox1').value = sessionStorage.getItem("searchValue");
-    document.getElementById('searchbox2').value = sessionStorage.getItem("searchValue");
+document.getElementById('searchbox1').value = sessionStorage.getItem("searchValue");
+document.getElementById('searchbox2').value = sessionStorage.getItem("searchValue");
 //---------------------------------------------------------------------
 $(document).ready(function(){
     var maxLength = 500;
@@ -375,7 +410,6 @@ $(document).ready(function(){
         $(this).remove();
     });
 });
-
 //---------------------------------------------------------------------
 
 </script>
