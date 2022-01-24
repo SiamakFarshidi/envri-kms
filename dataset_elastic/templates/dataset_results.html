@@ -110,9 +110,14 @@
                     <ul class="nav-right">
                         <li class="header-notification">
                             <a href="#!">
-                                <i class="ti-bell"></i>
-                                <span class="badge bg-c-pink"></span>
+                                <i style="font-size:15pt; " class="ti-shopping-cart"></i>
+                                <span style="display: inline-block;font-size:10pt;font-weight:bold;"> <sup><span id="MyCartCount" >100</span></sup>  </span>
                             </a>
+                            <ul class="show-notification" id="MyCart">
+                                <li>
+                                    <h6 style="color:blue;">My Basket</h6>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="user-profile header-notification">
@@ -339,6 +344,7 @@
                                     I found only <b>one</b> result for you!
                                 {% else %}
                                     I couldn't find <b>anything</b> for you!
+                                    <script> window.location.href = "../dataset_elastic/genericsearch?term=top10&page=1"; </script>
                                 {% endif %}
                                 <br>
                                 <br>
@@ -390,8 +396,12 @@
                                                                 {% endif %}
 
                                                             </a>
+                                                                <a href="#" onclick="modifyBasket('add','Datasets',&quot;{%for name in resultItem.name %}{% if name != resultItem.ResearchInfrastructure.0 %}{{ name }} .{% endif %}{% endfor %}&quot;, &quot;{% if 'json' in resultItem.url.0 %} {{ resultItem.url.0|slice:':-4' }}{% else %}{{ resultItem.url.0 }}{% endif %}&quot;, 'id');">
+                                                                    <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
+
                                                             </li>
                                                         </ul>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -419,6 +429,7 @@
         </div>
     </div>
 </div>
+{% csrf_token %}
 
 <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
@@ -437,7 +448,6 @@
 <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
 <script>
 //---------------------------------------------------------------------
-
 function clearSearchBoxes(){
     sessionStorage.setItem("searchValue", "");
 }
@@ -490,6 +500,8 @@ function search(searchBoxNum){
 //--------------------------------------------------------------------- Iniitialization
 document.getElementById('searchbox1').value = sessionStorage.getItem("searchValue");
 document.getElementById('searchbox2').value = sessionStorage.getItem("searchValue");
+cnt=document.querySelectorAll("#MyCart li").length-1;
+$('#MyCartCount').text(cnt);
 //---------------------------------------------------------------------
 $(document).ready(function(){
     var maxLength = 500;
@@ -509,7 +521,90 @@ $(document).ready(function(){
     });
 });
 //---------------------------------------------------------------------
+// https://docs.djangoproject.com/en/3.2/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-and-csrf-cookie-httponly-are-false
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+ }
+//---------------------------------------------------------------------
+function modifyBasket(operation,type, title, url, id){
 
+  if (title.length>35){
+    title=title.substring(1, 35)+"...";
+  }
+
+
+  if (operation=='add'){
+      id = 'id' + (new Date()).getTime();
+  }
+  newEntitiy={'operation':operation,'type':type,'title':title,'url':url,'id':id };
+  $.ajax({
+    url: '../webSearch/addToBasket',
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(newEntitiy),
+  headers: {
+    "X-Requested-With": "XMLHttpRequest",
+    "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+  },
+    success: (data) => {
+      console.log(data);
+      modifyCart(data);
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+}
+
+function modifyCart(data) {
+  if(data['operation']=='add'){
+      var ul = document.getElementById("MyCart");
+      var li = document.createElement("li");
+      var icon="";
+      if(data['type']=='Webpages'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-world"></i>';
+      }
+      else if(data['type']=='Datasets'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-ruler-pencil"></i>';
+      }
+      else if(data['type']=='WebAPIs'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-control-shuffle"></i>';
+      }
+      else if(data['type']=='Notebooks'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-package"></i>';
+      }
+      li.innerHTML= '<div class="media">'+
+                        icon+
+                        '<div class="media-body">'+
+                            '<h5 class="notification-user"><a target="_blank" href="'+data['url']+'">'+data['title']+'</a> </h5>'+
+                         '</div>'+
+                         '<a href="#" onclick="modifyBasket(&quot;delete&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;'+data['id']+'&quot;);"'+
+                           'style="font-size:8pt;  display:inline-block;"> <i class="ti-close"></i>'+
+                         '</a>'+
+                    '</div>';
+      li.setAttribute("id", data['id']); // added line
+      ul.appendChild(li);
+  }
+  else if(data['operation']=='delete'){
+      $('#'+data['id']).remove();
+  }
+
+  cnt=document.querySelectorAll("#MyCart li").length-1;
+  $('#MyCartCount').text(cnt);
+}
+{{functionList|safe}}
 </script>
 </body>
 </html>

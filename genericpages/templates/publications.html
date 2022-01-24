@@ -110,9 +110,17 @@
                     <ul class="nav-right">
                         <li class="header-notification">
                             <a href="#!">
-                                <i class="ti-bell"></i>
-                                <span class="badge bg-c-pink"></span>
+                                <i style="font-size:15pt; " class="ti-shopping-cart"></i>
+                                <span style="display: inline-block;font-size:10pt;font-weight:bold;"> <sup><span id="MyCartCount" >100</span></sup>  </span>
                             </a>
+                            <ul class="show-notification" id="MyCart">
+                                <li>
+                                    <a href="#" onclick="">
+                                        <h6 style="color:blue;"><span class="btn btn-primary btn-icon" style="font-size:15pt; padding:0px; padding-top:4px; padding-left:2px; height:30px;width:30px; text-align:center; margin-right:5px; margin-left:-10px;"><i  class="ti-cloud-down"></i></span>
+                                            My Basket</h6>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="user-profile header-notification">
@@ -168,7 +176,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0)" >
+                                <a href="../notebookSearch/genericsearch?term={{ searchTerm }}&page=1" >
                                     <span class="pcoded-micon"><i class="ti-package"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Notebooks</span>
                                     <span class="pcoded-mcaret"></span>
@@ -256,7 +264,6 @@
 
                                                         <h5 class="m-b-10 titleTrimming">
 
-                                                                2021
                                                         </h5>
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option">
@@ -270,23 +277,26 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <ol>
-                                                        <li style="font-size: small;  padding-bottom: 10px;">
-                                                            L. Poon, S. Farshidi, N. Li and Z. Zhao, "Unsupervised Anomaly Detection in Data Quality Control,"
-                                                            2021 IEEE International Conference on Big Data (Big Data), 2021, pp. 2327-2336,
-                                                            <a style="font-size: small;"  href="https://ieeexplore.ieee.org/document/9671672" target="_blank">
-                                                                doi: 10.1109/BigData52589.2021.9671672.</a>
+                                                        <li style=" padding-bottom: 10px;">
+                                                            S. Farshidi and Z. Zhao, <b>An adaptable indexing pipeline for enriching meta information of datasets from heterogeneous repositories</b> (2022).
+                                                            Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)
                                                         </li>
-                                                        <li style="font-size: small;  padding-bottom: 10px;">
-                                                            Zhao, Z., Koulouzis, S., Bianchi, R., Farshidi, S., Shi, Z., Xin, R., ... & Kissling, W. D.
+                                                        <li style=" padding-bottom: 10px;">
+                                                            L. Poon, S. Farshidi, N. Li and Z. Zhao,  <b>Unsupervised Anomaly Detection in Data Quality Control </b>
+                                                            (2021). IEEE International Conference on Big Data (Big Data), 2021, pp. 2327-2336,
+                                                            <a  href="https://ieeexplore.ieee.org/document/9671672" target="_blank">
+                                                                doi: 10.1109/BigData52589.2021.9671672 </a>
+                                                        </li>
+                                                        <li style="padding-bottom: 10px;">
+                                                            Z. Zhao, S. Koulouzis, R. Bianchi, S. Farshidi, Z. Shi,  R. Xin, ..., and W. D. Kissling
                                                             (2021). <b>Notebook-as-a-VRE (NaaVRE): from private notebooks to a
-                                                            collaborative cloud virtual research environment </b>. arXiv preprint arXiv:2111.12785.
-                                                            <a style="color:blue" href="https://arxiv.org/pdf/2111.12785.pdf" target="_blank">[PDF]</a>
+                                                            collaborative cloud virtual research environment </b>.  <a href="https://arxiv.org/pdf/2111.12785.pdf" target="_blank"> arXiv preprint arXiv:2111.12785.
+                                                           </a>
                                                         </li>
                                                             <li style="font-size: small;  padding-bottom: 10px;">
-                                                            Farshidi, S., Liao, X., Li, N., Goldfarb, D., Magagna, B., Stocker, M., ... & Zhao, Z. (2021).
+                                                                S. Farshidi, X. Liao, N. Li, D. Goldfarb, B. Magagna, M. Stocker, ..., and Z. Zhao (2021).
                                                             <b>Knowledge sharing and discovery across heterogeneous research infrastructures </b>.
-                                                            Open Research Europe, 1(68), 68.
-                                                            <a style="color:blue" href="https://open-research-europe.ec.europa.eu/articles/1-68/v2" target="_blank">[PDF]</a>
+                                                            Open Research Europe, 1(68), 68. <a href="https://open-research-europe.ec.europa.eu/articles/1-68/v2" target="_blank"> doi: 10.12688/openreseurope.13677.2 </a>
                                                         </li>
                                                         </ol>
                                                     </div>
@@ -305,6 +315,7 @@
         </div>
     </div>
 </div>
+{% csrf_token %}
 
 <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
@@ -375,7 +386,114 @@ $(document).ready(function(){
 });
 
 //---------------------------------------------------------------------
+// https://docs.djangoproject.com/en/3.2/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-and-csrf-cookie-httponly-are-false
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+ }
+//---------------------------------------------------------------------
 
+function downloadCart(){
+  newEntitiy={'operation':'download'};
+
+  $.ajax({
+    url: '../webSearch/downloadCart',
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(newEntitiy),
+  headers: {
+    "X-Requested-With": "XMLHttpRequest",
+    "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+  },
+    success: (data) => {
+      console.log(data);
+      modifyCart(data);
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+
+}
+
+function modifyBasket(operation,type, title, url, id){
+
+  if (title.length>35){
+    title=title.substring(1, 35)+"...";
+  }
+
+
+  if (operation=='add'){
+      id = 'id' + (new Date()).getTime();
+  }
+  newEntitiy={'operation':operation,'type':type,'title':title,'url':url,'id':id };
+  $.ajax({
+    url: '../webSearch/addToBasket',
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(newEntitiy),
+  headers: {
+    "X-Requested-With": "XMLHttpRequest",
+    "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+  },
+    success: (data) => {
+      console.log(data);
+      modifyCart(data);
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+}
+
+function modifyCart(data) {
+  if(data['operation']=='add'){
+      var ul = document.getElementById("MyCart");
+      var li = document.createElement("li");
+      var icon="";
+      if(data['type']=='Webpages'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-world"></i>';
+      }
+      else if(data['type']=='Datasets'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-ruler-pencil"></i>';
+      }
+      else if(data['type']=='WebAPIs'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-control-shuffle"></i>';
+      }
+      else if(data['type']=='Notebooks'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-package"></i>';
+      }
+      li.innerHTML= '<div class="media">'+
+                        icon+
+                        '<div class="media-body">'+
+                            '<h5 class="notification-user"><a target="_blank" href="'+data['url']+'">'+data['title']+'</a> </h5>'+
+                         '</div>'+
+                         '<a href="#" onclick="modifyBasket(&quot;delete&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;'+data['id']+'&quot;);"'+
+                           'style="font-size:8pt;  display:inline-block;"> <i class="ti-close"></i>'+
+                         '</a>'+
+                    '</div>';
+      li.setAttribute("id", data['id']); // added line
+      ul.appendChild(li);
+  }
+  else if(data['operation']=='delete'){
+      $('#'+data['id']).remove();
+  }
+
+  cnt=document.querySelectorAll("#MyCart li").length-1;
+  $('#MyCartCount').text(cnt);
+}
+{{functionList|safe}}
 </script>
 </body>
 </html>

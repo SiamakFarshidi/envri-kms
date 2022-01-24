@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from elasticsearch import Elasticsearch
 import json
+import numpy as np
 
 # Create your views here.
 es = Elasticsearch("http://localhost:9200")
@@ -28,10 +29,80 @@ def genericpages(request):
         term = ''
     #----------------------------------------------
     if page=="publications":
-        return render(request,'publications.html',{"searchTerm":term})
+        return render(request,'publications.html',{"searchTerm":term,  "functionList": getAllfunctionList(request)})
+    #----------------------------------------------
+    elif page=="recommendation":
+
+        try:
+            Description = request.GET['Description']
+        except:
+            Description = 'top10'
+        try:
+            Webpages = request.GET['Webpages']
+        except:
+            Webpages = ''
+        try:
+            Datasets = request.GET['Datasets']
+        except:
+            Datasets = ''
+        try:
+            APIs = request.GET['APIs']
+        except:
+            APIs = ''
+        try:
+            Notebooks = request.GET['Notebooks']
+        except:
+            Notebooks = ''
+        try:
+            Catalogs = request.GET['Catalogs']
+        except:
+            Catalogs = ''
+        try:
+            Software = request.GET['Software']
+        except:
+            Software = ''
+
+        returnResult={ "searchTerm":term,  "functionList": getAllfunctionList(request)}
+        if(Webpages=="Yes" or Webpages=="Maybe"):
+            user_request = "some_param"
+            query_body = {
+                "from" : 0,
+                "size" : 10,
+                "query": {
+                    "bool": {
+                        "must": {
+                            "multi_match" : {
+                                "query": Description,
+                                "fields": [ "title", "text", "organizations", "publisher",
+                                            "authors", "producers", "file_extensions", "locations",
+                                            "ResearchInfrastructure"],
+                                "type": "best_fields",
+                                "minimum_should_match": "50%"
+                            }
+                        },
+                    }
+                },
+            }
+
+            result = es.search(index="webcontents", body=query_body)
+            numHits=result['hits']['total']['value']
+
+            lstResults=[]
+            for searchResult in result['hits']['hits']:
+                searchResult['_source']['ResearchInfrastructure']= getResearchInfrastructure(searchResult['_source']['id'][0])
+                lstResults.append(searchResult['_source'])
+
+            returnResult={
+                "results":lstResults,
+                "NumberOfHits": numHits,
+                "searchTerm":term,
+                "functionList": getAllfunctionList(request)
+            }
+
+        return render(request,'recommendation.html',returnResult)
     #----------------------------------------------
     elif page=="RnD":
-        return render(request,'RnDTeam.html',{"searchTerm":term})
+        return render(request,'RnDTeam.html',{"searchTerm":term,  "functionList": getAllfunctionList(request)})
     #----------------------------------------------
     elif page=="pieChart":
         id,dataset_nodes1, dataset_edges1, numHits1 = graphV_dataset(100,term)
@@ -48,7 +119,8 @@ def genericpages(request):
 
         return render(request,'pieChart.html',{
                                                "searchTerm":term,
-                                               "dataPoints":json.dumps(dataPoints)
+                                               "dataPoints":json.dumps(dataPoints),
+                                                "functionList": getAllfunctionList(request)
                                                })
     #----------------------------------------------
     elif page=="graphV":
@@ -67,7 +139,8 @@ def genericpages(request):
             return render(request,'graphV.html',{
                 "dataset_nodes":json.dumps(dataset_nodes),
                 "dataset_edges":json.dumps(dataset_edges),
-                "searchTerm":term
+                "searchTerm":term,
+                "functionList": getAllfunctionList(request)
             })
 
         except:
@@ -75,8 +148,16 @@ def genericpages(request):
     #----------------------------------------------
     elif page=="home":
         request.session['filters']=[]
-        return render(request,'landingpage.html',{"searchTerm":term})
+        return render(request,'landingpage.html',{"searchTerm":term,  "functionList": getAllfunctionList(request)})
 
+#---------------------------------------------------------------------------------------------------------------------
+def getResearchInfrastructure(url):
+    lstRI=[]
+    for RI in ResearchInfrastructures:
+        if RI in url:
+            if(ResearchInfrastructures2[RI]['acronym'] not in lstRI):
+                lstRI.append(ResearchInfrastructures2[RI]['acronym'])
+    return lstRI
 #---------------------------------------------------------------------------------------------------------------------
 Query={
     'id': 0,
@@ -88,6 +169,194 @@ Query={
     'y': -150,
     'shape': "box",
 }
+
+ResearchInfrastructures2={
+    'icos-cp.eu': {
+        'id': 1,
+        'url':'https://www.icos-cp.eu/',
+        'label': 'Multi-domain',
+        'title': 'Integrated Carbon Observation System',
+        'acronym':'ICOS'
+    },
+    'seadatanet.org': {
+        'id': 2,
+        'url':'https://www.seadatanet.org/',
+        'label': 'Marine',
+        'title': 'Pan-European infrastructure for ocean and marine data management',
+        'acronym':'SeaDataNet'
+    },
+    'lifewatch.eu': {
+        'id': 3,
+        'url':'https://www.lifewatch.eu/',
+        'label': 'Multi-domain',
+        'title': 'An e-Infrastructure for basic research on biodiversity and ecosystems',
+        'acronym':'LifeWatch'
+    },
+    'anaee.eu':{
+        'id': 4,
+        'url':'https://www.anaee.eu/',
+        'label': 'Terrestrial ecosystem / Biodiversity',
+        'title': 'Analysis and Experimentation on Ecosystems',
+        'acronym':'AnaEE'
+    },
+    'actris.eu':{
+        'id': 5,
+        'url':'https://www.actris.eu/',
+        'label': 'Atmospheric',
+        'title': 'The Aerosol, Clouds and Trace Gases Research Infrastructure',
+        'acronym':'ACTRIS'
+    },
+    'aquacosm.eu':{
+        'id': 6,
+        'url':'https://www.aquacosm.eu/',
+        'label': 'Marine / Freshwater',
+        'title': 'EU network of mesocosms facilities for research on marine and freshwater',
+        'acronym':'AQUACOSM'
+    },
+    'arise-project.eu':{
+        'id': 7,
+        'url':'http://arise-project.eu/',
+        'label': 'Atmosphere',
+        'title': 'Atmospheric dynamics Research InfraStructure in Europe',
+        'acronym':'ARISE'
+    },
+    'danubius-pp.eu':{
+        'id': 8,
+        'url':'https://danubius-pp.eu/',
+        'label': 'River / Marine',
+        'title': 'Preparatory Phase For The Paneuropean Research Infrastructure',
+        'acronym':'DANUBIUS-RI'
+    },
+    'dissco.eu':{
+        'id': 9,
+        'url':'https://www.dissco.eu/',
+        'label': 'Terrestrial ecosystem / Biodiversity',
+        'title': 'Distributed System of Scientific Collections',
+        'acronym':'DiSSCo'
+    },
+    'eiscat.se':{
+        'id': 10,
+        'url':'https://eiscat.se/',
+        'label': 'Atmospheric',
+        'title': 'EISCAT Scientific Association',
+        'acronym':'EISCAT 3D'
+    },
+    'lter-europe.net':{
+        'id': 11,
+        'url':'https://www.lter-europe.net/',
+        'label': 'Biodiversity / Ecosystems',
+        'title': 'Long-Term Ecosystem Research in Europe',
+        'acronym':'eLTER RI'
+    },
+    'embrc.eu':{
+        'id': 12,
+        'url':'https://www.embrc.eu/',
+        'label': 'Marine / Biodiversity',
+        'title': 'Long-Term Ecosystem Research in Europe',
+        'acronym':'EMBRC'
+    },
+    'emso.eu':{
+        'id': 13,
+        'url':'https://emso.eu/',
+        'label': 'Multi-domain',
+        'title': 'European Multidisciplinary Seafloor and water column Observatory',
+        'acronym':'EMSO'
+    },
+    'emphasis.plant-phenotyping.eu':{
+        'id': 14,
+        'url':'https://emphasis.plant-phenotyping.eu/',
+        'label': 'Terrestrial Ecosystem',
+        'title': 'European Infrastructure for Plant Phenotyping',
+        'acronym':'EMPHASIS'
+    },
+    'epos-eu.org':{
+        'id': 15,
+        'url':'https://www.epos-eu.org/',
+        'label': 'Solid Earth Science',
+        'title': 'European Plate Observing System',
+        'acronym':'EPOS'
+    },
+    'eufar.net':{
+        'id': 16,
+        'url':'https://www.eufar.net/',
+        'label': 'Atmospheric',
+        'title': 'The EUropean Facility for Airborne Research',
+        'acronym':'EUFAR'
+    },
+    'euro-argo.eu':{
+        'id': 17,
+        'url':'https://www.euro-argo.eu/',
+        'label': 'Marine',
+        'title': 'European Research Infrastructure Consortium for observing the Ocean',
+        'acronym':'Euro-Argo ERIC'
+    },
+    'eurofleet.fr':{
+        'id': 18,
+        'url':'https://www.eurofleet.fr/',
+        'label': 'Marine',
+        'title': 'An alliance of European marine research infrastructure to meet the evolving needs of the research and industrial communities',
+        'acronym':'EUROFLEETS+'
+    },
+    'eurogoos.eu':{
+        'id': 19,
+        'url':'https://eurogoos.eu/',
+        'label': 'Marine',
+        'title': 'European Global Ocean Observing System',
+        'acronym':'EuroGOOS'
+    },
+    'eurochamp.org':{
+        'id': 20,
+        'url':'https://www.eurochamp.org/',
+        'label': 'Atmospheric',
+        'title': 'Integration of European Simulation Chambers for Investigating Atmospheric Processes',
+        'acronym':'EUROCHAMP'
+    },
+    'hemera-h2020.eu':{
+        'id': 21,
+        'url':'https://www.hemera-h2020.eu/',
+        'label': 'Atmospheric',
+        'title': 'Integrated access to balloon-borne platforms for innovative research and technology',
+        'acronym':'HEMERA'
+    },
+    'iagos.org':{
+        'id': 22,
+        'url':'https://www.iagos.org/',
+        'label': 'Atmospheric',
+        'title': 'In Service Aircraft for a Global Observing System',
+        'acronym':'IAGOS'
+    },
+    'eu-interact.org':{
+        'id': 23,
+        'url':'https://eu-interact.org/',
+        'label': 'Terrestrial Ecosystem',
+        'title': 'Building Capacity For Environmental Research And Monitoring In Arctic And Neighbouring Alpine And Forest Areas',
+        'acronym':'INTERACT'
+    },
+    'is.enes.org':{
+        'id': 24,
+        'url':'https://is.enes.org/',
+        'label': 'Multi-domain',
+        'title': 'Infrastructure For The European Network For Earth System Modelling Enes',
+        'acronym':'IS-ENES'
+    },
+    'jerico-ri.eu':{
+        'id': 25,
+        'url':'https://www.jerico-ri.eu/',
+        'label': 'Marine',
+        'title': 'The European Integrated Infrastructure For In Situ Coastal Observation',
+        'acronym':'JERICO-RI'
+    },
+    'sios-svalbard.org':{
+        'id': 26,
+        'url':'https://www.sios-svalbard.org/',
+        'title': 'Multi-domain',
+        'title': 'Svalbard integrated Earth observing system',
+        'acronym':'SIOS'
+    }
+}
+
+
+
 ResearchInfrastructures={
     'icos-cp.eu': {
         'id': 1,
@@ -671,4 +940,15 @@ def graphV_webAPI(id,searchValue):
 
 
     return id,nodes,edges,numHits
-#---------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+def getAllfunctionList(request):
+    if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
+        request.session['BasketURLs'] = []
+    if not 'MyBasket' in request.session or not request.session['MyBasket']:
+        request.session['MyBasket'] = []
+
+    functionList=""
+    saved_list = request.session['MyBasket']
+    for item in saved_list:
+        functionList= functionList+r"modifyCart({'operation':'add','type':'"+item['type']+"','title':'"+item['title']+"','url':'"+item['url']+"','id':'"+item['id']+"' });"
+    return functionList

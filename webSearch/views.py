@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.forms.widgets import NullBooleanSelect, Widget
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 import simplejson
 from urllib.request import urlopen
@@ -22,8 +23,6 @@ import nltk
 import numpy as np
 nltk.download('words')
 words = set(nltk.corpus.words.words())
-
-
 ResearchInfrastructures={
     'icos-cp.eu': {
         'id': 1,
@@ -208,8 +207,6 @@ ResearchInfrastructures={
         'acronym':'SIOS'
     }
 }
-
-
 aggregares={
     "locations":{
         "terms":{
@@ -254,7 +251,6 @@ aggregares={
         }
     }
 }
-
 def uploadFromJsonStream(request):
 
     #libpath="/home/siamak/res (1).json"
@@ -612,7 +608,9 @@ def genericsearch(request):
         facet = ''
 
     if filter!="" and facet!="":
-        request.session['filters'].append( {"term": {facet+".keyword": filter}})
+        saved_list = request.session['filters']
+        saved_list.append({"term": {facet+".keyword": filter}})
+        request.session['filters'] = saved_list
     else:
         if 'filters' in request.session:
             del request.session['filters']
@@ -767,7 +765,108 @@ def genericsearch(request):
                    "NumberOfHits": numHits,
                    "page_range": range(1,upperBoundPage),
                    "cur_page": (page/10+1),
-                   "searchTerm":term
+                   "searchTerm":term,
+                   "functionList": getAllfunctionList(request)
                   }
                   )
+#-----------------------------------------------------------------------------------------------------------------------
+
+def downloadCart(request):
+    if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
+        request.session['BasketURLs'] = []
+    if not 'MyBasket' in request.session or not request.session['MyBasket']:
+        request.session['MyBasket'] = []
+
+    Webpages=[]
+    Datasets=[]
+    WebAPIs=[]
+    Notebooks=[]
+
+    print("download cart")
+
+    saved_list = request.session['MyBasket']
+    for item in saved_list:
+        if (item['type']=="Webpages"):
+            Webpages.append({'operation':'add','type':item['type'],'title':item['title'],'url':item['url'],'id':item['id']})
+        elif (item['type']=="Datasets"):
+            Datasets.append({'operation':'add','type':item['type'],'title':item['title'],'url':item['url'],'id':item['id']})
+        elif (item['type']=="WebAPIs"):
+            WebAPIs.append({'operation':'add','type':item['type'],'title':item['title'],'url':item['url'],'id':item['id']})
+        elif (item['type']=="Notebooks"):
+            Notebooks.append({'operation':'add','type':item['type'],'title':item['title'],'url':item['url'],'id':item['id']})
+
+    return render(request,'downloadCart.html',
+                  {
+                      "Webpages":Webpages,
+                      "Datasets":Datasets,
+                      "Web APIs": WebAPIs,
+                      "Notebooks": Notebooks,
+                  }
+                  )
+
+#-----------------------------------------------------------------------------------------------------------------------
+def getAllfunctionList(request):
+    if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
+        request.session['BasketURLs'] = []
+    if not 'MyBasket' in request.session or not request.session['MyBasket']:
+        request.session['MyBasket'] = []
+
+    functionList=""
+    saved_list = request.session['MyBasket']
+    for item in saved_list:
+        functionList= functionList+r"modifyCart({'operation':'add','type':'"+item['type']+"','title':'"+item['title']+"','url':'"+item['url']+"','id':'"+item['id']+"' });"
+    return functionList
+#-----------------------------------------------------------------------------------------------------------------------
+def addToBasket(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+
+    if is_ajax:
+        if request.method == 'POST':
+            data = json.load(request)
+
+            if(data['operation']=='add'):
+                if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
+                    request.session['BasketURLs'] = [data['url']]
+                if not 'MyBasket' in request.session or not request.session['MyBasket']:
+                    request.session['MyBasket'] = [data]
+
+                if data['url'] not in request.session['BasketURLs']:
+
+                    saved_list = request.session['BasketURLs']
+                    saved_list.append(data['url'])
+                    request.session['BasketURLs'] = saved_list
+
+                    saved_list = request.session['MyBasket']
+                    saved_list.append(data)
+                    request.session['MyBasket'] = saved_list
+
+                    print(data)
+                    return JsonResponse(data)
+                else:
+                    print("Duplicated")
+                    return JsonResponse({'status': 'Duplicated key'}, status=400)
+            if(data['operation']=='delete'):
+                if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
+                    request.session['BasketURLs'] = []
+                if not 'MyBasket' in request.session or not request.session['MyBasket']:
+                    request.session['MyBasket'] = []
+
+                saved_list = request.session['MyBasket']
+                url=""
+                for item in saved_list:
+                    if item['id']==data['id']:
+                        url=item['url']
+                        saved_list.remove(item)
+                request.session['MyBasket'] = saved_list
+
+                saved_list = request.session['BasketURLs']
+                for item in saved_list:
+                    if item==url:
+                        saved_list.remove(item)
+                request.session['BasketURLs'] = saved_list
+                return JsonResponse(data)
+
+        return JsonResponse({'status': 'Invalid request'}, status=400)
+    else:
+        return HttpResponseBadRequest('Invalid request')
 #-----------------------------------------------------------------------------------------------------------------------

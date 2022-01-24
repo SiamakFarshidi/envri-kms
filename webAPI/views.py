@@ -73,7 +73,9 @@ def genericsearch(request):
 
 
     if filter!="" and facet!="":
-        request.session['filters'].append( {"term": {facet+".keyword": filter}})
+        saved_list = request.session['filters']
+        saved_list.append({"term": {facet+".keyword": filter}})
+        request.session['filters'] = saved_list
     else:
         if 'filters' in request.session:
             del request.session['filters']
@@ -199,7 +201,8 @@ def genericsearch(request):
                       "NumberOfHits": numHits,
                       "page_range": range(1,upperBoundPage),
                       "cur_page": (page/10+1),
-                      "searchTerm":term
+                      "searchTerm":term,
+                      "functionList": getAllfunctionList(request)
                   }
                   )
 
@@ -259,3 +262,14 @@ def open_file(file):
         data = json.load(read_file)
         return data
 #-----------------------------------------------------------------------------------------------------------------------
+def getAllfunctionList(request):
+    if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
+        request.session['BasketURLs'] = []
+    if not 'MyBasket' in request.session or not request.session['MyBasket']:
+        request.session['MyBasket'] = []
+
+    functionList=""
+    saved_list = request.session['MyBasket']
+    for item in saved_list:
+        functionList= functionList+r"modifyCart({'operation':'add','type':'"+item['type']+"','title':'"+item['title']+"','url':'"+item['url']+"','id':'"+item['id']+"' });"
+    return functionList
