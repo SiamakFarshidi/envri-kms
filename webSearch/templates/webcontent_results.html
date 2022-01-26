@@ -194,12 +194,12 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.producers %}
+                                    {% if facets.workOfArt %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
-                                            Producers:
+                                            Context:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.producers %}
+                                    {%for facet in facets.workOfArt %}
                                     <li class=" " >
                                         <a href="#" onclick="facetSearch('producers','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -228,12 +228,12 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.person %}
+                                    {% if facets.people %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              People:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.person %}
+                                    {%for facet in facets.people %}
                                     <li class=" ">
                                         <a href="#" onclick="facetSearch('person','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -246,12 +246,12 @@
                                     </li>
                                     {% endfor %}
 
-                                    {% if facets.authors %}
+                                    {% if facets.products %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
-                                             Authors:
+                                             Products:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.authors %}
+                                    {%for facet in facets.products %}
                                     <li class=" ">
                                         <a href="#" onclick="facetSearch('authors','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -263,12 +263,12 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.file_extensions %}
+                                    {% if facets.files %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
-                                             Types:
+                                             File extensions:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.file_extensions %}
+                                    {%for facet in facets.files %}
                                     <li class=" ">
                                         <a href="#" onclick="facetSearch('file_extensions','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -395,17 +395,11 @@
 
                                                         <h5 class="m-b-10 titleTrimming">
 
-                                                            <a href="{{ resultItem.id.0 }}" target="_blank"  style="color:darkblue;" >
-                                                            {% if resultItem.file_formats.0 == "application/pdf; version=1.5" %}
-                                                                <img src="{% static 'images/pdficon.png' %}" style="width:15px; left: 10px; margin-right:6px;"/>
-                                                            {% else %}
+                                                            <a href="{{ resultItem.url.0 }}" target="_blank"  style="color:darkblue;" >
                                                                 <img src="{% static 'images/WebPageICON.png' %}" style="width:15px; left: 10px; margin-right:6px;"/>
-                                                            {% endif %}
                                                             {%for title in resultItem.title %}
-                                                                {% if title == "file" %}
-                                                                    {{ resultItem.file_formats.0 }} .
-                                                                {% elif title == "" %}
-                                                                    {{ resultItem.text.0}} .
+                                                                {% if title == "" %}
+                                                                    {{ resultItem.pageContetnts.0}} .
                                                                 {% else %}
                                                                     {{title}}
                                                                 {% endif %}
@@ -424,102 +418,143 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <div style="color:silver; text-decoration:italic; font-size:tiny; text-align: left; width:100%;">
-                                                            {{ resultItem.modification_date.0 }}
+                                                            {{ resultItem.lastIndexingDate.0 }}
                                                         </div>
                                                         <br>
                                                         <p class="show-read-more" style="font-size:small;">
-                                                            {%for text in resultItem.organizations %}
+
+                                                            {%for text in resultItem.pageContetnts %}
                                                                 {{ text }} .
                                                             {% endfor %}
 
-                                                            {%for text in resultItem.text %}
-                                                            {{ text }} .
+                                                            {%for text in resultItem.organizations %}
+                                                                {{ text }} .
                                                             {% endfor %}
-
                                                         </p>
+
+                                                        <div style="width:100%; display:block ;text-align: center;" >
+                                                            {% for file in resultItem.files %}
+                                                                <a href=" {{ file.url }}" target="_blank">
+                                                                    {% if file.extension == "pdf" %}
+                                                                        <img src="{% static 'images/pdficon.png' %}" style="width:20px; margin:10px;" alt="{{ file.description.0 }}">
+
+                                                                    {% elif file.extension == "doc" or file.extension == "docx"  %}
+                                                                        <img src="{% static 'images/docfileicon.png' %}" style="width:30px; margin:10px;">
+
+                                                                    {% elif file.extension == "ppt" or file.extension == "pptx"  %}
+                                                                        <img src="{% static 'images/ppticon.png' %}" style="width:30px; margin:10px;">
+
+                                                                    {% elif file.extension == "xls" or file.extension == "xlsx" %}
+                                                                        <img src="{% static 'images/xlsxicnon.png' %}" style="width:30px; margin:10px;">
+
+                                                                    {% elif file.extension == "csv"  %}
+                                                                        <img src="{% static 'images/csvicnon.png' %}" style="width:30px; margin:10px;">
+
+                                                                    {% elif file.extension == "xml"  %}
+                                                                        <img src="{% static 'images/xmlicon.png' %}" style="width:30px; margin:10px;">
+
+                                                                    {% elif file.extension == "json"  %}
+                                                                        <img src="{% static 'images/jsonincon.png' %}" style="width:30px; margin:10px;">
+
+                                                                    {% elif file.extension == "zip" or file.extension == "rar" or file.extension == "7z" or file.extension == "tar" %}
+                                                                        <img src="{% static 'images/zipicon.png' %}" style="width:25px; margin:10px;">
+
+
+                                                                    {% elif file.extension == "jpg" or file.extension == "png" or file.extension == "svg" or file.extension == "ico" or file.extension == "bmp"%}
+                                                                        <img src="{% static 'images/imageicon.jpg' %}" style="width:30px; margin:10px;">
+
+
+                                                                    {% else %}
+                                                                        <img src="{% static 'images/attachments.png' %}" style="width:20px; margin:10px;">
+                                                                    {% endif %}
+                                                                </a>
+                                                            {% endfor %}
+                                                        </div>
+
                                                         <ul class="breadcrumb-title b-t-default p-t-10">
-                                                            <li class="breadcrumb-item"><a href="#!">
-                                                                {% if resultItem.ResearchInfrastructure.0 == "SeaDataNet" %}
+                                                            <li class="breadcrumb-item"><a href="{{ resultItem.researchInfrastructure.0.url }}" target="_blank">
+                                                                {% if resultItem.researchInfrastructure.0.acronym == "SeaDataNet" %}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}" style="width:50px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "ICOS"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "ICOS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/ICOS.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "LifeWatch"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "LifeWatch"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/LifeWatchERIC.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "AnaEE"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "AnaEE"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/anaee.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "AQUACOSM"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "AQUACOSM"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/AQUACOSM.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "ARISE"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "ARISE"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/arise.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "DANUBIUS-RI"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "DANUBIUS-RI"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/DANUBIUS-RI.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "DiSSCo"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "DiSSCo"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/DISSCO.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EISCAT_3D"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EISCAT_3D"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EISCAT3D.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "eLTER RI"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "eLTER RI"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/elterRI.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EMBRC"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EMBRC"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EMBRC.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EMSO"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EMSO"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EMSOERIC.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EMPHASIS"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EMPHASIS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EMPHASIS.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EPOS"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EPOS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EPOS.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EUFAR"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EUFAR"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EUFAR.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "Euro-Argo ERIC"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "Euro-Argo ERIC"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/euroArgo.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EUROFLEETS+"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EUROFLEETS+"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/Eurofleets.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EuroGOOS"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EuroGOOS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EuroGOOS.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "EUROCHAMP"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EUROCHAMP"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EUROCHAMP.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "HEMERA"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "HEMERA"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/Hemera.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "IAGOS"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "IAGOS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/IAGOSERI.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "INTERACT"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "INTERACT"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/INTERACT.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "IS-ENES"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "IS-ENES"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/ISENES.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "JERICO-RI"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "JERICO-RI"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/JERICO.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "SeaDataNet"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "SeaDataNet"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}" style="width:70px" />
 
-                                                                {% elif resultItem.ResearchInfrastructure.0 == "SIOS"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "SIOS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/sios.png' %}" style="width:70px" />
                                                                 {% endif %}
                                                             </a>
                                                                 <a href="#" onclick="modifyBasket('add','Webpages',&quot;{%for title in resultItem.title %}{% if title == 'file' %}{{ resultItem.file_formats.0 }} . {% elif title == '' %}{{ resultItem.text.0}} . {% else %}{{title}}{% endif %}{% endfor %}&quot;,'{{ resultItem.id.0 }}', 'id');">
                                                                     <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
+
                                                             </li>
                                                         </ul>
 

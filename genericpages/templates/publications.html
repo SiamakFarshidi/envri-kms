@@ -364,8 +364,10 @@ function search(searchBoxNum){
     }
 }
 //--------------------------------------------------------------------- Iniitialization
-    document.getElementById('searchbox1').value = sessionStorage.getItem("searchValue");
-    document.getElementById('searchbox2').value = sessionStorage.getItem("searchValue");
+document.getElementById('searchbox1').value = sessionStorage.getItem("searchValue");
+document.getElementById('searchbox2').value = sessionStorage.getItem("searchValue");
+cnt=document.querySelectorAll("#MyCart li").length-1;
+$('#MyCartCount').text(cnt);
 //---------------------------------------------------------------------
 $(document).ready(function(){
     var maxLength = 500;

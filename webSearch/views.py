@@ -202,7 +202,7 @@ ResearchInfrastructures={
     'sios-svalbard.org':{
         'id': 26,
         'url':'https://www.sios-svalbard.org/',
-        'title': 'Multi-domain',
+        'label': 'Multi-domain',
         'title': 'Svalbard integrated Earth observing system',
         'acronym':'SIOS'
     }
@@ -214,9 +214,9 @@ aggregares={
             "size": 20,
         }
     },
-    "person":{
+    "people":{
         "terms":{
-            "field": "person.keyword",
+            "field": "people.keyword",
             "size": 20,
         }
     },
@@ -226,27 +226,27 @@ aggregares={
             "size": 20,
         }
     },
-    "authors":{
+    "products":{
         "terms":{
-            "field": "authors.keyword",
+            "field": "products.keyword",
             "size": 20,
         }
     },
-    "producers":{
+    "workOfArt":{
         "terms":{
-            "field": "producers.keyword",
+            "field": "workOfArt.keyword",
             "size": 20,
         }
     },
     "ResearchInfrastructure":{
         "terms":{
-            "field": "ResearchInfrastructure.keyword",
+            "field": "researchInfrastructure.acronym.keyword",
             "size": 20,
         }
     },
-    "file_extensions":{
+    "files":{
         "terms":{
-            "field": "file_extensions.keyword",
+            "field": "files.extension.keyword",
             "size": 20,
         }
     }
@@ -650,9 +650,9 @@ def genericsearch(request):
                     "must": {
                         "multi_match" : {
                             "query": term,
-                            "fields": [ "title", "text", "organizations", "publisher",
-                                        "authors", "producers", "file_extensions", "locations",
-                                        "ResearchInfrastructure"],
+                            "fields": [ "title", "pageContetnts", "organizations", "topics",
+                                        "people", "workOfArt", "files", "locations", "dates"
+                                        "researchInfrastructure"],
                             "type": "best_fields",
                             "minimum_should_match": "100%"
                         }
@@ -671,16 +671,21 @@ def genericsearch(request):
         result = es.search(index="webcontents", body=query_body)
     lstResults=[]
     for searchResult in result['hits']['hits']:
-        searchResult['_source']['ResearchInfrastructure']= getResearchInfrastructure(searchResult['_source']['id'][0])
         lstResults.append(searchResult['_source'])
 
+
+
+
+
+
+
     #......................
-    file_extensions=[]
+    files=[]
     locations=[]
-    producers=[]
+    people=[]
     organizations=[]
-    person=[]
-    authors=[]
+    workOfArt=[]
+    products=[]
     ResearchInfrastructure=[]
     #......................
     for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
@@ -699,13 +704,13 @@ def genericsearch(request):
             }
             locations.append (loc)
     #......................
-    for searchResult in result['aggregations']['producers']['buckets']:
+    for searchResult in result['aggregations']['people']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
             prod={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            producers.append (prod)
+            people.append (prod)
     #......................
     for searchResult in result['aggregations']['organizations']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
@@ -715,38 +720,39 @@ def genericsearch(request):
             }
             organizations.append (org)
     #......................
-    for searchResult in result['aggregations']['person']['buckets']:
+    for searchResult in result['aggregations']['products']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
             pers={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            person.append (pers)
+            products.append (pers)
     #......................
-    for searchResult in result['aggregations']['authors']['buckets']:
+    for searchResult in result['aggregations']['workOfArt']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
             auth={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            authors.append (auth)
+            workOfArt.append (auth)
     #......................
-    for searchResult in result['aggregations']['file_extensions']['buckets']:
+    for searchResult in result['aggregations']['files']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="" and
                 (searchResult['key']=="pdf") or (searchResult['key']=="doc")or (searchResult['key']=="xml") or (searchResult['key']=="xls") or (searchResult['key']=="txt")):
             ext={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            file_extensions.append (ext)
+            files.append (ext)
     #......................
+
     facets={
-        "file_extensions":file_extensions,
+        "files":files,
         "locations":locations,
-        "producers":producers,
+        "workOfArt":workOfArt,
         "organizations":organizations,
-        "person":person,
-        "authors":authors,
+        "people":people,
+        "products":products,
         "ResearchInfrastructure":ResearchInfrastructure
     }
     #envri-statics
