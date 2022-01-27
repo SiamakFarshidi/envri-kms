@@ -32,73 +32,6 @@ def genericpages(request):
         return render(request,'publications.html',{"searchTerm":term,  "functionList": getAllfunctionList(request)})
     #----------------------------------------------
     elif page=="recommendation":
-
-        try:
-            Description = request.GET['Description']
-        except:
-            Description = 'top10'
-        try:
-            Webpages = request.GET['Webpages']
-        except:
-            Webpages = ''
-        try:
-            Datasets = request.GET['Datasets']
-        except:
-            Datasets = ''
-        try:
-            APIs = request.GET['APIs']
-        except:
-            APIs = ''
-        try:
-            Notebooks = request.GET['Notebooks']
-        except:
-            Notebooks = ''
-        try:
-            Catalogs = request.GET['Catalogs']
-        except:
-            Catalogs = ''
-        try:
-            Software = request.GET['Software']
-        except:
-            Software = ''
-
-        returnResult={ "searchTerm":term,  "functionList": getAllfunctionList(request)}
-        if(Webpages=="Yes" or Webpages=="Maybe"):
-            user_request = "some_param"
-            query_body = {
-                "from" : 0,
-                "size" : 10,
-                "query": {
-                    "bool": {
-                        "must": {
-                            "multi_match" : {
-                                "query": Description,
-                                "fields": [ "title", "text", "organizations", "publisher",
-                                            "authors", "producers", "file_extensions", "locations",
-                                            "ResearchInfrastructure"],
-                                "type": "best_fields",
-                                "minimum_should_match": "50%"
-                            }
-                        },
-                    }
-                },
-            }
-
-            result = es.search(index="webcontents", body=query_body)
-            numHits=result['hits']['total']['value']
-
-            lstResults=[]
-            for searchResult in result['hits']['hits']:
-                searchResult['_source']['ResearchInfrastructure']= getResearchInfrastructure(searchResult['_source']['id'][0])
-                lstResults.append(searchResult['_source'])
-
-            returnResult={
-                "results":lstResults,
-                "NumberOfHits": numHits,
-                "searchTerm":term,
-                "functionList": getAllfunctionList(request)
-            }
-
         return render(request,'recommendation.html',returnResult)
     #----------------------------------------------
     elif page=="RnD":
@@ -844,9 +777,9 @@ def graphV_webSearch(id,searchValue):
                 "must": {
                     "multi_match" : {
                         "query": searchValue,
-                        "fields": [ "title", "text", "organizations", "publisher",
-                                    "authors", "producers", "file_extensions", "locations",
-                                    "ResearchInfrastructure"],
+                        "fields": [ "title", "pageContetnts", "organizations", "topics",
+                                    "people", "workOfArt", "files", "locations", "dates",
+                                    "researchInfrastructure"],
                         "type": "best_fields",
                         "minimum_should_match": "50%"
                     }
@@ -865,12 +798,13 @@ def graphV_webSearch(id,searchValue):
     nodes.append(Query)
 
     for searchResult in result['hits']['hits']:
-        result= searchResult['_source']
-        RI=detectRI(result['id'])
 
-        url=result['id'][0]
+        result= searchResult['_source']
+        RI=detectRI(result['url'])
+
+        url=result['url'][0]
         caption=result['title']
-        tooltip=result['text']
+        tooltip=result['pageContetnts']
         id=id+1
         img="/static/images/webpageslogo.png"
 

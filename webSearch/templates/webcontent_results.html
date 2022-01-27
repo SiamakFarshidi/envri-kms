@@ -167,7 +167,7 @@
                                     {% endif %}
                                     {%for facet in facets.ResearchInfrastructure%}
                                     <li class=" " >
-                                        <a href="#"  onclick="facetSearch('ResearchInfrastructure','{{facet.key}}');">
+                                        <a href="#"  onclick="facetSearch('researchInfrastructure.acronym','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -201,7 +201,7 @@
                                     {% endif %}
                                     {%for facet in facets.workOfArt %}
                                     <li class=" " >
-                                        <a href="#" onclick="facetSearch('producers','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('workOfArt','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -235,7 +235,7 @@
                                     {% endif %}
                                     {%for facet in facets.people %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('person','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('people','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -253,7 +253,7 @@
                                     {% endif %}
                                     {%for facet in facets.products %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('authors','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('products','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -270,7 +270,7 @@
                                     {% endif %}
                                     {%for facet in facets.files %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('file_extensions','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('files.extension','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -318,7 +318,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0)" >
+                                <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1&searchtype=imagesearch" >
                                     <span class="pcoded-micon"><i class="ti-gallery"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Images</span>
                                     <span class="pcoded-mcaret"></span>
@@ -459,13 +459,12 @@
                                                                     {% elif file.extension == "zip" or file.extension == "rar" or file.extension == "7z" or file.extension == "tar" %}
                                                                         <img src="{% static 'images/zipicon.png' %}" style="width:25px; margin:10px;">
 
-
                                                                     {% elif file.extension == "jpg" or file.extension == "png" or file.extension == "svg" or file.extension == "ico" or file.extension == "bmp"%}
-                                                                        <img src="{% static 'images/imageicon.jpg' %}" style="width:30px; margin:10px;">
+                                                                        <img src="{% static 'images/imageicon.png' %}" style="width:25px; margin:10px;">
 
 
                                                                     {% else %}
-                                                                        <img src="{% static 'images/attachments.png' %}" style="width:20px; margin:10px;">
+                                                                        <img src="{% static 'images/attachments.png' %}" style="width:27px; margin:10px;">
                                                                     {% endif %}
                                                                 </a>
                                                             {% endfor %}
@@ -552,7 +551,7 @@
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/sios.png' %}" style="width:70px" />
                                                                 {% endif %}
                                                             </a>
-                                                                <a href="#" onclick="modifyBasket('add','Webpages',&quot;{%for title in resultItem.title %}{% if title == 'file' %}{{ resultItem.file_formats.0 }} . {% elif title == '' %}{{ resultItem.text.0}} . {% else %}{{title}}{% endif %}{% endfor %}&quot;,'{{ resultItem.id.0 }}', 'id');">
+                                                                <a href="#" onclick="modifyBasket('add','Webpages',&quot;{%for title in resultItem.title %} {{title}} {% endfor %}&quot;,'{{ resultItem.url.0 }}', 'id');">
                                                                     <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
 
                                                             </li>

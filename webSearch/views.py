@@ -347,9 +347,7 @@ def uploadFromJsonStream(request):
                         File_Size_ss.append(doc[2])
                     elif "response.docs.item._text_" in doc[0]:
                         _text_.append(doc[2])
-
 #-----------------------------------------------------------------------------------------------------------------------
-# Create your views here.
 def saveRecord(doc):
     es = Elasticsearch("http://localhost:9200")
     index = Index('webcontents', es)
@@ -596,6 +594,10 @@ def genericsearch(request):
     except:
         page = 0
 
+    try:
+        searchtype = request.GET['searchtype']
+    except:
+        searchtype = 'websearch'
 
     try:
         filter = request.GET['filter']
@@ -651,7 +653,7 @@ def genericsearch(request):
                         "multi_match" : {
                             "query": term,
                             "fields": [ "title", "pageContetnts", "organizations", "topics",
-                                        "people", "workOfArt", "files", "locations", "dates"
+                                        "people", "workOfArt", "files", "locations", "dates",
                                         "researchInfrastructure"],
                             "type": "best_fields",
                             "minimum_should_match": "100%"
@@ -666,19 +668,10 @@ def genericsearch(request):
             },
             "aggs":aggregares
         }
-
-
         result = es.search(index="webcontents", body=query_body)
     lstResults=[]
     for searchResult in result['hits']['hits']:
         lstResults.append(searchResult['_source'])
-
-
-
-
-
-
-
     #......................
     files=[]
     locations=[]
@@ -737,8 +730,7 @@ def genericsearch(request):
             workOfArt.append (auth)
     #......................
     for searchResult in result['aggregations']['files']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="" and
-                (searchResult['key']=="pdf") or (searchResult['key']=="doc")or (searchResult['key']=="xml") or (searchResult['key']=="xls") or (searchResult['key']=="txt")):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
             ext={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -764,17 +756,27 @@ def genericsearch(request):
     if(upperBoundPage>10):
         upperBoundPage=11
 
-    return render(request,'webcontent_results.html',
+    htmlrender=""
+
+
+
+    if searchtype == 'imagesearch':
+        htmlrender='imagesearch_results.html'
+    else:
+        htmlrender='webcontent_results.html'
+
+    return render(request,htmlrender,
                   {
-                   "facets":facets,
-                   "results":lstResults,
-                   "NumberOfHits": numHits,
-                   "page_range": range(1,upperBoundPage),
-                   "cur_page": (page/10+1),
-                   "searchTerm":term,
-                   "functionList": getAllfunctionList(request)
+                      "facets":facets,
+                      "results":lstResults,
+                      "NumberOfHits": numHits,
+                      "page_range": range(1,upperBoundPage),
+                      "cur_page": (page/10+1),
+                      "searchTerm":term,
+                      "functionList": getAllfunctionList(request)
                   }
                   )
+
 #-----------------------------------------------------------------------------------------------------------------------
 
 def downloadCart(request):
@@ -832,9 +834,9 @@ def addToBasket(request):
 
             if(data['operation']=='add'):
                 if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
-                    request.session['BasketURLs'] = [data['url']]
+                    request.session['BasketURLs'] =[]
                 if not 'MyBasket' in request.session or not request.session['MyBasket']:
-                    request.session['MyBasket'] = [data]
+                    request.session['MyBasket'] = []
 
                 if data['url'] not in request.session['BasketURLs']:
 
@@ -846,7 +848,6 @@ def addToBasket(request):
                     saved_list.append(data)
                     request.session['MyBasket'] = saved_list
 
-                    print(data)
                     return JsonResponse(data)
                 else:
                     print("Duplicated")
@@ -854,8 +855,10 @@ def addToBasket(request):
             if(data['operation']=='delete'):
                 if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
                     request.session['BasketURLs'] = []
+                    del request.session['BasketURLs']
                 if not 'MyBasket' in request.session or not request.session['MyBasket']:
                     request.session['MyBasket'] = []
+                    del request.session['BasketURLs']
 
                 saved_list = request.session['MyBasket']
                 url=""
