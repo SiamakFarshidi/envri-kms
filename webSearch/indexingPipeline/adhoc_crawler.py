@@ -261,7 +261,7 @@ def processContents(text):
 
     for string in text.splitlines():
         txt=strippedText(string)
-        if len(txt)>1 (not validators.url(txt)) and (txt not in pageSentences):
+        if txt!='' and (not validators.url(txt)) and (txt not in pageSentences):
             pageContent=pageContent+"\n"+txt
             pageSentences.append(txt)
 
@@ -425,6 +425,7 @@ if __name__ == "__main__":
     #runCrawler("scholarshipdb")
     #printResults()
     for IR in ResearchInfrastructures:
+        total_urls_visited=0
         url= ResearchInfrastructures[IR]['url']
         indexWebsite(url)
 #-----------------------------------------------------------------------------------------------------------------------

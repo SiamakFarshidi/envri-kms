@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
-      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genericpages/templates/graphV.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/graphV.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genericpages/templates/pieChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/pieChart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genericpages/templates/publications.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/publications.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
-    </list>
+    <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -402,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643245117177</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="okay">
+      <created>1643245545530</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1643245545530</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
