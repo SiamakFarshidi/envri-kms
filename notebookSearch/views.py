@@ -11,7 +11,6 @@ from elasticsearch_dsl import Search, Q, Index
 from elasticsearch_dsl.query import MatchAll
 from django.core import serializers
 import numpy as np
-
 import json
 es = Elasticsearch("http://localhost:9200")
 #-------------------------------------------------------------------------------------------

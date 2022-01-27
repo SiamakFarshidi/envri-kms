@@ -14,6 +14,11 @@ import numpy as np
 import json
 import uuid
 
+import Github
+
+ACCESS_TOKEN_Github= "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"
+ACCESS_TOKEN_Gitlab= "glpat-RLNz1MhmyeR7jcox_dyA"
+
 # ----------------------------------------------------------------
 def open_file(file):
     read_path = file
@@ -60,4 +65,47 @@ def indexingpipeline():
         res = es.index(index="notebooks", id= uuid.uuid4(), body=newRecord)
         es.indices.refresh(index="notebooks")
 # ----------------------------------------------------------------
+def search_repository_github(keywords):
+    g = Github(ACCESS_TOKEN_Github)
+    keywords = [keyword.strip() for keyword in keywords.split(',')]
+    keywords.append("notebook")
+    query = '+'.join(keywords)+ '+in:readme+in:description'
+    result = g.search_repositories(query, 'stars', 'desc')
+    cnt=0
+    data=[]
+    iter_obj = iter(result)
+    while True:
+        try:
+            cnt=cnt+1
+            repo = next(iter_obj)
+            new_record= {
+                "id":cnt,
+                "name": repo.full_name,
+                "description": re.sub(r'[^A-Za-z0-9 ]+', '',repo.description),
+                "html_url":repo.html_url,
+                "git_url": repo.clone_url,
+                "language": repo.language,
+                "stars": repo.stargazers_count,
+                "size": repo.size,
+            }
+            if new_record["language"]=="Jupyter Notebook" and new_record not in data:
+                data.append(new_record)
+        except StopIteration:
+            break
+        except RateLimitExceededException:
+            continue
+    data=(json.dumps({"results_count": result.totalCount,"hits":data}).replace("'",'"'))
+    return  json.loads(data)
+# ----------------------------------------------------------------
+
+
+response_data=search_repository_github('')
+
+print(response_data)
+
+indexFile= open("notebooks.json","w+")
+indexFile.write(json.dumps(response_data))
+indexFile.close()
+
+
 indexingpipeline()

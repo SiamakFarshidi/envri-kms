@@ -29,7 +29,7 @@ external_urls = set()
 permitted_urls=set()
 urllib3.disable_warnings()
 #-----------------------------------------------------------------------------------------------------------------------
-max_urls=10
+max_urls=1
 config={}
 HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36',}
 # number of urls visited so far will be stored here
@@ -168,7 +168,7 @@ def extractFiles(url, html):
         try:
             fileMetadata={
                 'url': href,
-                'extension': href_ext,
+                'extension': href_ext.lower(),
                 'description': extensionList[href_ext.upper()]['descriptions']
             }
             fileList.append(fileMetadata)
@@ -237,20 +237,39 @@ def printResults():
     print("[+] Total URLs:", len(external_urls) + len(internal_urls))
     print("[+] Total crawled URLs:", max_urls)
 #-----------------------------------------------------------------------------------------------------------------------
-def strippedText(text):
-    text=text.replace('\n','')
-    text=text.replace('\t','')
-    text=text.replace('  ','')
-    text=text.replace('..','.')
-    return text
-#-----------------------------------------------------------------------------------------------------------------------
-def textCleansing(txt):
+def strippedText(txt):
+    #invalidtext=["b3d33ef8a1f43935895d9f0b718ebe394f0e48f90bec8a95c15025dd14088c63", "window.dataLayer"]
+
+    if type(txt)!=str:
+        return ''
+
+    cntNumbers = sum(c.isdigit() for c in txt)
+    cntLetters = sum(c.isalpha() for c in txt)
+
+    lstsplitdot=len(txt.split('.'))
+    lstsplitcomma=len(txt.split(','))
+    lstsplitspace=len(txt.split(' '))
+    lstsplitsemicolon=len(txt.split(';'))
+
+    lensign=lstsplitdot+lstsplitcomma+lstsplitsemicolon
+
+    if(lstsplitspace<lensign) or (cntNumbers>(cntLetters/3)):
+        return ''
+
+    clean = re.compile('<.*?>')
+    txt=re.sub(clean, '', txt)
+
+    #for invalidStr in invalidtext:
+    #    if invalidStr in txt:
+    #        return ''
+
     if type(txt)==str:
         res = isinstance(txt, str)
         if res:
             txt=re.sub(r'[^A-Za-z0-9 .-\?/:,;~%$#*@!&+=_><]+', '', txt)
     if len(txt)==1:
         txt=""
+
     return txt
 #-----------------------------------------------------------------------------------------------------------------------
 def processContents(text):
@@ -261,9 +280,10 @@ def processContents(text):
 
     for string in text.splitlines():
         txt=strippedText(string)
-        if txt!='' and (not validators.url(txt)) and (txt not in pageSentences):
+        if txt!='' and  txt!=' ' and (not validators.url(txt)) and (txt not in pageSentences):
             pageContent=pageContent+"\n"+txt
             pageSentences.append(txt)
+
 
     doc=nlp(pageContent)
     topics=[]
@@ -425,7 +445,16 @@ if __name__ == "__main__":
     #runCrawler("scholarshipdb")
     #printResults()
     for IR in ResearchInfrastructures:
+
+        internal_urls.clear()
+        external_urls.clear()
+        permitted_urls.clear()
         total_urls_visited=0
-        url= ResearchInfrastructures[IR]['url']
-        indexWebsite(url)
+
+        #url= ResearchInfrastructures[IR]['url']
+        #indexWebsite(url)
+        indexWebsite("https://www.lifewatch.eu/")
 #-----------------------------------------------------------------------------------------------------------------------
+
+
+
