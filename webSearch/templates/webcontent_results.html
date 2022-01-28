@@ -154,12 +154,16 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Search Space</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="active pcoded-hasmenu">
-                                <a href="javascript:void(0)">
+                                <a href="#">
                                     <span class="pcoded-micon"><i class="ti-world"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Webpages</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
+                                    <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
+                                        <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1">
+                                            <i class="ti-reload"></i> &nbsp; Reset filters </a> <br> <br>
+                                         </span>
                                     {% if facets.ResearchInfrastructure %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              Research Infrastructures:
@@ -304,7 +308,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1&searchtype=imagesearch" >
+                                <a href="../webSearch/imagesearch?term={{ searchTerm }}&page=1" >
                                     <span class="pcoded-micon"><i class="ti-gallery"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Images</span>
                                     <span class="pcoded-mcaret"></span>

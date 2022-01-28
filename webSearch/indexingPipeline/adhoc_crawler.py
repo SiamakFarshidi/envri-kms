@@ -459,7 +459,7 @@ if __name__ == "__main__":
 
         #url= ResearchInfrastructures[IR]['url']
         #indexWebsite(url)
-        indexWebsite("https://www.lifewatch.eu/")
+        indexWebsite("https://www.jerico-ri.eu/")
 #-----------------------------------------------------------------------------------------------------------------------
 
 

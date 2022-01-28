@@ -22,6 +22,9 @@ import ijson
 import nltk
 import numpy as np
 from textblob import TextBlob
+from urllib.parse import urlparse
+import os
+
 
 nltk.download('words')
 words = set(nltk.corpus.words.words())
@@ -674,6 +677,7 @@ def genericsearch(request):
     lstResults=[]
     for searchResult in result['hits']['hits']:
         lstResults.append(searchResult['_source'])
+
     #......................
     files=[]
     locations=[]
@@ -776,7 +780,212 @@ def genericsearch(request):
                       "functionList": getAllfunctionList(request)
                   }
                   )
+#-----------------------------------------------------------------------------------------------------------------------
+def imagesearch(request):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('webcontents', es)
 
+    try:
+        term = request.GET['term']
+    except:
+        term = ''
+
+    try:
+        page = request.GET['page']
+    except:
+        page = 0
+
+    try:
+        searchtype = request.GET['searchtype']
+    except:
+        searchtype = 'websearch'
+
+    try:
+        filter = request.GET['filter']
+    except:
+        filter = ''
+
+    try:
+        facet = request.GET['facet']
+    except:
+        facet = ''
+
+    if filter!="" and facet!="":
+        saved_list = request.session['filters']
+        saved_list.append({"term": {facet+".keyword": filter}})
+        request.session['filters'] = saved_list
+    else:
+        if 'filters' in request.session:
+            del request.session['filters']
+        request.session['filters']=[]
+
+    page=(int(page)-1)*100
+    result={}
+    if term=="*" or term=="top10":
+        result = es.search(
+            index="webcontents",
+            body={
+                "from" : page,
+                "size" : 100,
+
+                "query": {
+                    "bool" : {
+                        "must" : {
+                            "match_all": {}
+                        },
+                        "filter": {
+                            "bool" : {
+                                "must" :request.session.get('filters')
+                            }
+                        }
+                    }
+                },
+                "aggs":aggregares
+            }
+        )
+    else:
+        user_request = "some_param"
+        query_body = {
+            "from" : page,
+            "size" : 100,
+            "query": {
+                "bool": {
+                    "must": {
+                        "multi_match" : {
+                            "query": term,
+                            "fields": [ "title", "pageContetnts", "organizations", "topics",
+                                        "people", "workOfArt", "files", "locations", "dates",
+                                        "researchInfrastructure"],
+                            "type": "best_fields",
+                            "minimum_should_match": "100%"
+                        }
+                    },
+                    "filter": {
+                        "bool" : {
+                            "must" :request.session.get('filters')
+                        }
+                    }
+                }
+            },
+            "aggs":aggregares
+        }
+        result = es.search(index="webcontents", body=query_body)
+
+    lstResults=[]
+    lstImageFilename=[]
+    lstImageURL=[]
+
+    for searchResult in result['hits']['hits']:
+        lstResults.append(searchResult['_source'])
+
+        url = searchResult['_source']['url']
+        ResearchInfrastructure=searchResult['_source']['researchInfrastructure']
+        for img in searchResult['_source']['images']:
+            a = urlparse(img)
+            filename=os.path.basename(a.path)
+            extension = os.path.splitext(filename)[1]
+            filenameWithoutExt=os.path.splitext(filename)[0]
+            if filename not in lstImageFilename:
+                lstImageFilename.append(filename)
+                image={'imageURL':img, 'imageWebpage': url[0], 'filename': filenameWithoutExt, 'extension':extension , 'ResearchInfrastructure': ResearchInfrastructure[0]}
+                lstImageURL.append(image)
+
+#......................
+    files=[]
+    locations=[]
+    people=[]
+    organizations=[]
+    workOfArt=[]
+    products=[]
+    ResearchInfrastructure=[]
+    #......................
+    for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            RI={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            ResearchInfrastructure.append (RI)
+    #......................
+    for searchResult in result['aggregations']['locations']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            loc={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            locations.append (loc)
+    #......................
+    for searchResult in result['aggregations']['people']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            prod={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            people.append (prod)
+    #......................
+    for searchResult in result['aggregations']['organizations']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            org={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            organizations.append (org)
+    #......................
+    for searchResult in result['aggregations']['products']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            pers={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            products.append (pers)
+    #......................
+    for searchResult in result['aggregations']['workOfArt']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            auth={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            workOfArt.append (auth)
+    #......................
+    for searchResult in result['aggregations']['files']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+            ext={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            files.append (ext)
+    #......................
+
+    facets={
+        "files":files,
+        "locations":locations,
+        "workOfArt":workOfArt,
+        "organizations":organizations,
+        "people":people,
+        "products":products,
+        "ResearchInfrastructure":ResearchInfrastructure
+    }
+    #envri-statics
+    #print("Got %d Hits:" % result['hits']['total']['value'])
+    #return JsonResponse(result, safe=True, json_dumps_params={'ensure_ascii': False})
+    numHits=result['hits']['total']['value']
+
+    upperBoundPage=round(np.ceil(numHits/1000)+1)
+    if(upperBoundPage>10):
+        upperBoundPage=11
+
+    return render(request,'imagesearch_results.html',
+                  {
+                      "facets":facets,
+                      "results":lstResults,
+                      "NumberOfHits": numHits,
+                      "page_range": range(1,upperBoundPage),
+                      "cur_page": (page/10+1),
+                      "searchTerm":term,
+                      "functionList": getAllfunctionList(request),
+                      "lstImageURL":lstImageURL
+                  }
+                  )
 #-----------------------------------------------------------------------------------------------------------------------
 
 def downloadCart(request):
