@@ -444,6 +444,7 @@ function facetSearch(facet,filter){
     // Set new or modify existing parameter value.
     queryParams.set("filter", filter);
     queryParams.set("facet", facet);
+    queryParams.set("page", 1);
     // Replace current querystring with the new one.
     history.replaceState(null, null, "?"+queryParams.toString());
     location.reload();

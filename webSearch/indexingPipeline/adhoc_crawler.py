@@ -214,12 +214,15 @@ def crawl(url):
     links=set()
     global total_urls_visited
     total_urls_visited += 1
-    print(f"{YELLOW}[*] Crawling: {url}{RESET}")
-    links = get_all_website_links(url)
-    for link in links:
-        if total_urls_visited > max_urls:
-            break
-        crawl(link)
+
+    lenFolders=url.split('/')
+    if(len(url)<1024 and 'emso.eu/events/' not in url):
+        print(f"{YELLOW}[*] Crawling: {url}{RESET}")
+        links = get_all_website_links(url)
+        for link in links:
+            if total_urls_visited > max_urls:
+                break
+            crawl(link)
 #-----------------------------------------------------------------------------------------------------------------------
 def runCrawler(website):
     global config
@@ -444,8 +447,11 @@ def ingest_metadataFile(metadataFile):
 if __name__ == "__main__":
     #runCrawler("scholarshipdb")
     #printResults()
+    counter=1
     for IR in ResearchInfrastructures:
-
+        if counter<0:
+            counter=counter+1
+            continue
         internal_urls.clear()
         external_urls.clear()
         permitted_urls.clear()

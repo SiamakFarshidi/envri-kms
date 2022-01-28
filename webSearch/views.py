@@ -21,6 +21,8 @@ import dateutil.parser
 import ijson
 import nltk
 import numpy as np
+from textblob import TextBlob
+
 nltk.download('words')
 words = set(nltk.corpus.words.words())
 ResearchInfrastructures={
@@ -94,12 +96,12 @@ ResearchInfrastructures={
         'title': 'EISCAT Scientific Association',
         'acronym':'EISCAT 3D'
     },
-    'lter-europe.net':{
-        'id': 11,
-        'url':'https://www.lter-europe.net/',
-        'label': 'Biodiversity / Ecosystems',
-        'title': 'Long-Term Ecosystem Research in Europe',
-        'acronym':'eLTER RI'
+    "elter-ri.eu":{
+        "id": 11,
+        "url":"https://elter-ri.eu/",
+        "domain": "Biodiversity / Ecosystems",
+        "title": "Long-Term Ecosystem Research in Europe",
+        "acronym":"eLTER RI"
     },
     'embrc.eu':{
         'id': 12,
@@ -757,8 +759,6 @@ def genericsearch(request):
         upperBoundPage=11
 
     htmlrender=""
-
-
 
     if searchtype == 'imagesearch':
         htmlrender='imagesearch_results.html'

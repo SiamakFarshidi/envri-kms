@@ -482,7 +482,7 @@
                                                                 {% elif resultItem.researchInfrastructure.0.acronym == "DiSSCo"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/DISSCO.png' %}" style="width:70px" />
 
-                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EISCAT_3D"%}
+                                                                {% elif resultItem.researchInfrastructure.0.acronym == "EISCAT 3D"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/EISCAT3D.png' %}" style="width:70px" />
 
                                                                 {% elif resultItem.researchInfrastructure.0.acronym == "eLTER RI"%}
@@ -600,6 +600,7 @@ function facetSearch(facet,filter){
     // Set new or modify existing parameter value.
     queryParams.set("filter", filter);
     queryParams.set("facet", facet);
+    queryParams.set("page", 1);
     // Replace current querystring with the new one.
     history.replaceState(null, null, "?"+queryParams.toString());
     location.reload();

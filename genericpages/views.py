@@ -45,8 +45,8 @@ def genericpages(request):
         sum= numHits1+numHits2+numHits3
 
         dataPoints=[
-            {'y': numHits1/sum*100 , 'label': 'Webpages'},
-            {'y': numHits2/sum*100 , 'label': 'Dataset'},
+            {'y': numHits2/sum*100 , 'label': 'Webpages'},
+            {'y': numHits1/sum*100 , 'label': 'Dataset'},
             {'y': numHits3/sum*100 , 'label': 'Web APIs'}
         ]
 
@@ -174,9 +174,9 @@ ResearchInfrastructures2={
         'title': 'EISCAT Scientific Association',
         'acronym':'EISCAT 3D'
     },
-    'lter-europe.net':{
+    'elter-ri.eu':{
         'id': 11,
-        'url':'https://www.lter-europe.net/',
+        'url':'https://www.elter-ri.eu/',
         'label': 'Biodiversity / Ecosystems',
         'title': 'Long-Term Ecosystem Research in Europe',
         'acronym':'eLTER RI'
@@ -431,9 +431,9 @@ ResearchInfrastructures={
             'background': 'white',
         },
     },
-    'lter-europe.net':{
+    'elter-ri.eu':{
         'id': 11,
-        'url':'https://www.lter-europe.net/',
+        'url':'https://www.elter-ri.eu/',
         'label': 'Biodiversity / Ecosystems',
         'title': 'Long-Term Ecosystem Research in Europe',
         'shape': 'image',
