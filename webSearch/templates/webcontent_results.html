@@ -549,6 +549,8 @@
 
                                                                 {% elif resultItem.researchInfrastructure.0.acronym == "SIOS"%}
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/sios.png' %}" style="width:70px" />
+                                                                {% else %}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/KB.png' %}" style="width:30px" />
                                                                 {% endif %}
                                                             </a>
                                                                 <a href="#" onclick="modifyBasket('add','Webpages',&quot;{%for title in resultItem.title %} {{title}} {% endfor %}&quot;,'{{ resultItem.url.0 }}', 'id');">
