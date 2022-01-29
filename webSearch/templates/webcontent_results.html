@@ -45,11 +45,21 @@
     }
 </style>
 
+    <link rel="stylesheet" href="{% static '/splashScreen/styles.css'%}">
+    <style>
+		/* This only works with JavaScript,
+		   if it's not present, don't show loader */
+		.no-js #canvas1 { display: none;  }
+		.js #canvas1 { display: block; position: absolute; left: 100px; top: 0; }
+	</style>
+
 </head>
 
 
 
 <body>
+<canvas id="canvas1"></canvas>
+<script src="{% static '/splashScreen/particles.js'%}"></script>
 
 <!-- Pre-loader start -->
 <div class="theme-loader">
@@ -318,7 +328,7 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Visualization</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li>
-                                <a href="../genericpages/genericpages?page=graphV&term={{ searchTerm }}" >
+                                <a href="../genericpages/genericpages?page=graphV&term={{ searchTerm }}" target="_blank">
                                     <span class="pcoded-micon"><i class="ti-vector"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Graph based</span>
                                     <span class="pcoded-mcaret"></span>

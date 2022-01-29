@@ -13,7 +13,6 @@ from django.core import serializers
 from .indexingPipeline import DatasetRecords
 from .indexingPipeline import WebCrawler
 import numpy as np
-
 import json
 es = Elasticsearch("http://localhost:9200")
 
@@ -170,11 +169,19 @@ def genericsearch(request):
         }
 
         result = es.search(index="envri", body=query_body)
+
     lstResults=[]
-
-
+    LocationspatialCoverage=[]
+    spatialCounter=0
     for searchResult in result['hits']['hits']:
         lstResults.append(searchResult['_source'])
+        for location in searchResult['_source']['spatialCoverage']:
+            if (location!="") and (location!="None") and (location not in LocationspatialCoverage) and (spatialCounter<10):
+                spatialCounter=spatialCounter+1
+                geoLocation={"location":location, "RI":  searchResult['_source']['ResearchInfrastructure'][0]}
+                print(geoLocation)
+                LocationspatialCoverage.append(geoLocation)
+
     #......................
     ResearchInfrastructure=[]
     spatialCoverage=[]
@@ -248,7 +255,8 @@ def genericsearch(request):
                       "page_range": range(1,upperBoundPage),
                       "cur_page": (page/10+1),
                       "searchTerm":term,
-                      "functionList": getAllfunctionList(request)
+                      "functionList": getAllfunctionList(request),
+                      "spatialCoverage":LocationspatialCoverage
                   }
                   )
 #----------------------------------------------------------------------------------------

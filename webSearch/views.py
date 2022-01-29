@@ -688,7 +688,7 @@ def genericsearch(request):
     ResearchInfrastructure=[]
     #......................
     for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="" and searchResult['key']!="KB"):
             RI={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -900,7 +900,7 @@ def imagesearch(request):
     ResearchInfrastructure=[]
     #......................
     for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="" and searchResult['key']!="KB"):
             RI={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']

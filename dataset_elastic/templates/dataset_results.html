@@ -32,6 +32,14 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
     <style>
         h5.titleTrimming {
           white-space: nowrap;
@@ -43,6 +51,12 @@
     .show-read-more .more-text{
         display: none;
     }
+    #map{
+        height: 180px;
+        margin-bottom:20px;
+
+    }
+
 </style>
 
 </head>
@@ -282,7 +296,7 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Visualization</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li>
-                                <a href="../genericpages/genericpages?page=graphV&term={{ searchTerm }}">
+                                <a href="../genericpages/genericpages?page=graphV&term={{ searchTerm }}" target="_blank">
                                     <span class="pcoded-micon"><i class="ti-vector"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Graph based</span>
                                     <span class="pcoded-mcaret"></span>
@@ -329,6 +343,9 @@
 
                         <div class="main-body">
                             <div class="page-wrapper" id="MessageBox">
+                                <div id="map"></div>
+
+
                                 {% if NumberOfHits > 0 %}
                                     I found <b>{{ NumberOfHits}}</b> results for you!
                                 {% elif NumberOfHits == 1 %}
@@ -437,6 +454,7 @@
 <script src="{% static 'js/pcoded.min.js' %}"></script>
 <script src="{% static 'js/vartical-demo.js' %}"></script>
 <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
 <script>
 //---------------------------------------------------------------------
 function clearSearchBoxes(){
@@ -597,6 +615,65 @@ function modifyCart(data) {
   $('#MyCartCount').text(cnt);
 }
 {{functionList|safe}}
+
+//---------------------------------------------------------------------
+var map = L.map('map').setView([0,0], 1);
+
+function generateFirstView(location, RI){
+    if (location=="") {return 0;}
+
+    var location_url= "https://www.mapquestapi.com/geocoding/v1/address?key=y5k2RIvnWCBRSWuYbKjlVo8SFdPm8nsz&location="+location;
+    $.ajax({
+            url: location_url,
+                timeout: 15000 ,
+            beforeSend: function(xhr) {
+                 xhr.setRequestHeader("Authorization", "Bearer 6QXNMEMFHNY4FJ5ELNFMP5KRW52WFXN5")
+            }, success: function(data){
+                console.log(data['results'][0]);
+                coord=data['results'][0]['locations'][0]['latLng'];
+                if (typeof coord != "undefined" ){
+                    lat_lng=[coord['lat'], coord['lng']];
+                    map = map.setView(lat_lng, 1);
+                }
+            }
+    })
+}
+
+function insertLocation(location, RI){
+    if (location=="") {return 0;}
+    var location_url= "https://www.mapquestapi.com/geocoding/v1/address?key=y5k2RIvnWCBRSWuYbKjlVo8SFdPm8nsz&location="+location;
+    $.ajax({
+            url: location_url,
+                timeout: 15000 ,
+            beforeSend: function(xhr) {
+                 xhr.setRequestHeader("Authorization", "Bearer 6QXNMEMFHNY4FJ5ELNFMP5KRW52WFXN5")
+            }, success: function(data){
+                console.log(data['results'][0]);
+                coord=data['results'][0]['locations'][0]['latLng'];
+                if (typeof coord != "undefined" ){
+                    display_name=data['results'][0]['providedLocation']['location'];
+                    marker = new L.marker([coord['lat'], coord['lng']])
+                   .bindPopup(RI + ': '+ display_name)
+                   .addTo(map);
+               }
+            }
+    })
+}
+
+generateFirstView('{{ spatialCoverage.0.location }}', '{{ spatialCoverage.0.RI }}');
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1Ijoic2lhbWFrZmFyc2hpZGkiLCJhIjoiY2s3dG5zaW0wMHg4czNtb3U1dWRwc2ZlbyJ9.yYhXI7_f9gBUYBAD_wS8Ug'
+}).addTo(map);
+
+{% for geo in spatialCoverage %}
+      insertLocation('{{ geo.location }}', '{{ geo.RI }}');
+{% endfor %}
 </script>
 </body>
 </html>

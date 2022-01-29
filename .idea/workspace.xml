@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/static/splashScreen/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/splashScreen/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/splashScreen/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/splashScreen/particles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/splashScreen/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/graphV.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/graphV.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/pieChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/pieChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/publications.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/publications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/ResearchInfrastructures.json" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/ResearchInfrastructures.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,16 +77,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/webSearch/indexingPipeline" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/webSearch/indexingPipeline" />
       <recent name="$PROJECT_DIR$/notebookSearch" />
       <recent name="$PROJECT_DIR$/static/graphVisualization" />
       <recent name="$PROJECT_DIR$/static/graphVisualization/js" />
-      <recent name="$PROJECT_DIR$/dataset_elastic/indexingPipeline" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/webSearch" />
@@ -86,13 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00003" summary="okay">
-      <created>1639989246201</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1639989246201</updated>
     </task>
     <task id="LOCAL-00004" summary="okay">
       <created>1639989262045</created>
@@ -430,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643388105021</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="okay">
+      <created>1643464163748</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1643464163748</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

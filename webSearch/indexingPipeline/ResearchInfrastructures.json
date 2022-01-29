@@ -180,5 +180,12 @@
     "domain": "Multi-domain",
     "title": "Svalbard integrated Earth observing system",
     "acronym":"SIOS"
+  },
+  "envri.eu":{
+    "id": 27,
+    "url":"https://envri.eu/",
+    "domain": "Multi-domain",
+    "title": "ENVRI community",
+    "acronym":"KB"
   }
 }

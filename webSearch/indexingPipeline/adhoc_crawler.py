@@ -449,7 +449,7 @@ if __name__ == "__main__":
     #printResults()
     counter=1
     for IR in ResearchInfrastructures:
-        if counter<0:
+        if counter<27:
             counter=counter+1
             continue
         internal_urls.clear()
@@ -457,9 +457,8 @@ if __name__ == "__main__":
         permitted_urls.clear()
         total_urls_visited=0
 
-        #url= ResearchInfrastructures[IR]['url']
-        #indexWebsite(url)
-        indexWebsite("https://www.jerico-ri.eu/")
+        url= ResearchInfrastructures[IR]['url']
+        indexWebsite(url)
 #-----------------------------------------------------------------------------------------------------------------------
 
 

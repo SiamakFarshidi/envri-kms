@@ -38,7 +38,21 @@
     <script type="text/javascript" src="{% static '/graphVisualization/vis-data.min.js'%}"></script>
     <script type="text/javascript" src="{% static '/graphVisualization/vis-network.min.js'%}"></script>
     <link rel="stylesheet" type="text/css" href="{% static '/graphVisualization/vis-network.min.css'%}" />
+    <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'js/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{% static 'js/modernizr/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/modernizr/css-scrollbars.js' %}"></script>
 
+    <!-- Custom js -->
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/pcoded.min.js' %}"></script>
+    <script src="{% static 'js/vartical-demo.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
     <style type="text/css">
       html,
       body,
@@ -131,11 +145,54 @@
         }
     </style>
 
+    <style>
+        h5.titleTrimming {
+          white-space: nowrap;
+          width: 60%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .show-read-more .more-text{
+            display: none;
+        }
+
+        .LockOn {
+
+        position: fixed;
+        background-color:black;
+
+        display: block;
+        visibility: visible;
+        z-index: 9999;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background-color:white;
+        vertical-align:bottom;
+        padding-top: 20%;
+        filter: alpha(opacity=75);
+        font-size:large;
+        color:blue;
+        font-style:italic;
+        font-weight:400;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    </style>
 </head>
 
+<body style=" overflow: hidden; ">
+<script>
+    $(window).scrollTop(0);
+</script>
+<div id="coverScreen"  class="LockOn" >
+    <link rel="stylesheet" href="{% static 'splashScreen/styles.css' %}">
+    <canvas id="canvas1"></canvas>
+    <script src="{% static 'splashScreen/particles.js' %}"></script>
+</div>
 
-
-<body>
 
 <!-- Pre-loader start -->
 <div class="theme-loader">
@@ -340,21 +397,7 @@
 </div>
 {% csrf_token %}
 
-<script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/popper.js/popper.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap/js/bootstrap.min.js' %}"></script>
-<!-- jquery slimscroll js -->
-<script type="text/javascript" src="{% static 'js/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
-<!-- modernizr js -->
-<script type="text/javascript" src="{% static 'js/modernizr/modernizr.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/modernizr/css-scrollbars.js' %}"></script>
 
-<!-- Custom js -->
-<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-<script src="{% static 'js/pcoded.min.js' %}"></script>
-<script src="{% static 'js/vartical-demo.js' %}"></script>
-<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
 
 
 
@@ -451,7 +494,8 @@ network = new vis.Network(container, data, options);
 
 network.on("initRedraw", function () {
 // do something like move some custom elements?
-//alert('okay');
+    document.getElementById("coverScreen").style.display = "none";
+    document.body.style.overflow = 'visible';
 });
 
 network.on("doubleClick", function (e) {
