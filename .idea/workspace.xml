@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
-      <change afterPath="$PROJECT_DIR$/webAPI/DB/LifeWatch/3tier-rest-api_result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/notification/error.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/notification/info.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/notification/question.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/notification/success.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/notification/warning.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_elastic/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,16 +69,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/webAPI/DB/LifeWatch" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/notification" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/webAPI/DB/LifeWatch" />
+      <recent name="$PROJECT_DIR$/static/notification" />
       <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/webAPI/DB/LifeWatch" />
       <recent name="$PROJECT_DIR$/webSearch/indexingPipeline" />
       <recent name="$PROJECT_DIR$/notebookSearch" />
-      <recent name="$PROJECT_DIR$/static/graphVisualization" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/webSearch" />
@@ -89,13 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00006" summary="okay">
-      <created>1640000177842</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1640000177842</updated>
     </task>
     <task id="LOCAL-00007" summary="okay">
       <created>1640051191106</created>
@@ -433,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643499089523</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="okay">
+      <created>1643509421395</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1643509421395</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

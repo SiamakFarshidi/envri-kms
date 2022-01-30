@@ -89,6 +89,8 @@
 
 </style>
 
+    <link rel="stylesheet" href="{% static '/notification/style.css'%}" />
+    <script src="{% static '/notification/cute-alert.js'%}"></script>
 </head>
 
 
@@ -405,6 +407,35 @@
                                     <div class="page-body" style="text-align:center;">
                                         <div class="row">
                                             <div class="col-sm-12">
+
+                                                {% if NumberOfHits == 0 %}
+                                                <script>
+                                                    sessionStorage.setItem("SearchFailed","Yes");
+                                                    sessionStorage.setItem("searchValue", "");
+                                                    window.location.href = "../webSearch/imagesearch?term=top10&page=1";
+                                                 </script>
+                                                {% endif %}
+                                                <br>
+                                                <br>
+
+                                                <script>
+                                            if (sessionStorage.getItem("SearchFailed")=="Yes"){
+                                                cuteAlert({
+                                                  type: "info",
+                                                  title: "No results found",
+                                                  message: "I coudn't find anything for you! <br> Please revise your search term.",
+                                                  buttonText: "Okay"
+                                                }).then(() => {
+                                                  // do something
+                                                });
+                                            }
+                                            sessionStorage.setItem("SearchFailed","No");
+                                        </script>
+
+
+
+
+
                                                 {%for resultItem in lstImageURL %}
                                                 <a class="imageAnchor" href="{{ resultItem.imageWebpage }}" target="_blank" id="ID{{resultItem.filename}}">
                                                     <span>

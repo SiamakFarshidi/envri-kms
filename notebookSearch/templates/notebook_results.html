@@ -31,7 +31,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
-
+    <link rel="stylesheet" href="{% static '/notification/style.css'%}" />
+    <script src="{% static '/notification/cute-alert.js'%}"></script>
     <style>
         h5.titleTrimming {
           white-space: nowrap;
@@ -243,10 +244,28 @@
                                 I found only <b>one</b> result for you!
                                 {% else %}
                                 I couldn't find <b>anything</b> for you!
-                                <script> window.location.href = "../notebookSearch/genericsearch?term=top10&page=1"; </script>
+                                <script>
+                                        sessionStorage.setItem("SearchFailed","Yes");
+                                        sessionStorage.setItem("searchValue", "");
+                                         window.location.href = "../notebookSearch/genericsearch?term=top10&page=1";
+                                    </script>
                                 {% endif %}
                                 <br>
                                 <br>
+
+                                <script>
+                                    if (sessionStorage.getItem("SearchFailed")=="Yes"){
+                                        cuteAlert({
+                                          type: "info",
+                                          title: "No results found",
+                                          message: "I coudn't find anything for you! <br> Please revise your search term.",
+                                          buttonText: "Okay"
+                                        }).then(() => {
+                                          // do something
+                                        });
+                                    }
+                                    sessionStorage.setItem("SearchFailed","No");
+                                </script>
 
                                 {%for resultItem in results %}
 

@@ -31,7 +31,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
-
+    <link rel="stylesheet" href="{% static '/notification/style.css'%}" />
+    <script src="{% static '/notification/cute-alert.js'%}"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -345,17 +346,43 @@
                             <div class="page-wrapper" id="MessageBox">
                                 <div id="map"></div>
 
-
                                 {% if NumberOfHits > 0 %}
-                                    I found <b>{{ NumberOfHits}}</b> results for you!
+                                I found <b>{{ NumberOfHits}}</b> results for you!
                                 {% elif NumberOfHits == 1 %}
-                                    I found only <b>one</b> result for you!
+                                I found only <b>one</b> result for you!
                                 {% else %}
-                                    I couldn't find <b>anything</b> for you!
-                                    <script> window.location.href = "../dataset_elastic/genericsearch?term=top10&page=1"; </script>
+                                I couldn't find <b>anything</b> for you!
+                                <script>
+                                        sessionStorage.setItem("SearchFailed","Yes");
+                                        sessionStorage.setItem("searchValue", "");
+                                         window.location.href = "../dataset_elastic/genericsearch?term=top10&page=1";
+                                    </script>
                                 {% endif %}
                                 <br>
                                 <br>
+
+                                <script>
+                                    if (sessionStorage.getItem("SearchFailed")=="Yes"){
+                                        cuteAlert({
+                                          type: "info",
+                                          title: "No results found",
+                                          message: "I coudn't find anything for you! <br> Please revise your search term.",
+                                          buttonText: "Okay"
+                                        }).then(() => {
+                                          // do something
+                                        });
+                                    }
+                                    sessionStorage.setItem("SearchFailed","No");
+                                </script>
+
+
+
+
+
+
+
+
+
 
                                 {%for resultItem in results %}
 

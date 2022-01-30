@@ -45,6 +45,9 @@
     }
 </style>
 
+    <link rel="stylesheet" href="{% static '/notification/style.css'%}" />
+    <script src="{% static '/notification/cute-alert.js'%}"></script>
+
     <link rel="stylesheet" href="{% static '/splashScreen/styles.css'%}">
     <style>
 		/* This only works with JavaScript,
@@ -380,10 +383,29 @@
                                     I found only <b>one</b> result for you!
                                 {% else %}
                                     I couldn't find <b>anything</b> for you!
-                                    <script> window.location.href = "../webSearch/genericsearch?term=top10&page=1"; </script>
+                                    <script>
+                                        sessionStorage.setItem("SearchFailed","Yes");
+                                        sessionStorage.setItem("searchValue", "");
+                                         window.location.href = "../webSearch/genericsearch?term=top10&page=1";
+                                    </script>
                                 {% endif %}
                                 <br>
                                 <br>
+
+                                <script>
+                                    if (sessionStorage.getItem("SearchFailed")=="Yes"){
+                                        cuteAlert({
+                                          type: "info",
+                                          title: "No results found",
+                                          message: "I coudn't find anything for you! <br> Please revise your search term.",
+                                          buttonText: "Okay"
+                                        }).then(() => {
+                                          // do something
+                                        });
+                                    }
+                                    sessionStorage.setItem("SearchFailed","No");
+                                </script>
+
 
                                 {%for resultItem in results %}
 
@@ -664,7 +686,7 @@ cnt=document.querySelectorAll("#MyCart li").length-1;
 $('#MyCartCount').text(cnt);
 //---------------------------------------------------------------------
 $(document).ready(function(){
-    var maxLength = 2000;
+    var maxLength = 1200;
     $(".show-read-more").each(function(){
         var myStr = $(this).html();
         if($.trim(myStr).length > maxLength){
