@@ -653,7 +653,7 @@ function insertLocation(location, RI){
                 if (typeof coord != "undefined" ){
                     display_name=data['results'][0]['providedLocation']['location'];
                     marker = new L.marker([coord['lat'], coord['lng']])
-                   .bindPopup(RI + ': '+ display_name)
+                   .bindPopup(RI + ': '+ location)
                    .addTo(map);
                }
             }
