@@ -1,2 +1,2 @@
 # opensemanticsearch2
-# envri-kms
+# envri-kbs

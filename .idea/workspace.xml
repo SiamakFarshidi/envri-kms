@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/notebookSearch/temp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/DB/LifeWatch/lifewatch 2.json" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/DB/LifeWatch/lifewatch 2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accountManagement/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accountManagement/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/landingpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/landingpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/notebooks.json" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/notebooks.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +45,9 @@
     <setting file="file://$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/templates/webapi_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/adhoc_DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/genericpages/templates/landingpage.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Urls.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/views.py" root0="FORCE_HIGHLIGHTING" />
@@ -60,7 +67,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/notification" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mirror" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
   </component>
   <component name="RecentsManager">
@@ -86,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00012" summary="okay">
-      <created>1640224991737</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1640224991737</updated>
     </task>
     <task id="LOCAL-00013" summary="okay">
       <created>1640295907559</created>
@@ -430,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643554156803</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="okay">
+      <created>1643554790847</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1643554790847</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
