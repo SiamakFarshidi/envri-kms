@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
-      <change afterPath="$PROJECT_DIR$/static/notification/error.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/notification/info.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/notification/question.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/notification/success.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/notification/warning.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,20 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00007" summary="okay">
-      <created>1640051191106</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1640051191106</updated>
-    </task>
-    <task id="LOCAL-00008" summary="okay">
-      <created>1640051209088</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1640051209088</updated>
     </task>
     <task id="LOCAL-00009" summary="okay">
       <created>1640214131797</created>
@@ -439,7 +416,21 @@
       <option name="project" value="LOCAL" />
       <updated>1643509421395</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="okay">
+      <created>1643544044711</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1643544044711</updated>
+    </task>
+    <task id="LOCAL-00057" summary="okay">
+      <created>1643544054702</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1643544054702</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
