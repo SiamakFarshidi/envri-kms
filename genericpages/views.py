@@ -42,7 +42,7 @@ def genericpages(request):
         id,dataset_nodes2, dataset_edges2, numHits2 = graphV_webSearch(id,term)
         id,dataset_nodes3, dataset_edges3, numHits3 = graphV_webAPI(id,term)
 
-        sum= numHits1+numHits2+numHits3
+        sum= (numHits1+numHits2+numHits3)+1
 
         dataPoints=[
             {'y': numHits2/sum*100 , 'label': 'Webpages'},
