@@ -12,6 +12,11 @@ from elasticsearch_dsl.query import MatchAll
 from django.core import serializers
 import numpy as np
 import json
+from PyDictionary import PyDictionary
+import requests
+from bs4 import BeautifulSoup
+from spellchecker import SpellChecker
+
 es = Elasticsearch("http://localhost:9200")
 #-------------------------------------------------------------------------------------------
 ACCESS_TOKEN_Github= "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"
@@ -46,6 +51,8 @@ def genericsearch(request):
 
     try:
         term = request.GET['term']
+        term=term.rstrip()
+        term=term.lstrip()
     except:
         term = ''
 
@@ -64,8 +71,55 @@ def genericsearch(request):
     except:
         facet = ''
 
+    try:
+        suggestedSearchTerm = request.GET['suggestedSearchTerm']
+    except:
+        suggestedSearchTerm = ''
 
+    searchResults=getSearchResults(request, facet, filter, page, term)
 
+    if(suggestedSearchTerm != ""):
+        searchResults["suggestedSearchTerm"]=""
+    else:
+        suggestedSearchTerm=""
+        if searchResults["NumberOfHits"]==0:
+            suggestedSearchTerm= potentialSearchTerm(term)
+            searchResults=getSearchResults(request, facet, filter, page, "*")
+            searchResults["NumberOfHits"]=0
+            searchResults["searchTerm"]=term
+            searchResults["suggestedSearchTerm"]=suggestedSearchTerm
+
+    return render(request,'notebook_results.html',searchResults )
+#-----------------------------------------------------------------------------------------------------------------------
+def potentialSearchTerm(term):
+    alternativeSearchTerm=""
+
+    spell = SpellChecker()
+    searchTerm=term.split()
+    alternativeSearchTerm=""
+    for sTerm in searchTerm:
+        alterWord=spell.correction(sTerm)
+        if(alterWord!=""):
+            alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    if alternativeSearchTerm==term:
+        alternativeSearchTerm=""
+        for sTerm in searchTerm:
+            syn=synonyms(sTerm)
+            if len(syn)>0:
+                alterWord=syn[0]
+                alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    return alternativeSearchTerm
+#-----------------------------------------------------------------------------------------------------------------------
+
+def getSearchResults(request, facet, filter, page, term):
     if filter!="" and facet!="":
         saved_list = request.session['filters']
         saved_list.append({"term": {facet+".keyword": filter}})
@@ -125,17 +179,26 @@ def genericsearch(request):
         upperBoundPage=11
 
     facets=[]
-    return render(request,'notebook_results.html',
-                  {
-                      "facets":facets,
-                      "results":lstResults,
-                      "NumberOfHits": numHits,
-                      "page_range": range(1,upperBoundPage),
-                      "cur_page": (page/10+1),
-                      "searchTerm":term,
-                      "functionList": getAllfunctionList(request)
-                  }
-                  )
+
+    results={
+        "facets":facets,
+        "results":lstResults,
+        "NumberOfHits": numHits,
+        "page_range": range(1,upperBoundPage),
+        "cur_page": (page/10+1),
+        "searchTerm":term,
+        "functionList": getAllfunctionList(request)
+    }
+
+    return results
+
+#-----------------------------------------------------------------------------------------------------------------------
+def synonyms(term):
+    response = requests.get('https://www.thesaurus.com/browse/{}'.format(term))
+    soup = BeautifulSoup(response.text, 'html.parser')
+    soup.find('section', {'class': 'css-191l5o0-ClassicContentCard e1qo4u830'})
+    return [span.text for span in soup.findAll('a', {'class': 'css-1kg1yv8 eh475bn0'})]
+
 #-------------------------------------------------------------------------------------------
 def search_projects_Gitlab(keyword):
     #    cURL = r'curl --header "PRIVATE-TOKEN:'+ACCESS_TOKEN_Gitlab+'" "https://gitlab.example.com/api/v4/search?scope=projects&search='+keyword+'"'

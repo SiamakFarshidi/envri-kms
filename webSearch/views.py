@@ -24,6 +24,10 @@ import numpy as np
 from textblob import TextBlob
 from urllib.parse import urlparse
 import os
+from PyDictionary import PyDictionary
+import requests
+from bs4 import BeautifulSoup
+from spellchecker import SpellChecker
 
 
 nltk.download('words')
@@ -586,11 +590,12 @@ def aggregates(request):
 
 #-----------------------------------------------------------------------------------------------------------------------
 def genericsearch(request):
-    es = Elasticsearch("http://localhost:9200")
-    index = Index('webcontents', es)
+
 
     try:
         term = request.GET['term']
+        term=term.rstrip()
+        term=term.lstrip()
     except:
         term = ''
 
@@ -613,6 +618,63 @@ def genericsearch(request):
         facet = request.GET['facet']
     except:
         facet = ''
+
+    try:
+        suggestedSearchTerm = request.GET['suggestedSearchTerm']
+    except:
+        suggestedSearchTerm = ''
+
+    searchResults=getSearchResults(request, facet, filter,searchtype, page, term)
+
+    if(suggestedSearchTerm != ""):
+        searchResults["suggestedSearchTerm"]=""
+    else:
+        suggestedSearchTerm=""
+        if searchResults["NumberOfHits"]==0:
+            suggestedSearchTerm= potentialSearchTerm(term)
+            searchResults=getSearchResults(request, facet, filter, searchtype,page, "*")
+            searchResults["NumberOfHits"]=0
+            searchResults["searchTerm"]=term
+            searchResults["suggestedSearchTerm"]=suggestedSearchTerm
+
+    if searchtype == 'imagesearch':
+        htmlrender='imagesearch_results.html'
+    else:
+        htmlrender='webcontent_results.html'
+
+    return render(request,htmlrender,searchResults )
+#-----------------------------------------------------------------------------------------------------------------------
+def potentialSearchTerm(term):
+    alternativeSearchTerm=""
+
+    spell = SpellChecker()
+    searchTerm=term.split()
+    alternativeSearchTerm=""
+    for sTerm in searchTerm:
+        alterWord=spell.correction(sTerm)
+        if(alterWord!=""):
+            alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    if alternativeSearchTerm==term:
+        alternativeSearchTerm=""
+        for sTerm in searchTerm:
+            syn=synonyms(sTerm)
+            if len(syn)>0:
+                alterWord=syn[0]
+                alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    return alternativeSearchTerm
+#-----------------------------------------------------------------------------------------------------------------------
+
+def getSearchResults(request, facet, filter, searchtype, page, term):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('webcontents', es)
 
     if filter!="" and facet!="":
         saved_list = request.session['filters']
@@ -674,10 +736,25 @@ def genericsearch(request):
             "aggs":aggregares
         }
         result = es.search(index="webcontents", body=query_body)
+
     lstResults=[]
+    lstImageFilename=[]
+    lstImageURL=[]
+
     for searchResult in result['hits']['hits']:
         lstResults.append(searchResult['_source'])
-
+        if(searchtype=="imagesearch"):
+            url = searchResult['_source']['url']
+            ResearchInfrastructure=searchResult['_source']['researchInfrastructure']
+            for img in searchResult['_source']['images']:
+                a = urlparse(img)
+                filename=os.path.basename(a.path)
+                extension = os.path.splitext(filename)[1]
+                filenameWithoutExt=os.path.splitext(filename)[0]
+                if filename not in lstImageFilename:
+                    lstImageFilename.append(filename)
+                    image={'imageURL':img, 'imageWebpage': url[0], 'filename': filenameWithoutExt, 'extension':extension , 'ResearchInfrastructure': ResearchInfrastructure[0]}
+                    lstImageURL.append(image)
     #......................
     files=[]
     locations=[]
@@ -762,230 +839,26 @@ def genericsearch(request):
     if(upperBoundPage>10):
         upperBoundPage=11
 
-    htmlrender=""
 
-    if searchtype == 'imagesearch':
-        htmlrender='imagesearch_results.html'
-    else:
-        htmlrender='webcontent_results.html'
-
-    return render(request,htmlrender,
-                  {
-                      "facets":facets,
-                      "results":lstResults,
-                      "NumberOfHits": numHits,
-                      "page_range": range(1,upperBoundPage),
-                      "cur_page": (page/10+1),
-                      "searchTerm":term,
-                      "functionList": getAllfunctionList(request)
-                  }
-                  )
-#-----------------------------------------------------------------------------------------------------------------------
-def imagesearch(request):
-    es = Elasticsearch("http://localhost:9200")
-    index = Index('webcontents', es)
-
-    try:
-        term = request.GET['term']
-    except:
-        term = ''
-
-    try:
-        page = request.GET['page']
-    except:
-        page = 0
-
-    try:
-        searchtype = request.GET['searchtype']
-    except:
-        searchtype = 'websearch'
-
-    try:
-        filter = request.GET['filter']
-    except:
-        filter = ''
-
-    try:
-        facet = request.GET['facet']
-    except:
-        facet = ''
-
-    if filter!="" and facet!="":
-        saved_list = request.session['filters']
-        saved_list.append({"term": {facet+".keyword": filter}})
-        request.session['filters'] = saved_list
-    else:
-        if 'filters' in request.session:
-            del request.session['filters']
-        request.session['filters']=[]
-
-    page=(int(page)-1)*100
-    result={}
-    if term=="*" or term=="top10":
-        result = es.search(
-            index="webcontents",
-            body={
-                "from" : page,
-                "size" : 100,
-
-                "query": {
-                    "bool" : {
-                        "must" : {
-                            "match_all": {}
-                        },
-                        "filter": {
-                            "bool" : {
-                                "must" :request.session.get('filters')
-                            }
-                        }
-                    }
-                },
-                "aggs":aggregares
-            }
-        )
-    else:
-        user_request = "some_param"
-        query_body = {
-            "from" : page,
-            "size" : 100,
-            "query": {
-                "bool": {
-                    "must": {
-                        "multi_match" : {
-                            "query": term,
-                            "fields": [ "title", "pageContetnts", "organizations", "topics",
-                                        "people", "workOfArt", "files", "locations", "dates",
-                                        "researchInfrastructure"],
-                            "type": "best_fields",
-                            "minimum_should_match": "100%"
-                        }
-                    },
-                    "filter": {
-                        "bool" : {
-                            "must" :request.session.get('filters')
-                        }
-                    }
-                }
-            },
-            "aggs":aggregares
-        }
-        result = es.search(index="webcontents", body=query_body)
-
-    lstResults=[]
-    lstImageFilename=[]
-    lstImageURL=[]
-
-    for searchResult in result['hits']['hits']:
-        lstResults.append(searchResult['_source'])
-
-        url = searchResult['_source']['url']
-        ResearchInfrastructure=searchResult['_source']['researchInfrastructure']
-        for img in searchResult['_source']['images']:
-            a = urlparse(img)
-            filename=os.path.basename(a.path)
-            extension = os.path.splitext(filename)[1]
-            filenameWithoutExt=os.path.splitext(filename)[0]
-            if filename not in lstImageFilename:
-                lstImageFilename.append(filename)
-                image={'imageURL':img, 'imageWebpage': url[0], 'filename': filenameWithoutExt, 'extension':extension , 'ResearchInfrastructure': ResearchInfrastructure[0]}
-                lstImageURL.append(image)
-
-#......................
-    files=[]
-    locations=[]
-    people=[]
-    organizations=[]
-    workOfArt=[]
-    products=[]
-    ResearchInfrastructure=[]
-    #......................
-    for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="" and searchResult['key']!="KB"):
-            RI={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            ResearchInfrastructure.append (RI)
-    #......................
-    for searchResult in result['aggregations']['locations']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
-            loc={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            locations.append (loc)
-    #......................
-    for searchResult in result['aggregations']['people']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
-            prod={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            people.append (prod)
-    #......................
-    for searchResult in result['aggregations']['organizations']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
-            org={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            organizations.append (org)
-    #......................
-    for searchResult in result['aggregations']['products']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
-            pers={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            products.append (pers)
-    #......................
-    for searchResult in result['aggregations']['workOfArt']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
-            auth={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            workOfArt.append (auth)
-    #......................
-    for searchResult in result['aggregations']['files']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!=""):
-            ext={
-                'key':searchResult['key'],
-                'doc_count': searchResult['doc_count']
-            }
-            files.append (ext)
-    #......................
-
-    facets={
-        "files":files,
-        "locations":locations,
-        "workOfArt":workOfArt,
-        "organizations":organizations,
-        "people":people,
-        "products":products,
-        "ResearchInfrastructure":ResearchInfrastructure
+    results={
+        "facets":facets,
+        "results":lstResults,
+        "NumberOfHits": numHits,
+        "page_range": range(1,upperBoundPage),
+        "cur_page": (page/10+1),
+        "searchTerm":term,
+        "functionList": getAllfunctionList(request),
+        "lstImageURL":lstImageURL
     }
-    #envri-statics
-    #print("Got %d Hits:" % result['hits']['total']['value'])
-    #return JsonResponse(result, safe=True, json_dumps_params={'ensure_ascii': False})
-    numHits=result['hits']['total']['value']
 
-    upperBoundPage=round(np.ceil(numHits/1000)+1)
-    if(upperBoundPage>10):
-        upperBoundPage=11
+    return results
 
-    return render(request,'imagesearch_results.html',
-                  {
-                      "facets":facets,
-                      "results":lstResults,
-                      "NumberOfHits": numHits,
-                      "page_range": range(1,upperBoundPage),
-                      "cur_page": (page/10+1),
-                      "searchTerm":term,
-                      "functionList": getAllfunctionList(request),
-                      "lstImageURL":lstImageURL
-                  }
-                  )
+#-----------------------------------------------------------------------------------------------------------------------
+def synonyms(term):
+    response = requests.get('https://www.thesaurus.com/browse/{}'.format(term))
+    soup = BeautifulSoup(response.text, 'html.parser')
+    soup.find('section', {'class': 'css-191l5o0-ClassicContentCard e1qo4u830'})
+    return [span.text for span in soup.findAll('a', {'class': 'css-1kg1yv8 eh475bn0'})]
 #-----------------------------------------------------------------------------------------------------------------------
 
 def downloadCart(request):

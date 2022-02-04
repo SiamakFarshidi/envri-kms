@@ -15,6 +15,12 @@ from .indexingPipeline import WebCrawler
 import re
 import numpy as np
 import json
+from PyDictionary import PyDictionary
+import requests
+from bs4 import BeautifulSoup
+from spellchecker import SpellChecker
+
+
 es = Elasticsearch("http://localhost:9200")
 
 aggregares={
@@ -106,7 +112,29 @@ def genericsearch(request):
         facet = ''
 
 
+    try:
+        suggestedSearchTerm = request.GET['suggestedSearchTerm']
+    except:
+        suggestedSearchTerm = ''
 
+    searchResults=getSearchResults(request, facet, filter, page, term)
+
+    if(suggestedSearchTerm != ""):
+        searchResults["suggestedSearchTerm"]=""
+    else:
+        suggestedSearchTerm=""
+        if searchResults["NumberOfHits"]==0:
+            suggestedSearchTerm= potentialSearchTerm(term)
+            searchResults=getSearchResults(request, facet, filter, page, "*")
+            searchResults["NumberOfHits"]=0
+            searchResults["searchTerm"]=term
+            searchResults["suggestedSearchTerm"]=suggestedSearchTerm
+
+    return render(request,'dataset_results.html',searchResults )
+
+#-----------------------------------------------------------------------------------------------------------------------
+def getSearchResults(request, facet, filter, page, term):
+    es = Elasticsearch("http://localhost:9200")
     if filter!="" and facet!="":
         saved_list = request.session['filters']
         saved_list.append({"term": {facet+".keyword": filter}})
@@ -135,7 +163,7 @@ def genericsearch(request):
                             }
                         }
                     }
-                 },
+                },
                 "aggs":aggregares
             }
         )
@@ -209,17 +237,17 @@ def genericsearch(request):
     for searchResult in result['aggregations']['theme']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and int(searchResult['doc_count']>1)):
             Th={
-                    'key':searchResult['key'],
-                    'doc_count': searchResult['doc_count']
-                }
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
             theme.append (Th)
     #......................
     for searchResult in result['aggregations']['publisher']['buckets']:
         if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and int(searchResult['doc_count']>1 )):
             Pub={
-                    'key':searchResult['key'],
-                    'doc_count': searchResult['doc_count']
-                }
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
             publisher.append (Pub)
     #......................
     for searchResult in result['aggregations']['measurementTechnique']['buckets']:
@@ -248,22 +276,56 @@ def genericsearch(request):
     if(upperBoundPage>10):
         upperBoundPage=11
 
-    return render(request,'dataset_results.html',
-                  {
-                      "facets":facets,
-                      "results":lstResults,
-                      "NumberOfHits": numHits,
-                      "page_range": range(1,upperBoundPage),
-                      "cur_page": (page/10+1),
-                      "searchTerm":term,
-                      "functionList": getAllfunctionList(request),
-                      "spatialCoverage":LocationspatialCoverage
-                  }
-                  )
+    result= {
+        "facets":facets,
+        "results":lstResults,
+        "NumberOfHits": numHits,
+        "page_range": range(1,upperBoundPage),
+        "cur_page": (page/10+1),
+        "searchTerm":term,
+        "functionList": getAllfunctionList(request),
+        "spatialCoverage":LocationspatialCoverage
+    }
+    return result
+#-----------------------------------------------------------------------------------------------------------------------
+def synonyms(term):
+    response = requests.get('https://www.thesaurus.com/browse/{}'.format(term))
+    soup = BeautifulSoup(response.text, 'html.parser')
+    soup.find('section', {'class': 'css-191l5o0-ClassicContentCard e1qo4u830'})
+    return [span.text for span in soup.findAll('a', {'class': 'css-1kg1yv8 eh475bn0'})]
+#-----------------------------------------------------------------------------------------------------------------------
+def potentialSearchTerm(term):
+    alternativeSearchTerm=""
+
+    spell = SpellChecker()
+    searchTerm=term.split()
+    alternativeSearchTerm=""
+    for sTerm in searchTerm:
+        alterWord=spell.correction(sTerm)
+        if(alterWord!=""):
+            alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    if alternativeSearchTerm==term:
+        alternativeSearchTerm=""
+        for sTerm in searchTerm:
+            syn=synonyms(sTerm)
+            if len(syn)>0:
+                alterWord=syn[0]
+                alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    return alternativeSearchTerm
 #----------------------------------------------------------------------------------------
 def rest(request):
     try:
         term = request.GET['term']
+        term=term.rstrip()
+        term=term.lstrip()
     except:
         term = ''
     try:

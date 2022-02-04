@@ -8,6 +8,10 @@ from os import walk
 import json
 import uuid
 import numpy as np
+from PyDictionary import PyDictionary
+import requests
+from bs4 import BeautifulSoup
+from spellchecker import SpellChecker
 
 aggregares={
     "category":{
@@ -48,11 +52,10 @@ def aggregates(request):
     return  0
 #-----------------------------------------------------------------------------------------------------------------------
 def genericsearch(request):
-    es = Elasticsearch("http://localhost:9200")
-    index = Index('webapi', es)
-
     try:
         term = request.GET['term']
+        term=term.rstrip()
+        term=term.lstrip()
     except:
         term = ''
 
@@ -71,7 +74,30 @@ def genericsearch(request):
     except:
         facet = ''
 
+    try:
+        suggestedSearchTerm = request.GET['suggestedSearchTerm']
+    except:
+        suggestedSearchTerm = ''
 
+    searchResults=getSearchResults(request, facet, filter, page, term)
+
+    if(suggestedSearchTerm != ""):
+        searchResults["suggestedSearchTerm"]=""
+    else:
+        suggestedSearchTerm=""
+        if searchResults["NumberOfHits"]==0:
+            suggestedSearchTerm= potentialSearchTerm(term)
+            searchResults=getSearchResults(request, facet, filter, page, "*")
+            searchResults["NumberOfHits"]=0
+            searchResults["searchTerm"]=term
+            searchResults["suggestedSearchTerm"]=suggestedSearchTerm
+
+    return render(request,'webapi_results.html',searchResults)
+
+#-----------------------------------------------------------------------------------------------------------------------
+def getSearchResults(request, facet, filter, page, term):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('webapi', es)
     if filter!="" and facet!="":
         saved_list = request.session['filters']
         saved_list.append({"term": {facet+".keyword": filter}})
@@ -194,8 +220,7 @@ def genericsearch(request):
     if(upperBoundPage>10):
         upperBoundPage=11
 
-    return render(request,'webapi_results.html',
-                  {
+    result={
                       "facets":facets,
                       "results":lstResults,
                       "NumberOfHits": numHits,
@@ -204,8 +229,40 @@ def genericsearch(request):
                       "searchTerm":term,
                       "functionList": getAllfunctionList(request)
                   }
-                  )
+    return result
+#-----------------------------------------------------------------------------------------------------------------------
+def synonyms(term):
+    response = requests.get('https://www.thesaurus.com/browse/{}'.format(term))
+    soup = BeautifulSoup(response.text, 'html.parser')
+    soup.find('section', {'class': 'css-191l5o0-ClassicContentCard e1qo4u830'})
+    return [span.text for span in soup.findAll('a', {'class': 'css-1kg1yv8 eh475bn0'})]
+#-----------------------------------------------------------------------------------------------------------------------
+def potentialSearchTerm(term):
+    alternativeSearchTerm=""
 
+    spell = SpellChecker()
+    searchTerm=term.split()
+    alternativeSearchTerm=""
+    for sTerm in searchTerm:
+        alterWord=spell.correction(sTerm)
+        if(alterWord!=""):
+            alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    if alternativeSearchTerm==term:
+        alternativeSearchTerm=""
+        for sTerm in searchTerm:
+            syn=synonyms(sTerm)
+            if len(syn)>0:
+                alterWord=syn[0]
+                alternativeSearchTerm= alternativeSearchTerm+" "+alterWord
+
+    alternativeSearchTerm=alternativeSearchTerm.rstrip()
+    alternativeSearchTerm=alternativeSearchTerm.lstrip()
+
+    return alternativeSearchTerm
 #-----------------------------------------------------------------------------------------------------------------------
 # Create your views here.
 def indexingpipeline(request):

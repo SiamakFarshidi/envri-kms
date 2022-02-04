@@ -408,33 +408,36 @@
                                         <div class="row">
                                             <div class="col-sm-12">
 
-                                                {% if NumberOfHits == 0 %}
-                                                <script>
-                                                    sessionStorage.setItem("SearchFailed","Yes");
-                                                    sessionStorage.setItem("searchValue", "");
-                                                    window.location.href = "../webSearch/imagesearch?term=top10&page=1";
-                                                 </script>
-                                                {% endif %}
+                                                <div style="width:100%; text-align:left;">
+                                                    {% if NumberOfHits == 0 %}
+                                                        I couldn't find <b>anything</b> based on <b>"{{searchTerm}}"</b> for you!
+                                                        <br>
+                                                        {% if suggestedSearchTerm != "" %}
+                                                        Did you mean:
+                                                            <b><a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1&searchtype=imagesearch">{{ suggestedSearchTerm }}</a></b>
+                                                        {% endif %}
+                                                        <script>
+                                                            sessionStorage.setItem("SearchFailed","Yes");
+                                                            sessionStorage.setItem("searchValue", "");
+                                                        </script>
+                                                    {% endif %}
+                                                </div>
                                                 <br>
                                                 <br>
 
                                                 <script>
-                                            if (sessionStorage.getItem("SearchFailed")=="Yes"){
-                                                cuteAlert({
-                                                  type: "info",
-                                                  title: "No results found",
-                                                  message: "I coudn't find anything for you! <br> Please revise your search term.",
-                                                  buttonText: "Okay"
-                                                }).then(() => {
-                                                  // do something
-                                                });
-                                            }
-                                            sessionStorage.setItem("SearchFailed","No");
-                                        </script>
-
-
-
-
+                                                    if (sessionStorage.getItem("SearchFailed")=="Yes"){
+                                                        cuteAlert({
+                                                          type: "info",
+                                                          title: "No results found",
+                                                          message: "I coudn't find anything for you! <br> Please revise your search term.",
+                                                          buttonText: "Okay"
+                                                        }).then(() => {
+                                                          // do something
+                                                        });
+                                                    }
+                                                    sessionStorage.setItem("SearchFailed","No");
+                                                </script>
 
                                                 {%for resultItem in lstImageURL %}
                                                 <a class="imageAnchor" href="{{ resultItem.imageWebpage }}" target="_blank" id="ID{{resultItem.filename}}">

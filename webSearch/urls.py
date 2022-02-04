@@ -7,7 +7,6 @@ urlpatterns = [
 	#url(r'^index', views.index, name='index'),
     url(r'^uploadFromJsonStream', views.uploadFromJsonStream, name='uploadFromJsonStream'),
     url(r'^genericsearch', views.genericsearch, name='genericsearch'),
-    url(r'^imagesearch', views.imagesearch, name='imagesearch'),
     url(r'^aggregates', views.aggregates, name='aggregates'),
     url(r'^addToBasket', views.addToBasket, name='addToBasket'),
     url(r'^downloadCart', views.downloadCart, name='downloadCart'),

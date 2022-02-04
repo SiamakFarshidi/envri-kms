@@ -287,7 +287,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../webSearch/imagesearch?term={{ searchTerm }}&page=1" >
+                                <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1&searchtype=imagesearch" >
                                     <span class="pcoded-micon"><i class="ti-gallery"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Images</span>
                                     <span class="pcoded-mcaret"></span>
@@ -346,16 +346,23 @@
                             <div class="page-wrapper" id="MessageBox">
                                 <div id="map"></div>
 
-                                {% if NumberOfHits > 0 %}
+                                <script>sessionStorage.setItem("searchValue", "{{searchTerm}}"); </script>
+                                {% if NumberOfHits == 10000 %}
+                                I found <b> more than {{ NumberOfHits }}</b> results for you!
+                                {% elif NumberOfHits > 0 %}
                                 I found <b>{{ NumberOfHits}}</b> results for you!
                                 {% elif NumberOfHits == 1 %}
                                 I found only <b>one</b> result for you!
                                 {% else %}
-                                I couldn't find <b>anything</b> for you!
+                                I couldn't find <b>anything</b> based on <b>"{{searchTerm}}"</b> for you!
+                                <br>
+                                {% if suggestedSearchTerm != "" %}
+                                Did you mean:
+                                <b><a href="../dataset_elastic/genericsearch?term={{ suggestedSearchTerm }}&page=1">{{ suggestedSearchTerm }}</a></b>
+                                {% endif %}
                                 <script>
-                                        sessionStorage.setItem("SearchFailed","Yes");
+                                        //sessionStorage.setItem("SearchFailed","Yes");
                                         sessionStorage.setItem("searchValue", "");
-                                         window.location.href = "../dataset_elastic/genericsearch?term=top10&page=1";
                                     </script>
                                 {% endif %}
                                 <br>
@@ -374,15 +381,6 @@
                                     }
                                     sessionStorage.setItem("SearchFailed","No");
                                 </script>
-
-
-
-
-
-
-
-
-
 
                                 {%for resultItem in results %}
 
