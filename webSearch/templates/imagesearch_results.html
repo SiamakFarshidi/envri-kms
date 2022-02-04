@@ -409,6 +409,7 @@
                                             <div class="col-sm-12">
 
                                                 <div style="width:100%; text-align:left;">
+                                                    <script>sessionStorage.setItem("searchValue", "{{searchTerm}}"); </script>
                                                     {% if NumberOfHits == 0 %}
                                                         I couldn't find <b>anything</b> based on <b>"{{searchTerm}}"</b> for you!
                                                         <br>
@@ -417,7 +418,7 @@
                                                             <b><a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1&searchtype=imagesearch">{{ suggestedSearchTerm }}</a></b>
                                                         {% endif %}
                                                         <script>
-                                                            sessionStorage.setItem("SearchFailed","Yes");
+                                                            //sessionStorage.setItem("SearchFailed","Yes");
                                                             sessionStorage.setItem("searchValue", "");
                                                         </script>
                                                     {% endif %}
