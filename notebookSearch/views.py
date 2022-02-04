@@ -12,7 +12,6 @@ from elasticsearch_dsl.query import MatchAll
 from django.core import serializers
 import numpy as np
 import json
-from PyDictionary import PyDictionary
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker

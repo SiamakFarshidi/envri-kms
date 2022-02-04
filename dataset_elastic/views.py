@@ -15,7 +15,6 @@ from .indexingPipeline import WebCrawler
 import re
 import numpy as np
 import json
-from PyDictionary import PyDictionary
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker

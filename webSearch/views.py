@@ -24,7 +24,6 @@ import numpy as np
 from textblob import TextBlob
 from urllib.parse import urlparse
 import os
-from PyDictionary import PyDictionary
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
