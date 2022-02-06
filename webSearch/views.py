@@ -27,7 +27,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
-
+import uuid
 
 nltk.download('words')
 words = set(nltk.corpus.words.words())
@@ -959,4 +959,36 @@ def addToBasket(request):
         return JsonResponse({'status': 'Invalid request'}, status=400)
     else:
         return HttpResponseBadRequest('Invalid request')
+#-----------------------------------------------------------------------------------------------------------------------
+def sendFeedback(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if request.method == 'POST':
+        data = json.load(request)
+
+        es = Elasticsearch("http://localhost:9200")
+        index = Index('userfeedback', es)
+
+        if not es.indices.exists(index='userfeedback'):
+            index.settings(
+                index={'mapping': {'ignore_malformed': True}}
+            )
+            index.create()
+        else:
+            es.indices.close(index='userfeedback')
+            put = es.indices.put_settings(
+                index='userfeedback',
+                body={
+                    "index": {
+                        "mapping": {
+                            "ignore_malformed": True
+                        }
+                    }
+                })
+            es.indices.open(index='userfeedback')
+
+        res = es.index(index="userfeedback", id= uuid.uuid4(), body=data)
+        es.indices.refresh(index="userfeedback")
+
+        return JsonResponse(data)
+    return JsonResponse({'status': 'Invalid request'}, status=400)
 #-----------------------------------------------------------------------------------------------------------------------

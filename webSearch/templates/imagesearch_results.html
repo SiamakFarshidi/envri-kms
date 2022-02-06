@@ -31,6 +31,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '/starRating/starability-minified/starability-all.min.css'%}"/>
 
     <style>
         h5.titleTrimming {
@@ -422,6 +423,7 @@
                                                             sessionStorage.setItem("searchValue", "");
                                                         </script>
                                                     {% endif %}
+                                                    <a style="color:blue;font-size:xx-small;" href="#" onclick="sendFeedback('images', '{{searchTerm}}', 'guestUser');"> (Feedback)</a>
                                                 </div>
                                                 <br>
                                                 <br>

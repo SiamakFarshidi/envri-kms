@@ -32,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
 
+    <link rel="stylesheet" type="text/css" href="{% static '/starRating/starability-minified/starability-all.min.css'%}"/>
+
     <style>
         h5.titleTrimming {
           white-space: nowrap;
@@ -396,24 +398,9 @@
                                         sessionStorage.setItem("searchValue", "");
                                     </script>
                                 {% endif %}
+                                <a style="color:blue;font-size:xx-small;" href="#" onclick="sendFeedback('webpages', '{{searchTerm}}', 'guestUser');"> (Feedback)</a>
                                 <br>
                                 <br>
-
-                                <script>
-                                    if (sessionStorage.getItem("SearchFailed")=="Yes"){
-                                        cuteAlert({
-                                          type: "info",
-                                          title: "No results found",
-                                          message: "I coudn't find anything for you! <br> Please revise your search term.",
-                                          buttonText: "Okay"
-                                        }).then(() => {
-                                          // do something
-                                        });
-                                    }
-                                    sessionStorage.setItem("SearchFailed","No");
-                                </script>
-
-
                                 {%for resultItem in results %}
 
                                     <div class="page-body">
@@ -595,6 +582,7 @@
                                     </div>
                                 {% endfor %}
                             </div>
+
                             <div style="text-align:center; margin-bottom:40px;">
                                 {%for page in page_range %}
                                     {% if page == cur_page %}

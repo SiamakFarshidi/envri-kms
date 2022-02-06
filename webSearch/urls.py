@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^aggregates', views.aggregates, name='aggregates'),
     url(r'^addToBasket', views.addToBasket, name='addToBasket'),
     url(r'^downloadCart', views.downloadCart, name='downloadCart'),
+    url(r'^sendFeedback', views.sendFeedback, name='sendFeedback'),
 ]

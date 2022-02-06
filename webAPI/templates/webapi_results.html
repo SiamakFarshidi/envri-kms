@@ -33,6 +33,9 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
     <link rel="stylesheet" href="{% static '/notification/style.css'%}" />
     <script src="{% static '/notification/cute-alert.js'%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/starRating/starability-minified/starability-all.min.css'%}"/>
+
+
     <style>
         h5.titleTrimming {
           white-space: nowrap;
@@ -349,6 +352,8 @@
                                         sessionStorage.setItem("searchValue", "");
                                     </script>
                                     {% endif %}
+                                    <a style="color:blue;font-size:xx-small;" href="#" onclick="sendFeedback('webapis', '{{searchTerm}}', 'guestUser');"> (Feedback)</a>
+
                                     <br>
                                     <br>
 

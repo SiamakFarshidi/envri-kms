@@ -33,6 +33,8 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/jquery.mCustomScrollbar.css'%}">
     <link rel="stylesheet" href="{% static '/notification/style.css'%}" />
     <script src="{% static '/notification/cute-alert.js'%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/starRating/starability-minified/starability-all.min.css'%}"/>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -365,6 +367,7 @@
                                         sessionStorage.setItem("searchValue", "");
                                     </script>
                                 {% endif %}
+                                <a style="color:blue;font-size:xx-small;" href="#" onclick="sendFeedback('datasets', '{{searchTerm}}', 'guestUser');"> (Feedback)</a>
                                 <br>
                                 <br>
 

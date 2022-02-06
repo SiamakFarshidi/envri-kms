@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
-      <change beforePath="$PROJECT_DIR$/dataset_elastic/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebookSearch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/cute-alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/cute-alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webSearch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,10 +81,11 @@
       <recent name="$PROJECT_DIR$/webSearch/indexingPipeline" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/notification" />
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/webSearch" />
       <recent name="$PROJECT_DIR$/static/images" />
       <recent name="$PROJECT_DIR$/static/graphVisualization" />
-      <recent name="$PROJECT_DIR$/webAPI" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -90,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00018" summary="okay">
-      <created>1641425882467</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1641425882467</updated>
     </task>
     <task id="LOCAL-00019" summary="okay">
       <created>1641447959844</created>
@@ -434,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643982170992</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="okay">
+      <created>1643982478454</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1643982478454</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
