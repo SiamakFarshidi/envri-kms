@@ -14,6 +14,7 @@ urlpatterns = [
 	url(r'^webSearch/', include(('webSearch.urls', 'webSearch'), namespace="webSearch")),
 	url(r'^genericpages/', include(('genericpages.urls', 'genericpages'), namespace="genericpages")),
 	url(r'^webAPI/', include(('webAPI.urls', 'webAPI'), namespace="webAPI")),
+	url(r'^DSS/', include(('DSS.urls', 'DSS'), namespace="DSS")),
 	url(r'^accountManagement/', include(('accountManagement.urls', 'accountManagement'), namespace="accountManagement")),
 	path('', include(('genericpages.urls', 'genericpages'), namespace="genericpages")),
 

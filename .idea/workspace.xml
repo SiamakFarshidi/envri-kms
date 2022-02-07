@@ -5,15 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/DSS/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/indexingPipeline/index files/Run 15/ICOS_3be67488-ab64-43c7-ba78-6ab9022ec912.json" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/indexingPipeline/index files/Run 15/ICOS_3be67488-ab64-43c7-ba78-6ab9022ec912.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/indexingPipeline/index files/Run 15/logfile.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/indexingPipeline/index files/Run 15/logfile.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/recommendation.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/recommendation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/Jupyter Notebook1.zip" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/Jupyter Notebook1.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/temp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks.json" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/ENVRI-Collection/RIs/EISCAT3dasso.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/ENVRI-Collection/RIs/EISCAT3dasso.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/ENVRI-Collection/RIs/KB.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/ENVRI-Collection/RIs/KB.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/ENVRI-Collection/university-of-amster.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/ENVRI-Collection/university-of-amster.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/JPNk.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/JPNk.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/Jommans-Emluator-Pictures.ico" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/Jommans-Emluator-Pictures.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/addToBasket.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/addToBasket.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/attachedfilesicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/attachedfilesicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/attachments.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/attachments.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/csvicnon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/csvicnon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/docfileicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/docfileicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/file-icon-15.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/file-icon-15.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/imageicon.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/imageicon.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/imageicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/imageicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/jsonincon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/jsonincon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/ppticon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/ppticon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/xlsxicnon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/xlsxicnon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/xmlicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/xmlicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/zipicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/zipicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/notification/cute-alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/cute-alert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/error.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/error.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/img/error.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/img/error.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/img/info.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/img/info.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/img/question.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/img/question.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/img/success.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/img/success.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/img/warning.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/img/warning.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/info.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/info.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/question.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/question.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/success.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/success.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/warning.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/warning.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/splashScreen/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/static/splashScreen/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/splashScreen/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/splashScreen/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/splashScreen/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/splashScreen/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/splashScreen/particles.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/splashScreen/particles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/splashScreen/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/splashScreen/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/ResearchInfrastructures.json" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/ResearchInfrastructures.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/crawlerConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/downloadCart.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/downloadCart.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +98,7 @@
     <setting file="file://$PROJECT_DIR$/Urls.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/urls.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -69,16 +114,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/notebookSearch" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/DSS" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DSS" />
       <recent name="$PROJECT_DIR$/notebookSearch" />
       <recent name="$PROJECT_DIR$/static/notification" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/webAPI/DB/LifeWatch" />
-      <recent name="$PROJECT_DIR$/webSearch/indexingPipeline" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/notification" />
@@ -96,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00019" summary="okay">
-      <created>1641447959844</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1641447959844</updated>
     </task>
     <task id="LOCAL-00020" summary="okay">
       <created>1641448933702</created>
@@ -440,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643982478454</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="okay">
+      <created>1644190572798</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1644190572798</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
