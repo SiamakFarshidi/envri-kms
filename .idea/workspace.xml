@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
-      <change afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DSS/alt.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DSS/crawlerConfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DSS/decisionModels.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/adhoc_crawler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webSearch/indexingPipeline/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/indexingPipeline/crawlerConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerConfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00023" summary="okay">
-      <created>1641456304066</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1641456304066</updated>
     </task>
     <task id="LOCAL-00024" summary="okay">
       <created>1641456537446</created>
@@ -444,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644231367893</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="okay">
+      <created>1644402478251</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1644402478251</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

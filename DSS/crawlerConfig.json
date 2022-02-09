@@ -3,13 +3,13 @@
     "seed": "https://www.funda.nl/koop/bladeren/provincie-noord-holland/",
     "permitted_urls_rules": ["-\\d{8}-\\w+\\/$",
                              "-\\d{8}-\\w+-\\d+\\/$"],
-    "denied_urls_rules": [],
+    "denied_urls_rules": ["/mail/"],
     "decision_model": "realestate",
     "features": {
-      "energy_label": {
+      "offer_type": {
         "htmlAllowed": false,
-        "cssClass": "energielabel",
-        "tag": "span",
+        "cssClass": "",
+        "tag": "script",
         "searchKeywords": {
           "infix":{
             "tag": "",
@@ -18,9 +18,9 @@
             "propertyValue": ""
           },
           "prefix": {
-            "tag": "dt",
+            "tag": "",
             "cssClass":"",
-            "content": "Energielabel",
+            "content": "",
             "propertyValue": ""
           },
           "postfix": {
@@ -30,8 +30,8 @@
             "propertyValue": ""
           }
         },
-        "datatype": "char",
-        "propertyValue": ""
+        "datatype": "json",
+        "propertyValue": "soortaanbod"
       },
       "number_of_rooms": {
         "htmlAllowed": false,
@@ -168,6 +168,33 @@
         "datatype": "number",
         "propertyValue": ""
       },
+      "outdoor_space": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Gebouwgebonden buitenruimte",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
       "services": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
@@ -276,6 +303,33 @@
         "datatype": "number",
         "propertyValue": ""
       },
+      "external_storage_space" : {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Externe bergruimte",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
       "asking_price": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
@@ -328,6 +382,87 @@
           }
         },
         "datatype": "currency",
+        "propertyValue": ""
+      },
+      "rental_price" : {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Laatste huurprijs",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "currency",
+        "propertyValue": ""
+      },
+      "deposit" : {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Waarborgsom",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "rental_agreement" : {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Huurovereenkomst",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
         "propertyValue": ""
       },
       "language" : {
@@ -463,6 +598,33 @@
           }
         },
         "datatype": "date",
+        "propertyValue": ""
+      },
+      "energy_label": {
+        "htmlAllowed": false,
+        "cssClass": "energielabel",
+        "tag": "span",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Energielabel",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "char",
         "propertyValue": ""
       },
       "type_of_roof": {
@@ -681,6 +843,33 @@
         "datatype": "text",
         "propertyValue": ""
       },
+      "balcony": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Balkon/dakterras",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
       "type_of_parking": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
@@ -696,6 +885,33 @@
             "tag": "dt",
             "cssClass":"",
             "content": "Soort parkeergelegenheid",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "garage": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Soort garage",
             "propertyValue": ""
           },
           "postfix": {
@@ -978,21 +1194,21 @@
         "datatype": "json",
         "propertyValue": "objectType"
       },
-      "type_of_construction":  {
+      "type_of_apartment": {
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
         "searchKeywords": {
           "infix":{
-            "tag": "",
+            "tag": "span",
             "cssClass":"",
             "content": "",
             "propertyValue": ""
           },
           "prefix": {
-            "tag": "",
+            "tag": "dt",
             "cssClass":"",
-            "content": "",
+            "content": "Soort appartement",
             "propertyValue": ""
           },
           "postfix": {
@@ -1002,8 +1218,35 @@
             "propertyValue": ""
           }
         },
-        "datatype": "json",
-        "propertyValue": "soortwoning"
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "type_of_construction": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Soort bouw",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
       },
       "business_space":  {
         "htmlAllowed": false,

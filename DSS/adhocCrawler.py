@@ -73,7 +73,6 @@ def is_valid(url):
     return bool(parsed.netloc) and bool(parsed.scheme)
 #-----------------------------------------------------------------------------------------------------------------------
 def get_all_website_links(url):
-
     """
     Returns all URLs that is found on `url` in which it belongs to the same website
     """
@@ -119,12 +118,21 @@ def get_all_website_links(url):
         if domain_name not in href:
             continue
 
+        accessPermitted=True
+        for condition in config["denied_urls_rules"]:
+            if (len(re.findall(condition, href))>0):
+                accessPermitted=False
+
+        if(not accessPermitted):
+            continue
+
         urls.add(href)
         internal_urls.add(href)
+
         for condition in config["permitted_urls_rules"]:
             if (len(re.findall(condition, href))>0) and href not in permitted_urls:
                 permitted_urls.add(href)
-                print(f"{GREEN}[*] Permitted link: {href}{RESET}")
+                print(f"{GREEN}[{len(permitted_urls)}] Permitted link: {href}{RESET}")
                 indexWebpage(href)
     return urls
 #-----------------------------------------------------------------------------------------------------------------------
@@ -263,13 +271,14 @@ def indexWebpage(url):
         metadata['url']=url
         for feature in config['features']:
             metadata[feature]=getValue(feature, html)
+
+    #print(metadata)
     #........................................
     if not(if_URL_exist(url)):
         if(metadata):
             saveMetadataInFile(metadata)
             ingest_metadataFile(metadata)
     #........................................
-
     return metadata
 #-----------------------------------------------------------------------------------------------------------------------
 def extractJSONfromHTML(string):
@@ -443,7 +452,8 @@ if __name__ == "__main__":
     indexWebsite("funda")
     printResults()
 
-    #config=openCrawlerConfig('funda')
-    #indexWebpage("https://www.funda.nl/koop/verkocht/schoonhoven/huis-42473280-debijelaan-20/")
 
+    #config=openCrawlerConfig('funda')
+    #indexWebpage("https://www.funda.nl/doorsturen/mail/huur/den-haag/appartement-88058331-javastraat-31/")
+    #get_all_website_links("https://www.funda.nl/doorsturen/mail/huur/den-haag/appartement-88058331-javastraat-31/")
 #-----------------------------------------------------------------------------------------------------------------------
