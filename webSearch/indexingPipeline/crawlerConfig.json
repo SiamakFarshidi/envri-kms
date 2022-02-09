@@ -145,5 +145,11 @@
     "permitted_urls_rules": [""],
     "denied_urls_rules": [],
     "features":{}
+  },
+  "funda": {
+    "seed": "https://www.funda.nl/koop/heel-nederland",
+    "permitted_urls_rules": [""],
+    "denied_urls_rules": [],
+    "features":{}
   }
 }

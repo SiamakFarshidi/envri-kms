@@ -1,0 +1,1120 @@
+{
+  "funda": {
+    "seed": "https://www.funda.nl/koop/bladeren/provincie-noord-holland/",
+    "permitted_urls_rules": ["-\\d{8}-\\w+\\/$",
+                             "-\\d{8}-\\w+-\\d+\\/$"],
+    "denied_urls_rules": [],
+    "decision_model": "realestate",
+    "features": {
+      "energy_label": {
+        "htmlAllowed": false,
+        "cssClass": "energielabel",
+        "tag": "span",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Energielabel",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "char",
+        "propertyValue": ""
+      },
+      "number_of_rooms": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "slaapkamers",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Aantal kamers",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "number_of_bathrooms": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Aantal badkamers",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "number_of_bedrooms": {
+        "htmlAllowed": false,
+        "cssClass": "kenmerken-highlighted__value fd-text--nowrap",
+        "tag": "span",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "span",
+            "cssClass":"fd-color-dark-3 fd-m-right-2xs",
+            "content": "slaapkamers",
+            "propertyValue": "title"
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "bathroom_amenities": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Badkamervoorzieningen",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "number_of_floors": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Aantal woonlagen",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "services": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Voorzieningen",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "content": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Inhoud",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "living_area": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Wonen",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "plot_area": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Perceel",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "asking_price": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "€",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Vraagprijs",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Vraagprijs per",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "currency",
+        "propertyValue": ""
+      },
+      "asking_price_per_square_meter": {
+        "htmlAllowed": false,
+        "cssClass": "object-kenmerken-list__asking-price fd-flex fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "€",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Vraagprijs per m&#178;",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "currency",
+        "propertyValue": ""
+      },
+      "language" : {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "taal"
+      },
+      "description": {
+        "htmlAllowed": true,
+        "cssClass": "object-description-body",
+        "tag": "div",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "image":  {
+        "htmlAllowed": false,
+        "cssClass": "media-viewer-overview__section-image",
+        "tag": "img",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "a",
+            "cssClass":"media-viewer-overview__image-wrapper",
+            "content": "#foto-1",
+            "propertyValue": "href"
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "url",
+        "propertyValue": "data-lazy"
+      },
+      "house_type": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Soort woonhuis",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "construction_year": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Bouwjaar",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "date",
+        "propertyValue": ""
+      },
+      "type_of_roof": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Soort dak",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "heating": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Verwarming",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "hot_water": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Warm water",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "boiler": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Cv-ketel",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "location": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Ligging",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "garden": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"fd-m-right-xs",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Tuin",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "backyard": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Achtertuin",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "number",
+        "propertyValue": ""
+      },
+      "garden_location": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Ligging tuin",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "type_of_parking": {
+        "htmlAllowed": false,
+        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag": "dd",
+        "searchKeywords": {
+          "infix":{
+            "tag": "span",
+            "cssClass":"",
+            "content": "m³",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "dt",
+            "cssClass":"",
+            "content": "Soort parkeergelegenheid",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "zipcode": {
+        "htmlAllowed": false,
+        "cssClass": "object-header__subtitle fd-color-dark-3",
+        "tag": "span",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "zipcode",
+        "propertyValue": ""
+      },
+      "street": {
+        "htmlAllowed": false,
+        "cssClass": "object-header__title",
+        "tag": "span",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
+      },
+      "house_number": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "huisnummer"
+      },
+      "city": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "plaats"
+      },
+      "province": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "provincie"
+      },
+      "lat": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "lat"
+      },
+      "lng": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "lng"
+      },
+      "offered_since": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "aangebodensinds"
+      },
+      "status": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "status"
+      },
+      "object_type": {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "objectType"
+      },
+      "type_of_construction":  {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "soortwoning"
+      },
+      "business_space":  {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "bedrijfsruimte"
+      },
+      "municipality":  {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "gemeente"
+      },
+      "neighborhood" : {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "buurt"
+      },
+      "environment" : {
+        "htmlAllowed": false,
+        "cssClass": "",
+        "tag": "script",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": "",
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "environment"
+      }
+    }
+  }
+}
+
+

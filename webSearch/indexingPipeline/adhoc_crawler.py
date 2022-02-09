@@ -447,9 +447,7 @@ def ingest_metadataFile(metadataFile):
         es.indices.refresh(index="webcontents")
 
 #-----------------------------------------------------------------------------------------------------------------------
-if __name__ == "__main__":
-    #runCrawler("scholarshipdb")
-    #printResults()
+def envriCrawler():
     counter=1
     for IR in ResearchInfrastructures:
         if counter<27:
@@ -460,12 +458,16 @@ if __name__ == "__main__":
         permitted_urls.clear()
         total_urls_visited=0
 
-        #url= ResearchInfrastructures[IR]['url']
-        #indexWebsite(url)
+        url= ResearchInfrastructures[IR]['url']
+        indexWebsite(url)
 
-        url="http://mediawiki.envri.eu/index.php/Special:WhatLinksHere/%C3%83%C2%90%C3%82%C2%9C%C3%83%C2%90%C3%82%C2%BE%C3%83%C2%90%C3%82%C2%B1%C3%83%C2%90%C3%82%C2%B8%C3%83%C2%90%C3%82%C2%BB%C3%83%C2%91%C3%82%C2%8C%C3%83%C2%90%C3%82%C2%BD%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%91%C3%82%C2%8F_%C3%83%C2%90%C3%82%C2%B2%C3%83%C2%90%C3%82%C2%B5%C3%83%C2%91%C3%82%C2%80%C3%83%C2%91%C3%82%C2%81%C3%83%C2%90%C3%82%C2%B8%C3%83%C2%91%C3%82%C2%8F_%C3%83%C2%90%C3%82%C2%BE%C3%83%C2%90%C3%82%C2%BD%C3%83%C2%90%C3%82%C2%BB%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%90%C3%82%C2%B9%C3%83%C2%90%C3%82%C2%BD_%C3%83%C2%90%C3%82%C2%BA%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%90%C3%82%C2%B7%C3%83%C2%90%C3%82%C2%B8%C3%83%C2%90%C3%82%C2%BD%C3%83%C2%90%C3%82%C2%BE_%C3%83%C2%90%C3%82%C2%92%C3%83%C2%91%C3%82%C2%83%C3%83%C2%90%C3%82%C2%BB%C3%83%C2%90%C3%82%C2%BA%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%90%C3%82%C2%BD"
-        print(validators.url(url))
-
+    #url="http://mediawiki.envri.eu/index.php/Special:WhatLinksHere/%C3%83%C2%90%C3%82%C2%9C%C3%83%C2%90%C3%82%C2%BE%C3%83%C2%90%C3%82%C2%B1%C3%83%C2%90%C3%82%C2%B8%C3%83%C2%90%C3%82%C2%BB%C3%83%C2%91%C3%82%C2%8C%C3%83%C2%90%C3%82%C2%BD%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%91%C3%82%C2%8F_%C3%83%C2%90%C3%82%C2%B2%C3%83%C2%90%C3%82%C2%B5%C3%83%C2%91%C3%82%C2%80%C3%83%C2%91%C3%82%C2%81%C3%83%C2%90%C3%82%C2%B8%C3%83%C2%91%C3%82%C2%8F_%C3%83%C2%90%C3%82%C2%BE%C3%83%C2%90%C3%82%C2%BD%C3%83%C2%90%C3%82%C2%BB%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%90%C3%82%C2%B9%C3%83%C2%90%C3%82%C2%BD_%C3%83%C2%90%C3%82%C2%BA%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%90%C3%82%C2%B7%C3%83%C2%90%C3%82%C2%B8%C3%83%C2%90%C3%82%C2%BD%C3%83%C2%90%C3%82%C2%BE_%C3%83%C2%90%C3%82%C2%92%C3%83%C2%91%C3%82%C2%83%C3%83%C2%90%C3%82%C2%BB%C3%83%C2%90%C3%82%C2%BA%C3%83%C2%90%C3%82%C2%B0%C3%83%C2%90%C3%82%C2%BD"
+    #print(validators.url(url))
+#-----------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    runCrawler("funda")
+    #printResults()
+    #envriCrawler()
 #-----------------------------------------------------------------------------------------------------------------------
 
 

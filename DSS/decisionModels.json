@@ -1,0 +1,238 @@
+{
+  "realEstate":{
+  "id": {
+    "datatype": "unique",
+    "qualities": [
+      "N/A"
+    ],
+    "description": "desc..."
+  },
+  "transportation": {
+    "datatype": "multivalue",
+    "values": [
+      "public",
+      "private"
+    ],
+    "qualities": [
+      "suitability",
+      "accessibility",
+      "safety"
+    ],
+    "description": "desc..."
+  },
+  "place": {
+    "datatype": "string",
+    "qualities": [
+      "N/A"
+    ],
+    "description": "desc...",
+    "subfeatures": {
+      "address": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ],
+        "description": "desc...",
+        "subfeatures": {
+          "street": {
+            "datatype": "string",
+            "qualities": [
+              "N/A"
+            ],
+            "description": "desc..."
+          },
+          "houseNumber": {
+            "datatype": "string",
+            "qualities": [
+              "N/A"
+            ],
+            "description": "desc..."
+          },
+          "zipcode": {
+            "datatype": "string",
+            "qualities": [
+              "N/A"
+            ],
+            "description": "desc..."
+          },
+          "city": {
+            "datatype": "string",
+            "qualities": [
+              "N/A"
+            ],
+            "description": "desc..."
+          },
+          "country": {
+            "datatype": "string",
+            "qualities": [
+              "N/A"
+            ],
+            "description": "desc..."
+          }
+        }
+      },
+      "geolocation": {
+        "datatype": "geospatial",
+        "qualities": [
+          "locality",
+          "safety",
+          "popularity",
+          "accessibility"
+        ],
+        "description": "desc...",
+        "subfeatures": {
+          "lat": {
+            "datatype": "geospatial",
+            "qualities": [
+              "locality",
+              "safety",
+              "popularity",
+              "accessibility"
+            ],
+            "description": "desc..."
+          },
+          "lon": {
+            "datatype": "geospatial",
+            "qualities": [
+              "locality",
+              "safety",
+              "popularity",
+              "accessibility"
+            ],
+            "description": "desc..."
+          }
+        }
+      }
+    }
+  },
+  "image": {
+    "datatype": "string",
+    "qualities": [
+      "N/A"
+    ],
+    "description": "desc...",
+    "subfeatures": {
+      "url": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ],
+        "description": "desc..."
+      }
+    }
+  },
+  "price": {
+    "datatype": "monetary",
+    "qualities": [
+      "suitability"
+    ],
+    "description": "desc..."
+  },
+  "environment": {
+    "datatype": "multivalue",
+    "values": [
+      "crowded",
+      "quite"
+    ],
+    "qualities": [
+      "suitability",
+      "popularity"
+    ],
+    "description": "desc..."
+  },
+  "rooms": {
+    "datatype": "numeric",
+    "values": "range(0,1000)",
+    "qualities": [
+      "suitability"
+    ],
+    "description": "desc..."
+  },
+  "livingArea": {
+    "datatype": "numeric",
+    "values": "range(0,10000)",
+    "qualities": [
+      "suitability",
+      "popularity"
+    ],
+    "description": "desc..."
+  },
+  "plotArea": {
+    "datatype": "numeric",
+    "values": "range(0,10000)",
+    "qualities": [
+      "suitability",
+      "popularity"
+    ],
+    "description": "desc..."
+  },
+  "kindOfHouse": {
+    "datatype": "multivalue",
+    "values": [
+      "room",
+      "apartment",
+      "villa",
+      "house"
+    ],
+    "qualities": [
+      "N/A"
+    ],
+    "description": "desc..."
+  },
+  "energyLabel": {
+    "datatype": "multivalue",
+    "values": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "qualities": [
+      "suitability",
+      "popularity"
+    ],
+    "description": "desc..."
+  },
+  "constructionYear": {
+    "datatype": "date",
+    "values": "range(1700,Now)",
+    "qualities": [
+      "suitability",
+      "popularity"
+    ],
+    "description": "desc..."
+  },
+  "suitableFor": {
+    "datatype": "multivalue",
+    "values": [
+      "family",
+      "couple",
+      "single"
+    ],
+    "qualities": [
+      "suitability"
+    ],
+    "description": "desc..."
+  },
+  "score": {
+    "datatype": "percentage",
+    "values": "range(0,100)",
+    "qualities": [
+      "N/A"
+    ],
+    "description": "desc..."
+  }
+},
+  "dataBaseManagementSystems": {},
+  "modelDrivenDevelopmentPlatforms": {},
+  "cloudServiceProviders": {},
+  "blockchainPlatforms": {},
+  "architecturalPatterns": {},
+  "programmingLanguages": {},
+  "businessProcessModelingLanguages": {},
+  "decentralizedAutonomousOrganizationPlatform": {}
+}
