@@ -3,7 +3,7 @@
     "seed": "https://www.funda.nl/koop/bladeren/provincie-noord-holland/",
     "permitted_urls_rules": ["-\\d{8}-\\w+\\/$",
                              "-\\d{8}-\\w+-\\d+\\/$"],
-    "denied_urls_rules": ["/mail/"],
+    "denied_urls_rules": ["/mail/","/makelaars/","/en/"],
     "decision_model": "realestate",
     "features": {
       "offer_type": {
@@ -14,19 +14,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -41,23 +41,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "slaapkamers",
+            "content": ["slaapkamers","bedrooms"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Aantal kamers",
+            "content": ["Aantal kamers","Number of rooms"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "number_of_bathrooms": {
@@ -68,23 +68,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Aantal badkamers",
+            "content": ["Aantal badkamers","Number of bath rooms"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "number_of_bedrooms": {
@@ -95,26 +95,26 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "span",
             "cssClass":"fd-color-dark-3 fd-m-right-2xs",
-            "content": "slaapkamers",
+            "content": ["slaapkamers","bedrooms"],
             "propertyValue": "title"
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
-      "bathroom_amenities": {
+      "bathroom_facilities": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
         "tag": "dd",
@@ -122,19 +122,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Badkamervoorzieningen",
+            "content": ["Badkamervoorzieningen","Bathroom facilities"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -149,23 +149,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Aantal woonlagen",
+            "content": ["Aantal woonlagen","Number of stories"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "outdoor_space": {
@@ -176,26 +176,26 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Gebouwgebonden buitenruimte",
+            "content": ["Gebouwgebonden buitenruimte"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
-      "services": {
+      "facilities": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
         "tag": "dd",
@@ -203,26 +203,26 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Voorzieningen",
+            "content": ["Voorzieningen","Facilities"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
         "datatype": "text",
         "propertyValue": ""
       },
-      "content": {
+      "volume_in_cubic_meters": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
         "tag": "dd",
@@ -230,23 +230,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Inhoud",
+            "content": ["Inhoud","Volume in cubic meters"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "living_area": {
@@ -257,26 +257,26 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Wonen",
+            "content": ["Wonen","Living area"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
-      "plot_area": {
+      "plot_size": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
         "tag": "dd",
@@ -284,23 +284,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Perceel",
+            "content": ["Perceel","Plot size"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "external_storage_space" : {
@@ -311,23 +311,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Externe bergruimte",
+            "content": ["Externe bergruimte","External storage space"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "asking_price": {
@@ -338,19 +338,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "€",
+            "content": ["€"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Vraagprijs",
+            "content": ["Vraagprijs","Asking price"],
             "propertyValue": ""
           },
           "postfix": {
-            "tag": "dt",
+            "tag": "",
             "cssClass":"",
-            "content": "Vraagprijs per",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -365,19 +365,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "€",
+            "content": ["€"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Vraagprijs per m&#178;",
+            "content": ["Vraagprijs per m&#178;","Asking price per m&#178;"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -392,19 +392,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Laatste huurprijs",
+            "content": ["Laatste huurprijs","Rental price"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -419,19 +419,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Waarborgsom",
+            "content": ["Waarborgsom","Deposit"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -446,19 +446,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Huurovereenkomst",
+            "content": ["Huurovereenkomst","Rental agreement"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -473,19 +473,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -500,19 +500,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -527,26 +527,26 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "a",
             "cssClass":"media-viewer-overview__image-wrapper",
-            "content": "#foto-1",
+            "content": ["#foto-1"],
             "propertyValue": "href"
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
         "datatype": "url",
         "propertyValue": "data-lazy"
       },
-      "house_type": {
+      "kind_of_house": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
         "tag": "dd",
@@ -554,19 +554,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Soort woonhuis",
+            "content": ["Soort woonhuis","Kind of house"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -581,19 +581,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Bouwjaar",
+            "content": ["Bouwjaar","Year of construction"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -608,19 +608,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Energielabel",
+            "content": ["Energielabel","Energy label","Provisional energy label"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -635,19 +635,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Soort dak",
+            "content": ["Soort dak","Type of roof"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -662,19 +662,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Verwarming",
+            "content": ["Verwarming","Heating"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -689,19 +689,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Warm water",
+            "content": ["Warm water","Hot water"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -716,19 +716,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Cv-ketel",
+            "content": ["Cv-ketel","CH boiler"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -743,19 +743,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Ligging",
+            "content": ["Ligging","Location"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -770,26 +770,26 @@
           "infix":{
             "tag": "span",
             "cssClass":"fd-m-right-xs",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Tuin",
+            "content": ["Tuin","Garden"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
         "datatype": "text",
         "propertyValue": ""
       },
-      "backyard": {
+      "back_garden": {
         "htmlAllowed": false,
         "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
         "tag": "dd",
@@ -797,23 +797,23 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Achtertuin",
+            "content": ["Achtertuin","Back garden"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
-        "datatype": "number",
+        "datatype": "int",
         "propertyValue": ""
       },
       "garden_location": {
@@ -824,19 +824,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Ligging tuin",
+            "content": ["Ligging tuin","Garden location"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -851,19 +851,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Balkon/dakterras",
+            "content": ["Balkon/dakterras","Balcony/roof garden"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -878,19 +878,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "m³",
+            "content": ["m³"],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Soort parkeergelegenheid",
+            "content": ["Soort parkeergelegenheid","Type of parking facilities"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -905,19 +905,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Soort garage",
+            "content": ["Soort garage","Type of garage"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -932,19 +932,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -959,19 +959,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -986,19 +986,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1013,19 +1013,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1040,19 +1040,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1067,19 +1067,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1094,19 +1094,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1121,19 +1121,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1148,19 +1148,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1175,19 +1175,19 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1202,19 +1202,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Soort appartement",
+            "content": ["Soort appartement"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1229,19 +1229,19 @@
           "infix":{
             "tag": "span",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": "Soort bouw",
+            "content": ["Soort bouw","Building type"],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
@@ -1256,51 +1256,24 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
         "datatype": "json",
         "propertyValue": "bedrijfsruimte"
-      },
-      "municipality":  {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
-          "infix":{
-            "tag": "",
-            "cssClass":"",
-            "content": "",
-            "propertyValue": ""
-          },
-          "prefix": {
-            "tag": "",
-            "cssClass":"",
-            "content": "",
-            "propertyValue": ""
-          },
-          "postfix": {
-            "tag": "",
-            "cssClass":"",
-            "content": "",
-            "propertyValue": ""
-          }
-        },
-        "datatype": "json",
-        "propertyValue": "gemeente"
       },
       "neighborhood" : {
         "htmlAllowed": false,
@@ -1310,51 +1283,24 @@
           "infix":{
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "prefix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           },
           "postfix": {
             "tag": "",
             "cssClass":"",
-            "content": "",
+            "content": [""],
             "propertyValue": ""
           }
         },
         "datatype": "json",
         "propertyValue": "buurt"
-      },
-      "environment" : {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
-          "infix":{
-            "tag": "",
-            "cssClass":"",
-            "content": "",
-            "propertyValue": ""
-          },
-          "prefix": {
-            "tag": "",
-            "cssClass":"",
-            "content": "",
-            "propertyValue": ""
-          },
-          "postfix": {
-            "tag": "",
-            "cssClass":"",
-            "content": "",
-            "propertyValue": ""
-          }
-        },
-        "datatype": "json",
-        "propertyValue": "environment"
       }
     }
   }

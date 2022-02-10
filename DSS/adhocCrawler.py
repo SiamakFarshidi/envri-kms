@@ -17,6 +17,8 @@ nlp = en_core_web_sm.load()
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Index
 import uuid
+import os
+
 #-----------------------------------------------------------------------------------------------------------------------
 # init the colorama module
 colorama.init()
@@ -30,6 +32,7 @@ external_urls = set()
 permitted_urls=set()
 urllib3.disable_warnings()
 #-----------------------------------------------------------------------------------------------------------------------
+# number of urls visited so far will be stored here
 max_urls=999999
 config={}
 headers = {
@@ -48,9 +51,6 @@ headers = {
     'Accept-Encoding': 'gzip,deflate',
     'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
 }
-# number of urls visited so far will be stored here
-total_urls_visited = 0
-
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
     crawlerConfig = open('crawlerConfig.json',"r")
@@ -162,27 +162,28 @@ def extractTitle(html):
         lstTitle.append(title.get_text())
     return lstTitle
 #-----------------------------------------------------------------------------------------------------------------------
-def crawl(url):
+def indexWebsite(website):
     global max_urls
-    invalidSigns=[]
-    links=set()
-    global total_urls_visited
-    total_urls_visited += 1
-    print(f"{YELLOW}[*] Crawling: {url}{RESET}")
-    links = get_all_website_links(url)
-    for link in links:
-        if total_urls_visited > max_urls:
-            break
-        crawl(link)
-#-----------------------------------------------------------------------------------------------------------------------
-def runCrawler(website):
     global config
+
+    config=openCrawlerConfig(website)
+    url=config["seed"]
+
     permitted_urls.clear()
     internal_urls.clear()
     external_urls.clear()
+    total_urls_visited=0
 
-    config=openCrawlerConfig(website)
-    crawl(config["seed"])
+    uniquelinks=set()
+    uniquelinks.add(url)
+
+    while total_urls_visited < max_urls and uniquelinks:
+        url=uniquelinks.pop()
+        total_urls_visited += 1
+        print(f"{YELLOW}[*] Crawling: {url}{RESET}")
+        links = get_all_website_links(url)
+        for link in links:
+            uniquelinks.add(link)
 #-----------------------------------------------------------------------------------------------------------------------
 def printResults():
     print("[+]  Total Internal links: ", len(internal_urls))
@@ -208,12 +209,18 @@ def remove_tags(raw_html):
     return text
 #-----------------------------------------------------------------------------------------------------------------------
 def filterByDatatype(value,datatype):
-    if datatype=="currency" or datatype=="number":
+    if datatype=="currency" or datatype=="int" or datatype=="decimal":
         trim = re.compile(r'[^\d.,]+')
         lstvalue=value.split()
         for val in lstvalue:
             value = trim.sub('', val)
             if(value):
+                if datatype=="currency" or datatype=="int":
+                    value=value.replace('.','').replace(',','')
+                    value=int(value)
+                elif datatype=="decimal":
+                    value=value.replace(',','')
+                    value=float(value)
                 return value
     elif datatype=="char" or datatype=="text":
         return strippedText(value)
@@ -224,14 +231,15 @@ def filterByDatatype(value,datatype):
             return value[0]
     return value
 #-----------------------------------------------------------------------------------------------------------------------
-def indexWebsite(url):
-    runCrawler(url)
-    cnt=0
-    print("The indexing process has been finished!")
-#-----------------------------------------------------------------------------------------------------------------------
 def saveMetadataInFile(metadata):
     filename= str(uuid.uuid4())
-    f = open("index_files/realEstate-"+filename+".json", 'w+')
+    path="index_files/"+config["decision_model"]+"/"
+
+    isExist = os.path.exists(path)
+    if not isExist:
+        os.makedirs(path)
+
+    f = open(path+config["decision_model"]+"-"+filename+".json", 'w+')
     f.write(json.dumps(metadata))
     f.close()
 #-----------------------------------------------------------------------------------------------------------------------
@@ -339,22 +347,24 @@ def getByPostfix(feature,tag,html):
         preTag=tag.find_next(config['features'][feature]['searchKeywords']['postfix']['tag'],class_=config['features'][feature]['searchKeywords']['postfix']['cssClass'])
         if type(preTag)!=type(None):
             property=config['features'][feature]['searchKeywords']['postfix']['propertyValue']
-            tagContent=config['features'][feature]['searchKeywords']['postfix']['content']
+            tagContents=config['features'][feature]['searchKeywords']['postfix']['content']
             #------ propertyValue
             if(property):
                 preTag=preTag.attrs.get(property)
-                if tagContent == preTag:
-                    property=config['features'][feature]['propertyValue']
-                    if(property):
-                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
-                    else:
-                        return filterByDatatype(str(tag), config['features'][feature]['datatype'])
+                for tagContent in tagContents:
+                    if tagContent == preTag:
+                        property=config['features'][feature]['propertyValue']
+                        if(property):
+                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
+                        else:
+                            return filterByDatatype(str(tag), config['features'][feature]['datatype'])
             #------ Content
-            if tagContent and tagContent in str(preTag):
-                if not(config['features'][feature]['htmlAllowed']):
-                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
-                else:
-                    return (str(tag))
+            for tagContent in tagContents:
+                if tagContent and tagContent in str(preTag):
+                    if not(config['features'][feature]['htmlAllowed']):
+                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
+                    else:
+                        return (str(tag))
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def getByPrefix(feature,tag,html):
@@ -363,22 +373,24 @@ def getByPrefix(feature,tag,html):
         preTag=tag.find_previous(config['features'][feature]['searchKeywords']['prefix']['tag'],class_=config['features'][feature]['searchKeywords']['prefix']['cssClass'])
         if type(preTag)!=type(None):
             property=config['features'][feature]['searchKeywords']['prefix']['propertyValue']
-            tagContent=config['features'][feature]['searchKeywords']['prefix']['content']
+            tagContents=config['features'][feature]['searchKeywords']['prefix']['content']
             #------ propertyValue
             if(property):
                 preTag=preTag.attrs.get(property)
-                if tagContent == preTag:
-                    property=config['features'][feature]['propertyValue']
-                    if(property):
-                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
-                    else:
-                        return filterByDatatype(str(tag), config['features'][feature]['datatype'])
+                for tagContent in tagContents:
+                    if tagContent == preTag:
+                        property=config['features'][feature]['propertyValue']
+                        if(property):
+                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
+                        else:
+                            return filterByDatatype(str(tag), config['features'][feature]['datatype'])
             #------ Content
-            if tagContent and tagContent in str(preTag):
-                if not(config['features'][feature]['htmlAllowed']):
-                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
-                else:
-                    return (str(tag))
+            for tagContent in tagContents:
+                if tagContent and tagContent in str(preTag):
+                    if not(config['features'][feature]['htmlAllowed']):
+                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
+                    else:
+                        return (str(tag))
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def getByInfix(feature,tag):
@@ -387,25 +399,26 @@ def getByInfix(feature,tag):
         infix=tag.find(config['features'][feature]['searchKeywords']['infix']['tag'], {"class" : config['features'][feature]['searchKeywords']['infix']['cssClass']})
     if type(infix)!=type(None):
         property=config['features'][feature]['searchKeywords']['infix']['propertyValue']
-        tagContent=config['features'][feature]['searchKeywords']['infix']['content']
+        tagContents=config['features'][feature]['searchKeywords']['infix']['content']
         #------ propertyValue
         if(property):
             preTag=preTag.attrs.get(property)
-            if tagContent == preTag:
-                property=config['features'][feature]['propertyValue']
-                if(property):
-                    return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
-                else:
-                    return filterByDatatype(str(tag), config['features'][feature]['datatype'])
+            for tagContent in tagContents:
+                if tagContent == preTag:
+                    property=config['features'][feature]['propertyValue']
+                    if(property):
+                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
+                    else:
+                        return filterByDatatype(str(tag), config['features'][feature]['datatype'])
         #------ Content
-        if tagContent and tagContent in str(infix):
-            if not(config['features'][feature]['htmlAllowed']):
-                return filterByDatatype(remove_tags(str(infix)), config['features'][feature]['datatype'])
-            else:
-                return (str(infix))
+        for tagContent in tagContents:
+            if tagContent and tagContent in str(infix):
+                if not(config['features'][feature]['htmlAllowed']):
+                    return filterByDatatype(remove_tags(str(infix)), config['features'][feature]['datatype'])
+                else:
+                    return (str(infix))
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
-
 def if_URL_exist(url):
     global config
 
@@ -454,6 +467,6 @@ if __name__ == "__main__":
 
 
     #config=openCrawlerConfig('funda')
-    #indexWebpage("https://www.funda.nl/doorsturen/mail/huur/den-haag/appartement-88058331-javastraat-31/")
+    #indexWebpage("https://www.funda.nl/en/koop/nijmegen/huis-88945607-terralaan-54/")
     #get_all_website_links("https://www.funda.nl/doorsturen/mail/huur/den-haag/appartement-88058331-javastraat-31/")
 #-----------------------------------------------------------------------------------------------------------------------
