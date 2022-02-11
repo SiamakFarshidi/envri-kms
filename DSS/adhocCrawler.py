@@ -215,12 +215,6 @@ def filterByDatatype(value,datatype):
         for val in lstvalue:
             value = trim.sub('', val)
             if(value):
-                if datatype=="currency" or datatype=="int":
-                    value=value.replace('.','').replace(',','')
-                    value=int(value)
-                elif datatype=="decimal":
-                    value=value.replace(',','')
-                    value=float(value)
                 return value
     elif datatype=="char" or datatype=="text":
         return strippedText(value)
@@ -278,7 +272,7 @@ def indexWebpage(url):
     if html!="":
         metadata['url']=url
         for feature in config['features']:
-            metadata[feature]=getValue(feature, html)
+            metadata[feature]=findValue(feature, html)
 
     #print(metadata)
     #........................................
@@ -308,6 +302,21 @@ def getPropertyFromJSON(tag, feature):
         return jsonFile[property]
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
+def findValue(feature, html):
+    value=getValue(feature, html)
+    datatype=config['features'][feature]['datatype']
+
+    if (value!="N/A"):
+        if datatype=="currency" or datatype=="int":
+            value=value.replace(",","").replace(".","").strip()
+            if value:
+                return int(value)
+        elif datatype=="decimal":
+            value= float(value.replace(",",""))
+            if value:
+                return int(value)
+    return value
+#-----------------------------------------------------------------------------------------------------------------------
 def getValue(feature, html):
     global config
     tags=html.find_all(config['features'][feature]['tag'], {"class" : config['features'][feature]['cssClass']})
@@ -319,7 +328,7 @@ def getValue(feature, html):
                 tag=tag.attrs.get(config['features'][feature]['propertyValue'])
             return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
         else:
-            return str((tag))
+            return str(tag)
 
     for tag in tags:
 
@@ -465,8 +474,7 @@ if __name__ == "__main__":
     indexWebsite("funda")
     printResults()
 
-
     #config=openCrawlerConfig('funda')
-    #indexWebpage("https://www.funda.nl/en/koop/nijmegen/huis-88945607-terralaan-54/")
+    #indexWebpage("https://www.funda.nl/koop/utrecht/huis-42692721-zilvergeldstraat-11/")
     #get_all_website_links("https://www.funda.nl/doorsturen/mail/huur/den-haag/appartement-88058331-javastraat-31/")
 #-----------------------------------------------------------------------------------------------------------------------

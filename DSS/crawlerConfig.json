@@ -344,7 +344,7 @@
           "prefix": {
             "tag": "dt",
             "cssClass":"",
-            "content": ["Vraagprijs","Asking price"],
+            "content": ["Vraagprijs","Asking price","Laatste vraagprijs"],
             "propertyValue": ""
           },
           "postfix": {
@@ -1301,6 +1301,33 @@
         },
         "datatype": "json",
         "propertyValue": "buurt"
+      },
+      "in_the_neighborhood": {
+        "htmlAllowed": false,
+        "cssClass": "object-buurt__list",
+        "tag": "ul",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": [""],
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "",
+            "cssClass":"",
+            "content": [""],
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": [""],
+            "propertyValue": ""
+          }
+        },
+        "datatype": "text",
+        "propertyValue": ""
       }
     }
   }
