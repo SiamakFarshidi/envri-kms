@@ -1,1336 +1,3675 @@
 {
-  "funda": {
-    "seed": "https://www.funda.nl/koop/bladeren/provincie-noord-holland/",
-    "permitted_urls_rules": ["-\\d{8}-\\w+\\/$",
-                             "-\\d{8}-\\w+-\\d+\\/$"],
-    "denied_urls_rules": ["/mail/","/makelaars/","/en/"],
-    "decision_model": "realestate",
-    "features": {
-      "offer_type": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+  "funda":{
+    "seed":"https://www.funda.nl/koop/bladeren/provincie-noord-holland/",
+    "permitted_urls_rules":[
+      "-\\d{8}-\\w+\\/$",
+      "-\\d{8}-\\w+-\\d+\\/$"
+    ],
+    "denied_urls_rules":[
+      "/mail/",
+      "/makelaars/",
+      "/en/"
+    ],
+    "decision_model":"realestate",
+    "features":{
+      "offer_type":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "soortaanbod"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"soortaanbod"
       },
-      "number_of_rooms": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "number_of_rooms":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["slaapkamers","bedrooms"],
-            "propertyValue": ""
+            "content":[
+              "slaapkamers",
+              "bedrooms"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Aantal kamers","Number of rooms"],
-            "propertyValue": ""
+            "content":[
+              "Aantal kamers",
+              "Number of rooms"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "number_of_bathrooms": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "number_of_bathrooms":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Aantal badkamers","Number of bath rooms"],
-            "propertyValue": ""
+            "content":[
+              "Aantal badkamers",
+              "Number of bath rooms"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "number_of_bedrooms": {
-        "htmlAllowed": false,
-        "cssClass": "kenmerken-highlighted__value fd-text--nowrap",
-        "tag": "span",
-        "searchKeywords": {
+      "number_of_bedrooms":{
+        "htmlAllowed":false,
+        "cssClass":"kenmerken-highlighted__value fd-text--nowrap",
+        "tag":"span",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "span",
+          "prefix":{
+            "index":0,
+            "tag":"span",
             "cssClass":"fd-color-dark-3 fd-m-right-2xs",
-            "content": ["slaapkamers","bedrooms"],
-            "propertyValue": "title"
+            "content":[
+              "slaapkamers",
+              "bedrooms"
+            ],
+            "propertyValue":"title"
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "bathroom_facilities": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "bathroom_facilities":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Badkamervoorzieningen","Bathroom facilities"],
-            "propertyValue": ""
+            "content":[
+              "Badkamervoorzieningen",
+              "Bathroom facilities"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "number_of_floors": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "number_of_floors":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Aantal woonlagen","Number of stories"],
-            "propertyValue": ""
+            "content":[
+              "Aantal woonlagen",
+              "Number of stories"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "outdoor_space": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "outdoor_space":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Gebouwgebonden buitenruimte"],
-            "propertyValue": ""
+            "content":[
+              "Gebouwgebonden buitenruimte"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "facilities": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "facilities":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Voorzieningen","Facilities"],
-            "propertyValue": ""
+            "content":[
+              "Voorzieningen",
+              "Facilities"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "volume_in_cubic_meters": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "volume_in_cubic_meters":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Inhoud","Volume in cubic meters"],
-            "propertyValue": ""
+            "content":[
+              "Inhoud",
+              "Volume in cubic meters"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "living_area": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "living_area":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Wonen","Living area"],
-            "propertyValue": ""
+            "content":[
+              "Wonen",
+              "Living area"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "plot_size": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "plot_size":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Perceel","Plot size"],
-            "propertyValue": ""
+            "content":[
+              "Perceel",
+              "Plot size"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "external_storage_space" : {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "external_storage_space":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Externe bergruimte","External storage space"],
-            "propertyValue": ""
+            "content":[
+              "Externe bergruimte",
+              "External storage space"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "asking_price": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "asking_price":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": ["€"],
-            "propertyValue": ""
+            "content":[
+              "€"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Vraagprijs","Asking price","Laatste vraagprijs"],
-            "propertyValue": ""
+            "content":[
+              "Vraagprijs",
+              "Asking price",
+              "Laatste vraagprijs"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "currency",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"currency",
+        "propertyValue":""
       },
-      "asking_price_per_square_meter": {
-        "htmlAllowed": false,
-        "cssClass": "object-kenmerken-list__asking-price fd-flex fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "asking_price_per_square_meter":{
+        "htmlAllowed":false,
+        "cssClass":"object-kenmerken-list__asking-price fd-flex fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": ["€"],
-            "propertyValue": ""
+            "content":[
+              "€"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Vraagprijs per m&#178;","Asking price per m&#178;"],
-            "propertyValue": ""
+            "content":[
+              "Vraagprijs per m&#178;",
+              "Asking price per m&#178;"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "dt",
+          "postfix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "currency",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"currency",
+        "propertyValue":""
       },
-      "rental_price" : {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "rental_price":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Laatste huurprijs","Rental price"],
-            "propertyValue": ""
+            "content":[
+              "Laatste huurprijs",
+              "Rental price"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "currency",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"currency",
+        "propertyValue":""
       },
-      "deposit" : {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "dd",
-        "searchKeywords": {
+      "deposit":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Waarborgsom","Deposit"],
-            "propertyValue": ""
+            "content":[
+              "Waarborgsom",
+              "Deposit"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "rental_agreement" : {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "rental_agreement":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Huurovereenkomst","Rental agreement"],
-            "propertyValue": ""
+            "content":[
+              "Huurovereenkomst",
+              "Rental agreement"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "language" : {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "language":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "taal"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"taal"
       },
-      "description": {
-        "htmlAllowed": true,
-        "cssClass": "object-description-body",
-        "tag": "div",
-        "searchKeywords": {
+      "description":{
+        "htmlAllowed":true,
+        "cssClass":"object-description-body",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "image":  {
-        "htmlAllowed": false,
-        "cssClass": "media-viewer-overview__section-image",
-        "tag": "img",
-        "searchKeywords": {
+      "image":{
+        "htmlAllowed":false,
+        "cssClass":"media-viewer-overview__section-image",
+        "tag":"img",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "a",
+          "prefix":{
+            "index":0,
+            "tag":"a",
             "cssClass":"media-viewer-overview__image-wrapper",
-            "content": ["#foto-1"],
-            "propertyValue": "href"
+            "content":[
+              "#foto-1"
+            ],
+            "propertyValue":"href"
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "url",
-        "propertyValue": "data-lazy"
+        "metadataFormat":"textual",
+        "datatype":"url",
+        "propertyValue":"data-lazy"
       },
-      "kind_of_house": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "kind_of_house":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Soort woonhuis","Kind of house"],
-            "propertyValue": ""
+            "content":[
+              "Soort woonhuis",
+              "Kind of house"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "construction_year": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "construction_year":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Bouwjaar","Year of construction"],
-            "propertyValue": ""
+            "content":[
+              "Bouwjaar",
+              "Year of construction"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "date",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"date",
+        "propertyValue":""
       },
-      "energy_label": {
-        "htmlAllowed": false,
-        "cssClass": "energielabel",
-        "tag": "span",
-        "searchKeywords": {
+      "energy_label":{
+        "htmlAllowed":false,
+        "cssClass":"energielabel",
+        "tag":"span",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Energielabel","Energy label","Provisional energy label"],
-            "propertyValue": ""
+            "content":[
+              "Energielabel",
+              "Energy label",
+              "Provisional energy label"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "char",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"char",
+        "propertyValue":""
       },
-      "type_of_roof": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "type_of_roof":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Soort dak","Type of roof"],
-            "propertyValue": ""
+            "content":[
+              "Soort dak",
+              "Type of roof"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "heating": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "heating":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Verwarming","Heating"],
-            "propertyValue": ""
+            "content":[
+              "Verwarming",
+              "Heating"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "hot_water": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "hot_water":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Warm water","Hot water"],
-            "propertyValue": ""
+            "content":[
+              "Warm water",
+              "Hot water"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "boiler": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "boiler":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Cv-ketel","CH boiler"],
-            "propertyValue": ""
+            "content":[
+              "Cv-ketel",
+              "CH boiler"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "location": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "location":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Ligging","Location"],
-            "propertyValue": ""
+            "content":[
+              "Ligging",
+              "Location"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"location",
+        "propertyValue":""
       },
-      "garden": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "garden":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"fd-m-right-xs",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Tuin","Garden"],
-            "propertyValue": ""
+            "content":[
+              "Tuin",
+              "Garden"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "back_garden": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "back_garden":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Achtertuin","Back garden"],
-            "propertyValue": ""
+            "content":[
+              "Achtertuin",
+              "Back garden"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "int",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"int",
+        "propertyValue":""
       },
-      "garden_location": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "garden_location":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Ligging tuin","Garden location"],
-            "propertyValue": ""
+            "content":[
+              "Ligging tuin",
+              "Garden location"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "balcony": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "balcony":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Balkon/dakterras","Balcony/roof garden"],
-            "propertyValue": ""
+            "content":[
+              "Balkon/dakterras",
+              "Balcony/roof garden"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "type_of_parking": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "type_of_parking":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": ["m³"],
-            "propertyValue": ""
+            "content":[
+              "m³"
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Soort parkeergelegenheid","Type of parking facilities"],
-            "propertyValue": ""
+            "content":[
+              "Soort parkeergelegenheid",
+              "Type of parking facilities"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "garage": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "garage":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Soort garage","Type of garage"],
-            "propertyValue": ""
+            "content":[
+              "Soort garage",
+              "Type of garage"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "zipcode": {
-        "htmlAllowed": false,
-        "cssClass": "object-header__subtitle fd-color-dark-3",
-        "tag": "span",
-        "searchKeywords": {
+      "zipcode":{
+        "htmlAllowed":false,
+        "cssClass":"object-header__subtitle fd-color-dark-3",
+        "tag":"span",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "zipcode",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"zipcode",
+        "propertyValue":""
       },
-      "street": {
-        "htmlAllowed": false,
-        "cssClass": "object-header__title",
-        "tag": "span",
-        "searchKeywords": {
+      "street":{
+        "htmlAllowed":false,
+        "cssClass":"object-header__title",
+        "tag":"span",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "house_number": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "house_number":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "huisnummer"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"huisnummer"
       },
-      "city": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "city":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "plaats"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"plaats"
       },
-      "province": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "province":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "provincie"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"provincie"
       },
-      "lat": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "lat":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "lat"
+        "metadataFormat":"json",
+        "datatype":"coordinate",
+        "propertyValue":"lat"
       },
-      "lng": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "lng":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "lng"
+        "metadataFormat":"json",
+        "datatype":"coordinate",
+        "propertyValue":"lng"
       },
-      "offered_since": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "offered_since":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "aangebodensinds"
+        "metadataFormat":"json",
+        "datatype":"date",
+        "propertyValue":"aangebodensinds"
       },
-      "status": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "status":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "status"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"status"
       },
-      "object_type": {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "object_type":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "objectType"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"objectType"
       },
-      "type_of_apartment": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "type_of_apartment":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Soort appartement"],
-            "propertyValue": ""
+            "content":[
+              "Soort appartement"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "type_of_construction": {
-        "htmlAllowed": false,
-        "cssClass": "fd-flex--bp-m fd-flex-wrap fd-align-items-center",
-        "tag": "dd",
-        "searchKeywords": {
+      "type_of_construction":{
+        "htmlAllowed":false,
+        "cssClass":"fd-flex--bp-m fd-flex-wrap fd-align-items-center",
+        "tag":"dd",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "span",
+            "tag":"span",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "dt",
+          "prefix":{
+            "index":0,
+            "tag":"dt",
             "cssClass":"",
-            "content": ["Soort bouw","Building type"],
-            "propertyValue": ""
+            "content":[
+              "Soort bouw",
+              "Building type"
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       },
-      "business_space":  {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "business_space":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "bedrijfsruimte"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"bedrijfsruimte"
       },
-      "neighborhood" : {
-        "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "script",
-        "searchKeywords": {
+      "neighborhood":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "json",
-        "propertyValue": "buurt"
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"buurt"
       },
-      "in_the_neighborhood": {
-        "htmlAllowed": false,
-        "cssClass": "object-buurt__list",
-        "tag": "ul",
-        "searchKeywords": {
+      "in_the_neighborhood":{
+        "htmlAllowed":false,
+        "cssClass":"object-buurt__list",
+        "tag":"ul",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
           "infix":{
-            "tag": "",
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "prefix": {
-            "tag": "",
+          "prefix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           },
-          "postfix": {
-            "tag": "",
+          "postfix":{
+            "index":0,
+            "tag":"",
             "cssClass":"",
-            "content": [""],
-            "propertyValue": ""
+            "content":[
+              ""
+            ],
+            "propertyValue":""
           }
         },
-        "datatype": "text",
-        "propertyValue": ""
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
       }
+    }
+  },
+  "academictransfer":{
+    "seed":"https://www.academictransfer.com/en/?vacancy_type=scientific&q=&order=&page=1",
+    "permitted_urls_rules":[
+      "\\d{6}"
+    ],
+    "denied_urls_rules":[
+      "/nl/",
+      "\\d{6}$"
+    ],
+    "decision_model":"academicpositions",
+    "features":{
+      "title":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"title"
+      },
+      "publish_date":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"date",
+        "propertyValue":"datePosted"
+      },
+      "deadline":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"date",
+        "propertyValue":"validThrough"
+      },
+      "location":{
+        "htmlAllowed":false,
+        "cssClass":"_Location_map_18O8fN-R",
+        "tag":"div",
+        "removeValue":[
+          "\n",
+          "View on Google Maps"
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"div",
+            "cssClass":"_Location_Location_2Sq_3t9S",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"location",
+        "propertyValue":""
+      },
+      "city":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"location",
+        "propertyValue":"jobLocation.address.addressLocality"
+      },
+      "country":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"location",
+        "propertyValue":"jobLocation.address.addressCountry"
+      },
+      "position":{
+        "htmlAllowed":false,
+        "cssClass":"_Specs_job_type_3QpsexDN",
+        "tag":"li",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "field":{
+        "htmlAllowed":false,
+        "cssClass":"_Specs_scientific_field_2v2Y68Sc",
+        "tag":"li",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "salary":{
+        "htmlAllowed":false,
+        "cssClass":"_Specs_salary_2F7mx_47",
+        "tag":"li",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "per month"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "max_working_hours":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+          "max. "
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"int",
+        "propertyValue":"workhours"
+      },
+      "employer":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"hiringOrganization.name"
+      },
+      "job_description":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"description"
+      },
+      "requirements_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Requirements"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "conditions_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Conditions of employment"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "employer_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Employer"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "department_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "DEPARTMENT"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "additional_information":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Additional information"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "apply_link":{
+        "htmlAllowed":true,
+        "cssClass":"",
+        "tag":"",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"url",
+        "propertyValue":""
+      },
+      "employer_link":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"hiringOrganization.url"
+      },
+      "job_type":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"employmentType"
+      },
+      "logo":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"url",
+        "propertyValue":"hiringOrganization.logo"
+      }
+    }
+  },
+  "euraxess":{
+    "seed":"https://euraxess.ec.europa.eu/jobs/727618",
+    "permitted_urls_rules":[
+      "/jobs/\\d{6}$"
+    ],
+    "denied_urls_rules":[
+
+    ],
+    "decision_model":"academicpositions",
+    "features":{
+      "title":{
+        "htmlAllowed":false,
+        "cssClass":"head-title",
+        "tag":"h1",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "publish_date":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"date",
+        "propertyValue":"datePosted"
+      },
+      "deadline":{
+        "htmlAllowed":false,
+        "cssClass":"col-xs-12 col-sm-7 value field-application-deadline inline",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"div",
+            "cssClass":"col-xs-12 col-sm-5 title-label",
+            "content":[
+              "APPLICATION DEADLINE"
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"date",
+        "propertyValue":""
+      },
+      "location":{
+        "htmlAllowed":false,
+        "cssClass":"_Location_map_18O8fN-R",
+        "tag":"div",
+        "removeValue":[
+          "\n",
+          "View on Google Maps"
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"div",
+            "cssClass":"_Location_Location_2Sq_3t9S",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"location",
+        "propertyValue":""
+      },
+      "city":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"location",
+        "propertyValue":"jobLocation.address.addressLocality"
+      },
+      "country":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"location",
+        "propertyValue":"jobLocation.address.addressCountry"
+      },
+      "position":{
+        "htmlAllowed":false,
+        "cssClass":"_Specs_job_type_3QpsexDN",
+        "tag":"li",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "field":{
+        "htmlAllowed":false,
+        "cssClass":"col-xs-12 col-sm-7 value field-research-field inline",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"div",
+            "cssClass":"col-xs-12 col-sm-5 title-label",
+            "content":[
+              "RESEARCH FIELD"
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "salary":{
+        "htmlAllowed":false,
+        "cssClass":"_Specs_salary_2F7mx_47",
+        "tag":"li",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "per month"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "max_working_hours":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+          "max. "
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"int",
+        "propertyValue":"workhours"
+      },
+      "employer":{
+        "htmlAllowed":false,
+        "cssClass":"col-xs-12 col-sm-7 value field-company-institute inline",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"div",
+            "cssClass":"col-xs-12 col-sm-5 title-label",
+            "content":[
+              "ORGANISATION/COMPANY"
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "job_description":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"description"
+      },
+      "requirements_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Requirements"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "conditions_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Conditions of employment"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "employer_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Employer"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "department_description":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "DEPARTMENT"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "additional_information":{
+        "htmlAllowed":true,
+        "cssClass":"_Section_Section_26Kh4ZAK",
+        "tag":"div",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"span",
+            "cssClass":"",
+            "content":[
+              "Additional information"
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":2,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"string",
+        "propertyValue":""
+      },
+      "apply_link":{
+        "htmlAllowed":true,
+        "cssClass":"",
+        "tag":"",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"textual",
+        "datatype":"url",
+        "propertyValue":""
+      },
+      "employer_link":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"hiringOrganization.url"
+      },
+      "job_type":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"string",
+        "propertyValue":"employmentType"
+      },
+      "logo":{
+        "htmlAllowed":false,
+        "cssClass":"",
+        "tag":"script",
+        "removeValue":[
+
+        ],
+        "searchKeywords":{
+          "infix":{
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "prefix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          },
+          "postfix":{
+            "index":0,
+            "tag":"",
+            "cssClass":"",
+            "content":[
+              ""
+            ],
+            "propertyValue":""
+          }
+        },
+        "metadataFormat":"json",
+        "datatype":"url",
+        "propertyValue":"hiringOrganization.logo"
+      }
+    }
+  },
+  "scholarshipdb":{
+    "seed":"https://scholarshipdb.net/",
+    "permitted_urls_rules":[
+      "scholarships-in-(.*?)html$",
+      "jobs-in-(.*?)html$"
+    ],
+    "denied_urls_rules":[
+
+    ],
+    "features":{
+
+    }
+  },
+  "academicpositions":{
+    "seed":"https://academicpositions.com/find-jobs",
+    "permitted_urls_rules":[
+      "\\d{6}$"
+    ],
+    "denied_urls_rules":[
+
+    ],
+    "features":{
+
+    }
+  },
+  "educations":{
+    "seed":"https://www.educations.com/",
+    "permitted_urls_rules":[
+      "/study-abroad/(.*?)\\d{6}$"
+    ],
+    "denied_urls_rules":[
+
+    ],
+    "features":{
+
+    }
+  },
+  "linkedin":{
+    "seed":"https://www.linkedin.com/jobs/phd-position-jobs/",
+    "permitted_urls_rules":[
+      "/jobs/view/"
+    ],
+    "denied_urls_rules":[
+
+    ],
+    "features":{
+
     }
   }
 }
-
-

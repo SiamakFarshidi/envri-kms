@@ -1,0 +1,39 @@
+{
+  "sios": {
+    "seed": "https://sios-svalbard.org/metsis/search",
+    "permitted_urls_rules": ["/metsis/"],
+    "denied_urls_rules": [],
+    "decision_model": "datasettest",
+    "features": {
+      "title": {
+        "htmlAllowed": false,
+        "cssClass": "field-content",
+        "tag": "span",
+        "searchKeywords": {
+          "infix":{
+            "tag": "",
+            "cssClass":"",
+            "content": [""],
+            "propertyValue": ""
+          },
+          "prefix": {
+            "tag": "div",
+            "cssClass":"views-field views-field-title",
+            "content": [""],
+            "propertyValue": ""
+          },
+          "postfix": {
+            "tag": "",
+            "cssClass":"",
+            "content": [""],
+            "propertyValue": ""
+          }
+        },
+        "datatype": "json",
+        "propertyValue": "soortaanbod"
+      }
+    }
+  }
+}
+
+

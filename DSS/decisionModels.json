@@ -2,7 +2,7 @@
   "realestate": {
     "offer_type": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": ["koop", "huur"],
@@ -42,7 +42,7 @@
     },
     "bathroom_facilities": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -72,7 +72,7 @@
     },
     "facilities": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -152,7 +152,7 @@
     },
     "deposit" : {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability"],
       "subfeatures": [],
       "defaultValues": [],
@@ -162,7 +162,7 @@
     },
     "rental_agreement" : {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -172,7 +172,7 @@
     },
     "language" : {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability"],
       "subfeatures": [],
       "defaultValues": [],
@@ -182,7 +182,7 @@
     },
     "description": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["N/A"],
       "subfeatures": [],
       "defaultValues": [],
@@ -202,7 +202,7 @@
     },
     "kind_of_house": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -232,7 +232,7 @@
     },
     "type_of_roof": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -242,7 +242,7 @@
     },
     "heating": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -252,7 +252,7 @@
     },
     "hot_water": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -262,7 +262,7 @@
     },
     "boiler": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -272,7 +272,7 @@
     },
     "location": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity","safety","accessibility"],
       "subfeatures": [],
       "defaultValues": [],
@@ -282,7 +282,7 @@
     },
     "garden": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -302,7 +302,7 @@
     },
     "garden_location": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -312,7 +312,7 @@
     },
     "balcony": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -322,7 +322,7 @@
     },
     "type_of_parking": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity","safety"],
       "subfeatures": [],
       "defaultValues": [],
@@ -332,7 +332,7 @@
     },
     "garage": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity","safety"],
       "subfeatures": [],
       "defaultValues": [],
@@ -342,7 +342,7 @@
     },
     "zipcode": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["N/A"],
       "subfeatures": [],
       "defaultValues": [],
@@ -352,7 +352,7 @@
     },
     "street": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["N/A"],
       "subfeatures": [],
       "defaultValues": [],
@@ -422,7 +422,7 @@
     },
     "status": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability"],
       "subfeatures": [],
       "defaultValues": [],
@@ -432,7 +432,7 @@
     },
     "object_type": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -442,7 +442,7 @@
     },
     "type_of_apartment": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -452,7 +452,7 @@
     },
     "type_of_construction": {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
       "defaultValues": [],
@@ -472,13 +472,225 @@
     },
     "neighborhood" : {
       "description": "description",
-      "datatype": "text",
+      "datatype":"string",
       "qualities": ["suitability","popularity","safety"],
       "subfeatures": [],
       "defaultValues": [],
       "category": [],
       "caption": "",
       "id": "48"
+    }
+  },
+  "academicpositions": {
+    "title": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "1"
+    },
+    "publish_date": {
+      "description": "description",
+      "datatype": "date",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "2"
+    },
+    "deadline": {
+      "description": "description",
+      "datatype": "date",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "3"
+    },
+    "location": {
+      "description": "description",
+      "datatype": "location",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "4"
+    },
+    "city": {
+      "description": "description",
+      "datatype": "location",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "5"
+    },
+    "country": {
+      "description": "description",
+      "datatype": "location",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "6"
+    },
+    "position": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "7"
+    },
+    "field": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "8"
+    },
+    "salary": {
+      "description": "description",
+      "datatype": "currency",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "9"
+    },
+    "max_working_hours": {
+      "description": "description",
+      "datatype": "int",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "10"
+    },
+    "employer": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "11"
+    },
+    "job_description": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "12"
+    },
+    "requirements_description": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "13"
+    },
+    "conditions_description": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "14"
+    },
+    "employer_description": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "15"
+    },
+    "department_description": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "16"
+    },
+    "additional_information": {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "17"
+    },
+    "apply_link": {
+      "description": "description",
+      "datatype": "url",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "18"
+    },
+    "employer_link": {
+      "description": "description",
+      "datatype": "url",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "19"
+    },
+    "job_type": {
+      "description": "description",
+      "datatype": "url",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "20"
+    },
+    "logo": {
+      "description": "description",
+      "datatype": "url",
+      "qualities": ["suitability","popularity"],
+      "subfeatures": [],
+      "defaultValues": [],
+      "category": [],
+      "caption": "",
+      "id": "21"
     }
   },
   "dataBaseManagementSystems": {},

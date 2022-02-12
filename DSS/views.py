@@ -4,15 +4,67 @@ import os
 from django.http import JsonResponse
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Index
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 decisionModels = open(os.getcwd()+'/DSS/decisionModels.json',"r")
 decisionModels = json.loads(r''+decisionModels.read())
 #-------------------------------------------------------------------------------------------------------------
 def listOfSolutions(request):
-    page=2
     featureRequirements={
-        "decisionModel": "realestate",
+        "parameters":{
+            "decisionModel": "realestate",
+            "page":1            
+        },       
+        "featureRequirements":{
+            "offer_type":{
+                "value": "koop",
+                "priority": "must-have"
+            },
+            "energy_label":{
+                "value": "C",
+                "priority": "could-have"
+            },
+            "number_of_rooms":{
+                "value": "3",
+                "priority": "should-have"
+            },
+            "volume_in_cubic_meters":{
+                "value": "100",
+                "priority": "must-have"
+            },
+            "number_of_bedrooms":{
+                "value": "3",
+                "priority": "should-have"
+            },
+            "asking_price":{
+                "value": "4000000",
+                "priority": "must-have"
+            },
+            "city":{
+                "value": "utrecht",
+                "priority": "must-have"
+            }
+        }
+    }
+    
+    page = featureRequirements["parameters"]["page"]
+    numHits,solutions=getSolutions(featureRequirements, page)
+    
+    return JsonResponse({"hits": numHits,"solutions": solutions})
+#-------------------------------------------------------------------------------------------------------------
+@csrf_exempt
+def numberOfSolutions(request):
+    if request.method == "POST":
+        print("ok")
+
+
+    featureRequirements={
+        "parameters":{
+            "decisionModel": "realestate",
+            "page":1
+        },
         "featureRequirements":{
             "offer_type":{
                 "value": "koop",
@@ -45,54 +97,20 @@ def listOfSolutions(request):
         }
     }
 
+    page = featureRequirements["parameters"]["page"]
     numHits,solutions=getSolutions(featureRequirements, page)
 
-    return JsonResponse({"hits": numHits,"solutions": solutions})
-#-------------------------------------------------------------------------------------------------------------
-def numberOfSolutions(request):
-    page=1
-    featureRequirements={
-        "decisionModel": "realestate",
-        "featureRequirements":{
-            "offer_type":{
-                "value": "koop",
-                "priority": "must-have"
-            },
-            "energy_label":{
-                "value": "A",
-                "priority": "could-have"
-            },
-            "number_of_rooms":{
-                "value": "4",
-                "priority": "should-have"
-            },
-            "volume_in_cubic_meters":{
-                "value": "400",
-                "priority": "could-have"
-            },
-            "number_of_bedrooms":{
-                "value": "2",
-                "priority": "should-have"
-            },
-            "asking_price":{
-                "value": "200000",
-                "priority": "could-have"
-            },
-            "neighborhood":{
-                "value": "scheepskwartier",
-                "priority": "should-have"
-            },
-            "city":{
-                "value": "utrecht",
-                "priority": "must-have"
-            }
-        }
-    }
-    numHits,solutions=getSolutions(featureRequirements, page)
-    return JsonResponse({'hits': numHits})
+    return JsonResponse({'hits': numHits, "solutions":{}})
 #-------------------------------------------------------------------------------------------------------------
 def detailedSolution(request):
-    return JsonResponse({'status': 'Invalid request'}, status=400)
+
+    solution={
+        "decisionModel": "realestate",
+        "id":"https://www.funda.nl/koop/hippolytushoef/huis-42501003-elft-13/"
+    }
+
+    numHits,solutions=getSolutionByID(solution)
+    return JsonResponse({"hits": numHits,"solutions": solutions})
 #-------------------------------------------------------------------------------------------------------------
 def scoreCalculation(featureImpactFactores, solutions):
 
@@ -102,7 +120,7 @@ def scoreCalculation(featureImpactFactores, solutions):
     for solution in solutions:
         score=0
         alternativeSolution=solution["_source"]
-
+        alternativeSolution['id']=solution["_id"]
         for feature in featureImpactFactores:
             featureTitle=feature['feature']
             if alternativeSolution[featureTitle]!="N/A" and feature["datatype"]=="int" and int(alternativeSolution[featureTitle]) >= int(feature["value"]):
@@ -128,14 +146,14 @@ def scoreCalculation(featureImpactFactores, solutions):
 #-------------------------------------------------------------------------------------------------------------
 def getSolutions(featureRequirements, page):
     solutions={}
-    decisionModel=decisionModels[featureRequirements["decisionModel"]]
+    decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
     featureImpactFactores,query=queryBilder(featureRequirements)
     page=(page-1)*20
 
     es = Elasticsearch("http://localhost:9200")
-    index = Index(featureRequirements["decisionModel"], es)
+    index = Index(featureRequirements["parameters"]["decisionModel"], es)
 
-    if not es.indices.exists(index=featureRequirements["decisionModel"]):
+    if not es.indices.exists(index=featureRequirements["parameters"]["decisionModel"]):
         return {}
     user_request = "some_param"
     query_body = {
@@ -143,7 +161,7 @@ def getSolutions(featureRequirements, page):
         "from": page,
         "size": 20
     }
-    result = es.search(index=featureRequirements["decisionModel"], body=query_body)
+    result = es.search(index=featureRequirements["parameters"]["decisionModel"], body=query_body)
     numHits=result['hits']['total']['value']
 
     solutions=scoreCalculation(featureImpactFactores, result['hits']['hits'])
@@ -154,7 +172,7 @@ def queryBilder(featureRequirements):
     fields={}
     shouldHaveQueries=[]
     mustHaveQueries=[]
-    decisionModel=decisionModels[featureRequirements["decisionModel"]]
+    decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
 
     featureImpactFactores=[]
     qualityRequirement={}
@@ -227,4 +245,32 @@ def queryBilder(featureRequirements):
         }
 
     return featureImpactFactores,query
+#-------------------------------------------------------------------------------------------------------------
+def getSolutionByID(Solution):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index(Solution["decisionModel"], es)
+
+    if not es.indices.exists(index=Solution["decisionModel"]):
+        return {}
+
+    user_request = "some_param"
+    query_body = {
+        "query": {
+            "bool": {
+                "must": [{
+                    "match_phrase": {
+                        "_id": Solution["id"]
+                    }
+                }]
+            }
+        },
+        "from": 0,
+        "size": 1
+    }
+    result = es.search(index=Solution["decisionModel"], body=query_body)
+    numHits=result['hits']['total']['value']
+    if not numHits:
+        return 0,{}
+
+    return numHits,result['hits']['hits'][0]
 #-------------------------------------------------------------------------------------------------------------

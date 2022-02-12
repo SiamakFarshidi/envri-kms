@@ -18,7 +18,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Index
 import uuid
 import os
-
+import datetime
 #-----------------------------------------------------------------------------------------------------------------------
 # init the colorama module
 colorama.init()
@@ -34,6 +34,7 @@ urllib3.disable_warnings()
 #-----------------------------------------------------------------------------------------------------------------------
 # number of urls visited so far will be stored here
 max_urls=999999
+test=False
 config={}
 headers = {
     'Access-Control-Allow-Origin': '*',
@@ -184,6 +185,8 @@ def indexWebsite(website):
         links = get_all_website_links(url)
         for link in links:
             uniquelinks.add(link)
+
+    printResults()
 #-----------------------------------------------------------------------------------------------------------------------
 def printResults():
     print("[+]  Total Internal links: ", len(internal_urls))
@@ -216,14 +219,55 @@ def filterByDatatype(value,datatype):
             value = trim.sub('', val)
             if(value):
                 return value
-    elif datatype=="char" or datatype=="text":
+    elif datatype=="char" or datatype=="string":
         return strippedText(value)
+    elif datatype=="date":
+        return extractDate(value)
     elif datatype=="zipcode":
         p = re.compile(r'\d{4} [A-Za-z]{2}')
         value=p.findall(value)
         if len(value)>0:
             return value[0]
     return value
+
+#-----------------------------------------------------------------------------------------------------------------------
+def extractDate(strDate):
+
+    patterns = [
+        # 0) 1-12-1963
+        r'(\d{1,2})-(\d{1,2})-(\d{4})',
+        # 1) 1/12/1963
+        r'(\d{1,2})/(\d{1,2})/(\d{4})',
+        # 2) 1789-7-14
+        r'(\d{4})-(\d{1,2})-(\d{1,2})',
+        # 3) 1789\7\14
+        r'(\d{4})\\(\d{1,2})\\(\d{1,2})',
+        # 4) '1945-2'
+        r'(\d{4})-(\d{1,2})',
+        # 5) 2-1883
+        r'(\d{1,2})-(\d{4})',
+    ]
+    selectedPattern=0
+
+    extractedDate=""
+    for pattern in patterns:
+        p = re.compile(pattern)
+        date=p.findall(strDate)
+        if date:
+            extractedDate=(date[0])
+            break
+        selectedPattern=selectedPattern+1
+
+    if selectedPattern==0 or selectedPattern==1:
+        extractedDate=extractedDate[2]+"-"+extractedDate[1]+"-"+extractedDate[0]
+    elif selectedPattern==2 or selectedPattern==3:
+        extractedDate=extractedDate[0]+"-"+extractedDate[1]+"-"+extractedDate[2]
+    elif selectedPattern==4:
+        extractedDate=extractedDate[0]+"-"+extractedDate[1]+"-01"
+    elif selectedPattern==5:
+        extractedDate=extractedDate[1]+"-"+extractedDate[0]+"-01"
+
+    return extractedDate
 #-----------------------------------------------------------------------------------------------------------------------
 def saveMetadataInFile(metadata):
     filename= str(uuid.uuid4())
@@ -274,12 +318,14 @@ def indexWebpage(url):
         for feature in config['features']:
             metadata[feature]=findValue(feature, html)
 
-    #print(metadata)
+    if test:
+        print(metadata)
     #........................................
-    if not(if_URL_exist(url)):
-        if(metadata):
-            saveMetadataInFile(metadata)
-            ingest_metadataFile(metadata)
+    else:
+        if not(if_URL_exist(url)):
+            if(metadata):
+                saveMetadataInFile(metadata)
+                ingest_metadataFile(metadata)
     #........................................
     return metadata
 #-----------------------------------------------------------------------------------------------------------------------
@@ -296,14 +342,23 @@ def extractJSONfromHTML(string):
 def getPropertyFromJSON(tag, feature):
     jsonFile={}
     property=config['features'][feature]['propertyValue']
-    if(config['features'][feature]['datatype']=="json" and property):
+
+    if(config['features'][feature]['metadataFormat']=="json" and property):
         jsonFile=extractJSONfromHTML(str(tag))
-    if(jsonFile and  property in jsonFile):
-        return jsonFile[property]
+        lstproperty=property.split('.')
+
+        hasChanged=False
+        for property in lstproperty:
+            if(jsonFile and  property in jsonFile):
+                jsonFile=jsonFile[property]
+                hasChanged=True
+        if hasChanged:
+            return filterByDatatype(jsonFile,config['features'][feature]['datatype'])
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def findValue(feature, html):
     value=getValue(feature, html)
+    value=filterValue(value, feature)
     datatype=config['features'][feature]['datatype']
 
     if (value!="N/A"):
@@ -315,6 +370,13 @@ def findValue(feature, html):
             value= float(value.replace(",",""))
             if value:
                 return int(value)
+    return value
+#-----------------------------------------------------------------------------------------------------------------------
+def filterValue(value, feature):
+    removeValue=config['features'][feature]['removeValue']
+    if removeValue:
+        for rmVal in removeValue:
+            value=value.replace(rmVal,'')
     return value
 #-----------------------------------------------------------------------------------------------------------------------
 def getValue(feature, html):
@@ -353,6 +415,11 @@ def getValue(feature, html):
 def getByPostfix(feature,tag,html):
     global config
     if type(tag)!=type(None):
+
+        index=config['features'][feature]['searchKeywords']['postfix']['index']-1
+        for cnt in range(1, index):
+            tag=tag.next_element
+
         preTag=tag.find_next(config['features'][feature]['searchKeywords']['postfix']['tag'],class_=config['features'][feature]['searchKeywords']['postfix']['cssClass'])
         if type(preTag)!=type(None):
             property=config['features'][feature]['searchKeywords']['postfix']['propertyValue']
@@ -379,6 +446,11 @@ def getByPostfix(feature,tag,html):
 def getByPrefix(feature,tag,html):
     global config
     if type(tag)!=type(None):
+        index=config['features'][feature]['searchKeywords']['prefix']['index']-1
+
+        for cnt in range(1, index):
+            tag=tag.previous_element
+
         preTag=tag.find_previous(config['features'][feature]['searchKeywords']['prefix']['tag'],class_=config['features'][feature]['searchKeywords']['prefix']['cssClass'])
         if type(preTag)!=type(None):
             property=config['features'][feature]['searchKeywords']['prefix']['propertyValue']
@@ -423,9 +495,9 @@ def getByInfix(feature,tag):
         for tagContent in tagContents:
             if tagContent and tagContent in str(infix):
                 if not(config['features'][feature]['htmlAllowed']):
-                    return filterByDatatype(remove_tags(str(infix)), config['features'][feature]['datatype'])
+                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
                 else:
-                    return (str(infix))
+                    return (str(tag))
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def if_URL_exist(url):
@@ -470,11 +542,19 @@ def if_URL_exist(url):
     numHits=result['hits']['total']['value']
     return True if numHits>0 else False
 #-----------------------------------------------------------------------------------------------------------------------
-if __name__ == "__main__":
-    indexWebsite("funda")
-    printResults()
+def enableTestModel(website, url):
+    global test
+    global config
+    test=True
+    config=openCrawlerConfig(website)
+    indexWebpage(url)
+#-----------------------------------------------------------------------------------------------------------------------
 
-    #config=openCrawlerConfig('funda')
-    #indexWebpage("https://www.funda.nl/koop/utrecht/huis-42692721-zilvergeldstraat-11/")
-    #get_all_website_links("https://www.funda.nl/doorsturen/mail/huur/den-haag/appartement-88058331-javastraat-31/")
+if __name__ == "__main__":
+    #indexWebsite("euraxess")
+
+    enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742306")
+    enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
+    #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
+
 #-----------------------------------------------------------------------------------------------------------------------

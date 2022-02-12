@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+            featureRequirements={
+            "parameters":{
+                "decisionModel": "realestate",
+                "page":1
+            },
+            "featureRequirements":{
+                "offer_type":{
+                    "value": "koop",
+                    "priority": "must-have"
+                },
+                "energy_label":{
+                    "value": "C",
+                    "priority": "could-have"
+                },
+                "number_of_rooms":{
+                    "value": "3",
+                    "priority": "should-have"
+                },
+                "volume_in_cubic_meters":{
+                    "value": "100",
+                    "priority": "must-have"
+                },
+                "number_of_bedrooms":{
+                    "value": "3",
+                    "priority": "should-have"
+                },
+                "asking_price":{
+                    "value": "4000000",
+                    "priority": "must-have"
+                },
+                "city":{
+                    "value": "utrecht",
+                    "priority": "must-have"
+                }
+            }
+        }
+
+
+
+    // Example POST method implementation:
+    async function postData(url = '', data = {}) {
+
+      req={
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'text/plain'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data)
+      }
+
+
+      response = await fetch(url, req);
+      return response;
+    }
+
+    postData('http://127.0.0.1:8000/DSS/numberOfSolutions', featureRequirements)
+      .then(data => {
+        console.log(data); // JSON data parsed by `data.json()` call
+      });
+
+
+
+
+    </script>
+
+</body>
+</html>
