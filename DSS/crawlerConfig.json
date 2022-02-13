@@ -13,6 +13,9 @@
     "keep_parameters": "False",
     "page_counter": [
     ],
+    "equal_crawled_features": [
+      "url"
+    ],
     "decision_model":"realestate",
     "features":{
       "offer_type":{
@@ -2120,6 +2123,11 @@
     "keep_parameters": "False",
     "page_counter": [
     ],
+    "equal_crawled_features": [
+      "title",
+      "country",
+      "employer"
+    ],
     "decision_model":"academicpositions",
     "features":{
       "title":{
@@ -3031,6 +3039,11 @@
     "keep_parameters": "False",
     "page_counter": [
       "https://euraxess.ec.europa.eu/jobs/search?page={counter}"
+    ],
+    "equal_crawled_features": [
+      "title",
+      "country",
+      "employer"
     ],
     "decision_model":"academicpositions",
     "features":{

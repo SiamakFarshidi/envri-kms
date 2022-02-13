@@ -64,7 +64,8 @@ def openCrawlerConfig(webSiteEntity):
         "page_counter": crawlerConfig[webSiteEntity]['page_counter'],
         "features":crawlerConfig[webSiteEntity]['features'],
         "seed":crawlerConfig[webSiteEntity]['seed'],
-        "decision_model":crawlerConfig[webSiteEntity]['decision_model']
+        "decision_model":crawlerConfig[webSiteEntity]['decision_model'],
+        "equal_crawled_features": crawlerConfig[webSiteEntity]['equal_crawled_features'],
     }
     print("The new configurations have been set!")
     return NewConfig
@@ -118,6 +119,11 @@ def get_all_website_links(url):
         if not is_valid(href):
             # not a valid URL
             continue
+
+        if domain_name not in href:
+            continue
+
+
         if href in internal_urls:
             # already in the set
             continue
@@ -611,10 +617,15 @@ def indexWebpage(url):
         print(metadata)
     #........................................
     else:
-        if not(if_URL_exist(url)):
-            if(metadata):
-                saveMetadataInFile(metadata)
-                ingest_metadataFile(metadata)
+        crawled_features={}
+        for crawled_feature in config['equal_crawled_features']:
+            crawled_features[crawled_feature]=metadata[crawled_feature]
+
+        if metadata and is_not_crawled(crawled_features):
+            saveMetadataInFile(metadata)
+            ingest_metadataFile(metadata)
+        else:
+            print("The url has been already crawled!")
     #........................................
     return metadata
 #-----------------------------------------------------------------------------------------------------------------------
@@ -789,7 +800,8 @@ def getByInfix(feature,tag):
                     return (str(tag))
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
-def if_URL_exist(url):
+def is_not_crawled(features):
+
     global config
 
     es = Elasticsearch("http://localhost:9200")
@@ -813,23 +825,30 @@ def if_URL_exist(url):
             })
         es.indices.open(index=config['decision_model'])
 
+
+    query_conditions=[]
+    for feature in features:
+        if features[feature] == "N/A":
+            print(query_conditions)
+            return False
+        query={"term": {feature: features[feature]}}
+
+        query_conditions.append(query)
+
     user_request = "some_param"
     query_body = {
         "query": {
             "bool": {
-                "must": [{
-                    "match_phrase": {
-                        "url": url
-                    }
-                }]
-            }
+                "must": query_conditions
+            },
         },
         "from": 0,
-        "size": 1
+        "size": 1,
     }
     result = es.search(index=config['decision_model'], body=query_body)
     numHits=result['hits']['total']['value']
-    return True if numHits>0 else False
+
+    return False if numHits>0 else True
 #-----------------------------------------------------------------------------------------------------------------------
 def enableTestModel(website, url):
     global test
@@ -840,6 +859,7 @@ def enableTestModel(website, url):
 #-----------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    indexWebsite("academictransfer")
     indexWebsite("euraxess")
 
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
