@@ -19,6 +19,7 @@ from elasticsearch_dsl import Search, Index
 import uuid
 import os
 import datetime
+import pycountry
 #-----------------------------------------------------------------------------------------------------------------------
 # init the colorama module
 colorama.init()
@@ -59,9 +60,11 @@ def openCrawlerConfig(webSiteEntity):
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
         "denied_urls_rules":crawlerConfig[webSiteEntity]['denied_urls_rules'],
+        "keep_parameters":crawlerConfig[webSiteEntity]['keep_parameters'],
+        "page_counter": crawlerConfig[webSiteEntity]['page_counter'],
         "features":crawlerConfig[webSiteEntity]['features'],
         "seed":crawlerConfig[webSiteEntity]['seed'],
-        "decision_model":crawlerConfig[webSiteEntity]['decision_model'],
+        "decision_model":crawlerConfig[webSiteEntity]['decision_model']
     }
     print("The new configurations have been set!")
     return NewConfig
@@ -98,6 +101,7 @@ def get_all_website_links(url):
     cnt=0
 
     for a_tag in soup.findAll("a"):
+
         href = a_tag.attrs.get("href")
 
         if href == "" or href is None:
@@ -108,7 +112,8 @@ def get_all_website_links(url):
         href = urljoin(url, href)
         parsed_href = urlparse(href)
         # remove URL GET parameters, URL fragments, etc.
-        href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
+        if config["keep_parameters"]=="False":
+            href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
 
         if not is_valid(href):
             # not a valid URL
@@ -116,13 +121,12 @@ def get_all_website_links(url):
         if href in internal_urls:
             # already in the set
             continue
-        if domain_name not in href:
-            continue
 
         accessPermitted=True
         for condition in config["denied_urls_rules"]:
             if (len(re.findall(condition, href))>0):
                 accessPermitted=False
+                break
 
         if(not accessPermitted):
             continue
@@ -178,6 +182,19 @@ def indexWebsite(website):
     uniquelinks=set()
     uniquelinks.add(url)
 
+    page_cnt=1
+    for page_counter in config["page_counter"]:
+        page_cnt=1
+        while uniquelinks:
+            url = page_counter.replace("{counter}", str(page_cnt))
+            uniquelinks = get_all_website_links(url)
+            page_cnt=page_cnt+1
+            total_urls_visited += 1
+
+    if page_cnt>1:
+        printResults()
+        return
+
     while total_urls_visited < max_urls and uniquelinks:
         url=uniquelinks.pop()
         total_urls_visited += 1
@@ -211,7 +228,7 @@ def remove_tags(raw_html):
         text= "\n".join([s for s in text.split("\n") if s])
     return text
 #-----------------------------------------------------------------------------------------------------------------------
-def filterByDatatype(value,datatype):
+def filterByDatatype(value,datatype,expectedValues):
     if datatype=="currency" or datatype=="int" or datatype=="decimal":
         trim = re.compile(r'[^\d.,]+')
         lstvalue=value.split()
@@ -223,13 +240,285 @@ def filterByDatatype(value,datatype):
         return strippedText(value)
     elif datatype=="date":
         return extractDate(value)
+    elif datatype=="country":
+        return extractCountry(value)
+    elif datatype=="multivalue":
+        return extarctFromMultivalue(value,expectedValues)
     elif datatype=="zipcode":
         p = re.compile(r'\d{4} [A-Za-z]{2}')
         value=p.findall(value)
         if len(value)>0:
             return value[0]
     return value
+#-----------------------------------------------------------------------------------------------------------------------
+def extarctFromMultivalue(text,expectedValues):
+    for candidateValue in expectedValues:
+        if candidateValue.lower() in text.lower() :
+            return candidateValue
+    return text
+#-----------------------------------------------------------------------------------------------------------------------
+def extractCountry(text):
+    for country in pycountry.countries:
+        if country.name in text:
+            return (country.name)
 
+    countryCodes={'Afghanistan': 'AF',
+                  'Albania': 'AL',
+                  'Algeria': 'DZ',
+                  'American Samoa': 'AS',
+                  'Andorra': 'AD',
+                  'Angola': 'AO',
+                  'Anguilla': 'AI',
+                  'Antarctica': 'AQ',
+                  'Antigua and Barbuda': 'AG',
+                  'Argentina': 'AR',
+                  'Armenia': 'AM',
+                  'Aruba': 'AW',
+                  'Australia': 'AU',
+                  'Austria': 'AT',
+                  'Azerbaijan': 'AZ',
+                  'Bahamas': 'BS',
+                  'Bahrain': 'BH',
+                  'Bangladesh': 'BD',
+                  'Barbados': 'BB',
+                  'Belarus': 'BY',
+                  'Belgium': 'BE',
+                  'Belize': 'BZ',
+                  'Benin': 'BJ',
+                  'Bermuda': 'BM',
+                  'Bhutan': 'BT',
+                  'Bolivia, Plurinational State of': 'BO',
+                  'Bonaire, Sint Eustatius and Saba': 'BQ',
+                  'Bosnia and Herzegovina': 'BA',
+                  'Botswana': 'BW',
+                  'Bouvet Island': 'BV',
+                  'Brazil': 'BR',
+                  'British Indian Ocean Territory': 'IO',
+                  'Brunei Darussalam': 'BN',
+                  'Bulgaria': 'BG',
+                  'Burkina Faso': 'BF',
+                  'Burundi': 'BI',
+                  'Cambodia': 'KH',
+                  'Cameroon': 'CM',
+                  'Canada': 'CA',
+                  'Cape Verde': 'CV',
+                  'Cayman Islands': 'KY',
+                  'Central African Republic': 'CF',
+                  'Chad': 'TD',
+                  'Chile': 'CL',
+                  'China': 'CN',
+                  'Christmas Island': 'CX',
+                  'Cocos (Keeling) Islands': 'CC',
+                  'Colombia': 'CO',
+                  'Comoros': 'KM',
+                  'Congo': 'CG',
+                  'Congo, the Democratic Republic of the': 'CD',
+                  'Cook Islands': 'CK',
+                  'Costa Rica': 'CR',
+                  'Country name': 'Code',
+                  'Croatia': 'HR',
+                  'Cuba': 'CU',
+                  'Curaçao': 'CW',
+                  'Cyprus': 'CY',
+                  'Czech Republic': 'CZ',
+                  "Côte d'Ivoire": 'CI',
+                  'Denmark': 'DK',
+                  'Djibouti': 'DJ',
+                  'Dominica': 'DM',
+                  'Dominican Republic': 'DO',
+                  'Ecuador': 'EC',
+                  'Egypt': 'EG',
+                  'El Salvador': 'SV',
+                  'Equatorial Guinea': 'GQ',
+                  'Eritrea': 'ER',
+                  'Estonia': 'EE',
+                  'Ethiopia': 'ET',
+                  'Falkland Islands (Malvinas)': 'FK',
+                  'Faroe Islands': 'FO',
+                  'Fiji': 'FJ',
+                  'Finland': 'FI',
+                  'France': 'FR',
+                  'French Guiana': 'GF',
+                  'French Polynesia': 'PF',
+                  'French Southern Territories': 'TF',
+                  'Gabon': 'GA',
+                  'Gambia': 'GM',
+                  'Georgia': 'GE',
+                  'Germany': 'DE',
+                  'Ghana': 'GH',
+                  'Gibraltar': 'GI',
+                  'Greece': 'GR',
+                  'Greenland': 'GL',
+                  'Grenada': 'GD',
+                  'Guadeloupe': 'GP',
+                  'Guam': 'GU',
+                  'Guatemala': 'GT',
+                  'Guernsey': 'GG',
+                  'Guinea': 'GN',
+                  'Guinea-Bissau': 'GW',
+                  'Guyana': 'GY',
+                  'Haiti': 'HT',
+                  'Heard Island and McDonald Islands': 'HM',
+                  'Holy See (Vatican City State)': 'VA',
+                  'Honduras': 'HN',
+                  'Hong Kong': 'HK',
+                  'Hungary': 'HU',
+                  'ISO 3166-2:GB': '(.uk)',
+                  'Iceland': 'IS',
+                  'India': 'IN',
+                  'Indonesia': 'ID',
+                  'Iran, Islamic Republic of': 'IR',
+                  'Iraq': 'IQ',
+                  'Ireland': 'IE',
+                  'Isle of Man': 'IM',
+                  'Israel': 'IL',
+                  'Italy': 'IT',
+                  'Jamaica': 'JM',
+                  'Japan': 'JP',
+                  'Jersey': 'JE',
+                  'Jordan': 'JO',
+                  'Kazakhstan': 'KZ',
+                  'Kenya': 'KE',
+                  'Kiribati': 'KI',
+                  "Korea, Democratic People's Republic of": 'KP',
+                  'Korea, Republic of': 'KR',
+                  'Kuwait': 'KW',
+                  'Kyrgyzstan': 'KG',
+                  "Lao People's Democratic Republic": 'LA',
+                  'Latvia': 'LV',
+                  'Lebanon': 'LB',
+                  'Lesotho': 'LS',
+                  'Liberia': 'LR',
+                  'Libya': 'LY',
+                  'Liechtenstein': 'LI',
+                  'Lithuania': 'LT',
+                  'Luxembourg': 'LU',
+                  'Macao': 'MO',
+                  'Macedonia, the former Yugoslav Republic of': 'MK',
+                  'Madagascar': 'MG',
+                  'Malawi': 'MW',
+                  'Malaysia': 'MY',
+                  'Maldives': 'MV',
+                  'Mali': 'ML',
+                  'Malta': 'MT',
+                  'Marshall Islands': 'MH',
+                  'Martinique': 'MQ',
+                  'Mauritania': 'MR',
+                  'Mauritius': 'MU',
+                  'Mayotte': 'YT',
+                  'Mexico': 'MX',
+                  'Micronesia, Federated States of': 'FM',
+                  'Moldova, Republic of': 'MD',
+                  'Monaco': 'MC',
+                  'Mongolia': 'MN',
+                  'Montenegro': 'ME',
+                  'Montserrat': 'MS',
+                  'Morocco': 'MA',
+                  'Mozambique': 'MZ',
+                  'Myanmar': 'MM',
+                  'Namibia': 'NA',
+                  'Nauru': 'NR',
+                  'Nepal': 'NP',
+                  'Netherlands': 'NL',
+                  'New Caledonia': 'NC',
+                  'New Zealand': 'NZ',
+                  'Nicaragua': 'NI',
+                  'Niger': 'NE',
+                  'Nigeria': 'NG',
+                  'Niue': 'NU',
+                  'Norfolk Island': 'NF',
+                  'Northern Mariana Islands': 'MP',
+                  'Norway': 'NO',
+                  'Oman': 'OM',
+                  'Pakistan': 'PK',
+                  'Palau': 'PW',
+                  'Palestine, State of': 'PS',
+                  'Panama': 'PA',
+                  'Papua New Guinea': 'PG',
+                  'Paraguay': 'PY',
+                  'Peru': 'PE',
+                  'Philippines': 'PH',
+                  'Pitcairn': 'PN',
+                  'Poland': 'PL',
+                  'Portugal': 'PT',
+                  'Puerto Rico': 'PR',
+                  'Qatar': 'QA',
+                  'Romania': 'RO',
+                  'Russian Federation': 'RU',
+                  'Rwanda': 'RW',
+                  'Réunion': 'RE',
+                  'Saint Barthélemy': 'BL',
+                  'Saint Helena, Ascension and Tristan da Cunha': 'SH',
+                  'Saint Kitts and Nevis': 'KN',
+                  'Saint Lucia': 'LC',
+                  'Saint Martin (French part)': 'MF',
+                  'Saint Pierre and Miquelon': 'PM',
+                  'Saint Vincent and the Grenadines': 'VC',
+                  'Samoa': 'WS',
+                  'San Marino': 'SM',
+                  'Sao Tome and Principe': 'ST',
+                  'Saudi Arabia': 'SA',
+                  'Senegal': 'SN',
+                  'Serbia': 'RS',
+                  'Seychelles': 'SC',
+                  'Sierra Leone': 'SL',
+                  'Singapore': 'SG',
+                  'Sint Maarten (Dutch part)': 'SX',
+                  'Slovakia': 'SK',
+                  'Slovenia': 'SI',
+                  'Solomon Islands': 'SB',
+                  'Somalia': 'SO',
+                  'South Africa': 'ZA',
+                  'South Georgia and the South Sandwich Islands': 'GS',
+                  'South Sudan': 'SS',
+                  'Spain': 'ES',
+                  'Sri Lanka': 'LK',
+                  'Sudan': 'SD',
+                  'Suriname': 'SR',
+                  'Svalbard and Jan Mayen': 'SJ',
+                  'Swaziland': 'SZ',
+                  'Sweden': 'SE',
+                  'Switzerland': 'CH',
+                  'Syrian Arab Republic': 'SY',
+                  'Taiwan, Province of China': 'TW',
+                  'Tajikistan': 'TJ',
+                  'Tanzania, United Republic of': 'TZ',
+                  'Thailand': 'TH',
+                  'Timor-Leste': 'TL',
+                  'Togo': 'TG',
+                  'Tokelau': 'TK',
+                  'Tonga': 'TO',
+                  'Trinidad and Tobago': 'TT',
+                  'Tunisia': 'TN',
+                  'Turkey': 'TR',
+                  'Turkmenistan': 'TM',
+                  'Turks and Caicos Islands': 'TC',
+                  'Tuvalu': 'TV',
+                  'Uganda': 'UG',
+                  'Ukraine': 'UA',
+                  'United Arab Emirates': 'AE',
+                  'United Kingdom': 'GB',
+                  'United States': 'US',
+                  'United States Minor Outlying Islands': 'UM',
+                  'Uruguay': 'UY',
+                  'Uzbekistan': 'UZ',
+                  'Vanuatu': 'VU',
+                  'Venezuela, Bolivarian Republic of': 'VE',
+                  'Viet Nam': 'VN',
+                  'Virgin Islands, British': 'VG',
+                  'Virgin Islands, U.S.': 'VI',
+                  'Wallis and Futuna': 'WF',
+                  'Western Sahara': 'EH',
+                  'Yemen': 'YE',
+                  'Zambia': 'ZM',
+                  'Zimbabwe': 'ZW',
+                  'Åland Islands': 'AX'}
+
+    for country in countryCodes:
+        if countryCodes[country]==text:
+            return country
+
+    return text
 #-----------------------------------------------------------------------------------------------------------------------
 def extractDate(strDate):
 
@@ -353,7 +642,7 @@ def getPropertyFromJSON(tag, feature):
                 jsonFile=jsonFile[property]
                 hasChanged=True
         if hasChanged:
-            return filterByDatatype(jsonFile,config['features'][feature]['datatype'])
+            return filterByDatatype(jsonFile,config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def findValue(feature, html):
@@ -388,7 +677,7 @@ def getValue(feature, html):
         if not(config['features'][feature]['htmlAllowed']):
             if(config['features'][feature]['propertyValue']):
                 tag=tag.attrs.get(config['features'][feature]['propertyValue'])
-            return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
+            return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
         else:
             return str(tag)
 
@@ -431,14 +720,14 @@ def getByPostfix(feature,tag,html):
                     if tagContent == preTag:
                         property=config['features'][feature]['propertyValue']
                         if(property):
-                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
+                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
                         else:
-                            return filterByDatatype(str(tag), config['features'][feature]['datatype'])
+                            return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
             #------ Content
             for tagContent in tagContents:
                 if tagContent and tagContent in str(preTag):
                     if not(config['features'][feature]['htmlAllowed']):
-                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
+                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
                     else:
                         return (str(tag))
     return {}
@@ -462,14 +751,14 @@ def getByPrefix(feature,tag,html):
                     if tagContent == preTag:
                         property=config['features'][feature]['propertyValue']
                         if(property):
-                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
+                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
                         else:
-                            return filterByDatatype(str(tag), config['features'][feature]['datatype'])
+                            return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
             #------ Content
             for tagContent in tagContents:
                 if tagContent and tagContent in str(preTag):
                     if not(config['features'][feature]['htmlAllowed']):
-                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
+                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
                     else:
                         return (str(tag))
     return {}
@@ -488,14 +777,14 @@ def getByInfix(feature,tag):
                 if tagContent == preTag:
                     property=config['features'][feature]['propertyValue']
                     if(property):
-                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'])
+                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
                     else:
-                        return filterByDatatype(str(tag), config['features'][feature]['datatype'])
+                        return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
         #------ Content
         for tagContent in tagContents:
             if tagContent and tagContent in str(infix):
                 if not(config['features'][feature]['htmlAllowed']):
-                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'])
+                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
                 else:
                     return (str(tag))
     return {}
@@ -551,10 +840,10 @@ def enableTestModel(website, url):
 #-----------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    #indexWebsite("euraxess")
+    indexWebsite("euraxess")
 
-    enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742306")
-    enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
+    #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
+    #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
     #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
 
 #-----------------------------------------------------------------------------------------------------------------------
