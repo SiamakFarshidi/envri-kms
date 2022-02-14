@@ -52,6 +52,8 @@ headers = {
     'Accept-Language': 'en-us,en;q=0.5',
     'Accept-Encoding': 'gzip,deflate',
     'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+    'Server': 'Apache/2'
+
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
@@ -259,9 +261,31 @@ def filterByDatatype(value,datatype,expectedValues):
 #-----------------------------------------------------------------------------------------------------------------------
 def extarctFromMultivalue(text,expectedValues):
     for candidateValue in expectedValues:
-        if candidateValue.lower() in text.lower() :
-            return candidateValue
-    return text
+        if re.search(r'\b' + candidateValue.lower() + r'\b', text.lower()):
+            return expectedValues[candidateValue]
+    return "Other Category"
+#-----------------------------------------------------------------------------------------------------------------------
+def extarctFromMultivalueByFrequecny(text,expectedValues):
+    lstPotentialValues={}
+
+    for candidateValue in expectedValues:
+        if candidateValue.lower() in text.lower():
+            potentialValue=expectedValues[candidateValue]
+            if potentialValue not in lstPotentialValues:
+                lstPotentialValues[potentialValue]=1
+            else:
+                lstPotentialValues[potentialValue]=lstPotentialValues[potentialValue]+1
+    if not lstPotentialValues:
+        return "Other Category"
+
+    maxValue=0
+    maxCat=""
+    for potentialValue in lstPotentialValues:
+        if lstPotentialValues[potentialValue]>maxValue:
+            maxValue=lstPotentialValues[potentialValue]
+            maxCat=potentialValue
+
+    return maxCat
 #-----------------------------------------------------------------------------------------------------------------------
 def extractCountry(text):
     for country in pycountry.countries:
@@ -825,14 +849,11 @@ def is_not_crawled(features):
             })
         es.indices.open(index=config['decision_model'])
 
-
     query_conditions=[]
     for feature in features:
         if features[feature] == "N/A":
-            print(query_conditions)
             return False
         query={"term": {feature: features[feature]}}
-
         query_conditions.append(query)
 
     user_request = "some_param"
@@ -845,7 +866,11 @@ def is_not_crawled(features):
         "from": 0,
         "size": 1,
     }
-    result = es.search(index=config['decision_model'], body=query_body)
+    try:
+        result = es.search(index=config['decision_model'], body=query_body)
+    except:
+        return False
+
     numHits=result['hits']['total']['value']
 
     return False if numHits>0 else True
@@ -859,9 +884,11 @@ def enableTestModel(website, url):
 #-----------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    indexWebsite("academictransfer")
-    indexWebsite("euraxess")
+    #indexWebsite("euraxess")
+    #indexWebsite("academictransfer")
+    indexWebsite("academicpositions")
 
+    #enableTestModel("academicpositions", "https://academicpositions.com/ad/eurotechpostdoc2/2021/eurotechpostdoc2-programme/172186")
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
     #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
