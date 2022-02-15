@@ -57,7 +57,7 @@ headers = {
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
-    crawlerConfig = open('crawlerConfig.json',"r")
+    crawlerConfig = open('crawlerDatasetConfig.json',"r")
     crawlerConfig = json.loads(r''+crawlerConfig.read())
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
@@ -68,6 +68,7 @@ def openCrawlerConfig(webSiteEntity):
         "seed":crawlerConfig[webSiteEntity]['seed'],
         "decision_model":crawlerConfig[webSiteEntity]['decision_model'],
         "equal_crawled_features": crawlerConfig[webSiteEntity]['equal_crawled_features'],
+        "allArray": crawlerConfig[webSiteEntity]['allArray']
     }
     print("The new configurations have been set!")
     return NewConfig
@@ -78,6 +79,12 @@ def is_valid(url):
     """
     parsed = urlparse(url)
     return bool(parsed.netloc) and bool(parsed.scheme)
+#-----------------------------------------------------------------------------------------------------------------------
+def removeURLparameters(url):
+    parsed_href = urlparse(url)
+    # remove URL GET parameters, URL fragments, etc.
+    url = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
+    return url
 #-----------------------------------------------------------------------------------------------------------------------
 def get_all_website_links(url):
     """
@@ -124,7 +131,6 @@ def get_all_website_links(url):
 
         if domain_name not in href:
             continue
-
 
         if href in internal_urls:
             # already in the set
@@ -624,7 +630,12 @@ def ingest_metadataFile(metadataFile):
             })
         es.indices.open(index=config['decision_model'])
 
-        id = metadataFile["url"]
+
+        if config['allArray']=='True':
+            id = metadataFile["url"][0]
+        else:
+            id = metadataFile["url"]
+
         res = es.index(index=config['decision_model'], id=id, body=metadataFile)
         es.indices.refresh(index=config['decision_model'])
 #-----------------------------------------------------------------------------------------------------------------------
@@ -633,7 +644,10 @@ def indexWebpage(url):
     html=extractHTML(url)
     metadata={}
     if html!="":
-        metadata['url']=url
+        if config['allArray']=='True':
+            metadata['url']=[removeURLparameters(url)]
+        else:
+            metadata['url']=removeURLparameters(url)
         for feature in config['features']:
             metadata[feature]=findValue(feature, html)
 
@@ -643,7 +657,10 @@ def indexWebpage(url):
     else:
         crawled_features={}
         for crawled_feature in config['equal_crawled_features']:
-            crawled_features[crawled_feature]=metadata[crawled_feature]
+            if metadata[crawled_feature]!="N/A":
+                crawled_features[crawled_feature]=metadata[crawled_feature]
+            else:
+                return {}
 
         if metadata and is_not_crawled(crawled_features):
             saveMetadataInFile(metadata)
@@ -681,6 +698,7 @@ def getPropertyFromJSON(tag, feature):
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def findValue(feature, html):
+    global config
     value=getValue(feature, html)
     value=filterValue(value, feature)
     datatype=config['features'][feature]['datatype']
@@ -689,11 +707,14 @@ def findValue(feature, html):
         if datatype=="currency" or datatype=="int":
             value=value.replace(",","").replace(".","").strip()
             if value:
-                return int(value)
+                value= int(value)
         elif datatype=="decimal":
             value= float(value.replace(",",""))
             if value:
-                return int(value)
+                value= int(value)
+
+    if config['allArray']=='True':
+        value=[value]
     return value
 #-----------------------------------------------------------------------------------------------------------------------
 def filterValue(value, feature):
@@ -851,9 +872,12 @@ def is_not_crawled(features):
 
     query_conditions=[]
     for feature in features:
-        if features[feature] == "N/A":
+        if (config['allArray']=='True' and features[feature] == ["N/A"]) or (config['allArray']=='False' and features[feature] == "N/A"):
             return False
-        query={"term": {feature: features[feature]}}
+        if feature=="url":
+            query={"term": {'_id': features['url'][0]}}
+        else:
+            query={"term": {feature: features[feature]}}
         query_conditions.append(query)
 
     user_request = "some_param"
@@ -883,12 +907,16 @@ def enableTestModel(website, url):
     indexWebpage(url)
 #-----------------------------------------------------------------------------------------------------------------------
 
+#-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+    indexWebsite("lifewatch")
+    #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
+
     #indexWebsite("euraxess")
     #indexWebsite("academictransfer")
-    indexWebsite("academicpositions")
+    #indexWebsite("academicpositions")
 
-    #enableTestModel("academicpositions", "https://academicpositions.com/ad/eurotechpostdoc2/2021/eurotechpostdoc2-programme/172186")
+    #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
     #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")

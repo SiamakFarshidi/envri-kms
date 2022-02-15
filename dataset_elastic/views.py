@@ -218,7 +218,7 @@ def getSearchResults(request, facet, filter, page, term):
     measurementTechnique=[]
     #......................
     for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!=""):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
             RI={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -226,7 +226,7 @@ def getSearchResults(request, facet, filter, page, term):
             ResearchInfrastructure.append (RI)
     #......................
     for searchResult in result['aggregations']['spatialCoverage']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and int(searchResult['doc_count']>1)):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="N/A" and searchResult['key']!="" and ("ANE" not in searchResult['key']) and ("Belgian" not in searchResult['key']) and ("calculated BB" not in searchResult['key']) and int(searchResult['doc_count']>1)):
             SC={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -234,7 +234,7 @@ def getSearchResults(request, facet, filter, page, term):
             spatialCoverage.append (SC)
         #......................
     for searchResult in result['aggregations']['theme']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and int(searchResult['doc_count']>1)):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="N/A" and searchResult['key']!="" and int(searchResult['doc_count']>1)):
             Th={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -242,7 +242,7 @@ def getSearchResults(request, facet, filter, page, term):
             theme.append (Th)
     #......................
     for searchResult in result['aggregations']['publisher']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and int(searchResult['doc_count']>1 )):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="N/A" and searchResult['key']!="" and int(searchResult['doc_count']>1 )):
             Pub={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -250,7 +250,7 @@ def getSearchResults(request, facet, filter, page, term):
             publisher.append (Pub)
     #......................
     for searchResult in result['aggregations']['measurementTechnique']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and int(searchResult['doc_count']>1 )):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="N/A" and searchResult['key']!="" and int(searchResult['doc_count']>1 )):
             meT={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']

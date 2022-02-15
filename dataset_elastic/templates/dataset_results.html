@@ -428,7 +428,9 @@
                                                                 {% if resultItem.ResearchInfrastructure.0 == "SeaDataNet" %}
                                                                     <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}" style="width:50px" />
                                                                 {% elif resultItem.ResearchInfrastructure.0 == "ICOS"%}
-                                                                    <img src="{% static 'images/ENVRI-Collection/RIs/ICOS.jpg' %}" style="width:70px" />
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/ICOS.jpg' %}" style="width:70px" />
+                                                                {% elif resultItem.ResearchInfrastructure.0 == "LifeWatch"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/LifeWatchERIC.png' %}" style="width:70px" />
                                                                 {% endif %}
 
                                                             </a>

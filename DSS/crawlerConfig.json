@@ -18,6 +18,7 @@
       "url"
     ],
     "decision_model":"realestate",
+    "allArray": "False",
     "features":{
       "offer_type":{
         "htmlAllowed":false,
@@ -4163,8 +4164,8 @@
     "features":{
       "title":{
         "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"script",
+        "cssClass":"display-3",
+        "tag":"h1",
         "removeValue":[
 
         ],
@@ -4196,17 +4197,17 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"textual",
         "expectedValues":{
 
         },
         "datatype":"string",
-        "propertyValue":"title"
+        "propertyValue":""
       },
       "publish_date":{
         "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"script",
+        "cssClass":"col-auto col-md-8",
+        "tag":"div",
         "removeValue":[
 
         ],
@@ -4221,10 +4222,10 @@
           },
           "prefix":{
             "index":0,
-            "tag":"",
-            "cssClass":"",
+            "tag":"div",
+            "cssClass":"col-12 col-md-4",
             "content":[
-
+              "Published"
             ],
             "propertyValue":""
           },
@@ -4238,17 +4239,17 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"textual",
         "expectedValues":{
 
         },
         "datatype":"date",
-        "propertyValue":"datePosted"
+        "propertyValue":""
       },
       "deadline":{
         "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"script",
+        "cssClass":"col-auto col-md-8",
+        "tag":"div",
         "removeValue":[
 
         ],
@@ -4263,10 +4264,10 @@
           },
           "prefix":{
             "index":0,
-            "tag":"",
-            "cssClass":"",
+            "tag":"div",
+            "cssClass":"row mb-3",
             "content":[
-
+              "Application deadline"
             ],
             "propertyValue":""
           },
@@ -4280,12 +4281,12 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"tetxual",
         "expectedValues":{
 
         },
         "datatype":"date",
-        "propertyValue":"validThrough"
+        "propertyValue":""
       },
       "location":{
         "htmlAllowed":false,
@@ -4372,10 +4373,9 @@
       },
       "country":{
         "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"script",
+        "cssClass":"col-auto col-md-8",
+        "tag":"div",
         "removeValue":[
-
         ],
         "searchKeywords":{
           "infix":{
@@ -4388,10 +4388,10 @@
           },
           "prefix":{
             "index":0,
-            "tag":"",
-            "cssClass":"",
+            "tag":"div",
+            "cssClass":"col-12 col-md-4",
             "content":[
-
+              "Location"
             ],
             "propertyValue":""
           },
@@ -4405,17 +4405,17 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"textual",
         "expectedValues":{
 
         },
         "datatype":"country",
-        "propertyValue":"jobLocation.address.addressCountry"
+        "propertyValue":""
       },
       "position":{
         "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"script",
+        "cssClass":"display-3",
+        "tag":"h1",
         "removeValue":[
 
         ],
@@ -4446,7 +4446,7 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"textual",
         "expectedValues":{
           "Doctoral research":"PhD",
           "Doctoral student":"PhD",
@@ -4562,7 +4562,7 @@
           "Innovative":"Engineer/Technician"
         },
         "datatype":"multivalue",
-        "propertyValue":"title"
+        "propertyValue":""
       },
       "field":{
         "htmlAllowed":false,
@@ -4732,8 +4732,8 @@
       },
       "job_description":{
         "htmlAllowed":true,
-        "cssClass":"",
-        "tag":"script",
+        "cssClass":"editor ck-content mt-6 mb-6 mb-md-8 mt-md-8",
+        "tag":"div",
         "removeValue":[
 
         ],
@@ -4765,12 +4765,12 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"textual",
         "expectedValues":{
 
         },
         "datatype":"string",
-        "propertyValue":"description"
+        "propertyValue":""
       },
       "requirements_description":{
         "htmlAllowed":true,
@@ -4858,7 +4858,7 @@
       "employer_description":{
         "htmlAllowed":true,
         "cssClass":"",
-        "tag":"script",
+        "tag":"",
         "removeValue":[
 
         ],
@@ -4890,12 +4890,12 @@
             "propertyValue":""
           }
         },
-        "metadataFormat":"json",
+        "metadataFormat":"",
         "expectedValues":{
 
         },
         "datatype":"string",
-        "propertyValue":"hiringOrganization.description"
+        "propertyValue":""
       },
       "department_description":{
         "htmlAllowed":true,
@@ -5173,1013 +5173,5 @@
     "features":{
 
     }
-  },
-  "scholarshipdb":{
-    "seed":"https://scholarshipdb.net/",
-    "permitted_urls_rules":[
-      "scholarships-in-(.*?)html$",
-      "jobs-in-(.*?)html$"
-    ],
-    "denied_urls_rules":[
-
-    ],
-    "keep_parameters":"False",
-    "page_counter":[
-    ],
-    "equal_crawled_features":[
-      "title",
-      "country",
-      "employer"
-    ],
-    "decision_model":"academicpositionstest",
-    "features":{
-      "title":{
-        "htmlAllowed":false,
-        "cssClass":"head-title",
-        "tag":"h1",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "publish_date":{
-        "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"",
-        "expectedValues":{
-
-        },
-        "datatype":"",
-        "propertyValue":""
-      },
-      "deadline":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-application-deadline inline",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "APPLICATION DEADLINE"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"date",
-        "propertyValue":""
-      },
-      "location":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-country inline",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "LOCATION"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "city":{
-        "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"",
-        "expectedValues":{
-
-        },
-        "datatype":"",
-        "propertyValue":""
-      },
-      "country":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-country inline",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "LOCATION"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"country",
-        "propertyValue":""
-      },
-      "position":{
-        "htmlAllowed":false,
-        "cssClass":"head-title",
-        "tag":"h1",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-          "Doctoral research":"PhD",
-          "Doctoral student":"PhD",
-          "Post-doctoral":"Postdoc",
-          "Post doctoral":"Postdoc",
-          "Postdoctoral":"Postdoc",
-          "Postdoctoral Researcher":"Postdoc",
-          "Postdoctoral Fellow":"Postdoc",
-          "Postdoctoral Scholar":"Postdoc",
-          "Postdoctoral Research Associate":"Postdoc",
-          "Assistant Professor":"Assistant Professor",
-          "Associate Professor":"Associate Professor",
-          "Adjunct Professor":"Lecturer",
-          "Full Professor":"Full Professor",
-          "Full-Professor":"Full Professor",
-          "Academy Fellow":"Researcher",
-          "Academy Research Fellow":"Researcher",
-          "Research Fellow":"Postdoc",
-          "Student Assistant":"Research Assistant",
-          "Research Assistant":"Research Assistant",
-          "Teaching Assistant":"Teaching Assistant",
-          "Research Associate":"Research Assistant",
-          "Senior Researcher":"Researcher",
-          "Tenure Track":"Assistant Professor",
-          "Tenure-Track":"Assistant Professor",
-          "Visiting Assistant Professor":"Visiting Professor",
-          "Visiting Researcher":"Visiting Researcher",
-          "Visiting Fellow":"Visiting Researcher",
-          "Visiting Associate Professor":"Visiting Professor",
-          "Visiting Research":"Visiting Researcher",
-          "Data Scientist":"Data Scientist",
-          "Data Analyst":"Data Scientist",
-          "Knowledge Engineer":"Data Scientist",
-          "Software Engineer":"Engineer/Technician",
-          "Management":"Management",
-          "Technical and laboratory":"Engineer/Technician",
-          "Techniek / laboratorium":"Engineer/Technician",
-          "Postdoc":"Postdoc",
-          "Postdoctor":"Postdoc",
-          "Postdoctorant":"Postdoc",
-          "Post-doc":"Postdoc",
-          "Teaching Fellow":"Lecturer",
-          "PhD":"PhD",
-          "Instructor":"Lecturer",
-          "Docent":"Lecturer",
-          "Scientist":"Researcher",
-          "Master":"Master",
-          "Masters":"Master",
-          "Msc":"Master",
-          "Bachelor":"Bachelor",
-          "Bsc":"Bachelor",
-          "Bachelors":"Bachelor",
-          "Associate Degree":"Associate Degree",
-          "Professor":"Assistant Professor",
-          "Researcher":"Researcher",
-          "Investigator":"Researcher",
-          "Lecturer":"Lecturer",
-          "Designer":"Engineer/Technician",
-          "Ingenieur":"Engineer/Technician",
-          "Engineer":"Engineer/Technician",
-          "Developer":"Engineer/Technician",
-          "Technician":"Engineer/Technician",
-          "Assistant":"Research Assistant",
-          "Prof.":"Assistant Professor",
-          "Leader":"Management",
-          "Research":"Researcher",
-          "Onderzoek":"Researcher",
-          "IT":"Engineer/Technician",
-          "Innovation":"Engineer/Technician",
-          "Innovative":"Engineer/Technician",
-          "Design":"Engineer/Technician",
-          "Develop":"Engineer/Technician",
-          "Scientific":"Researcher",
-          "Science":"Researcher",
-          "Sciences":"Researcher",
-          "Analytist":"Engineer/Technician",
-          "Analytic":"Engineer/Technician",
-          "Experiment":"Engineer/Technician",
-          "Analysis":"Engineer/Technician",
-          "Simulation":"Engineer/Technician",
-          "Mitarbeiter":"Engineer/Technician",
-          "Practitioner":"Engineer/Technician",
-          "Experimental":"Engineer/Technician",
-          "Technical":"Engineer/Technician",
-          "Specialist":"Engineer/Technician",
-          "Detection":"Engineer/Technician",
-          "Manager":"Management",
-          "Executive":"Management",
-          "Dean":"Management",
-          "Professeur":"Assistant Professor",
-          "Professors":"Assistant Professor",
-          "Professorship":"Assistant Professor",
-          "Discovery":"Researcher",
-          "Ph.D":"PhD",
-          "Ph.D.":"PhD",
-          "Fellowship":"Research Assistant",
-          "Optimization":"Engineer/Technician",
-          "Architect":"Engineer/Technician",
-          "Architecture":"Engineer/Technician",
-          "Monitoring":"Engineer/Technician",
-          "Measuring":"Engineer/Technician",
-          "Engineering":"Engineer/Technician",
-          "Facharbeiter":"Engineer/Technician",
-          "EngD":"Engineer/Technician"
-        },
-        "datatype":"multivalue",
-        "propertyValue":""
-      },
-      "field":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-research-field inline",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "RESEARCH FIELD"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "salary":{
-        "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "max_working_hours":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-hours-per-week inline",
-        "tag":"div",
-        "removeValue":[
-          "max. "
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "HOURS PER WEEK"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "employer":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-company-institute inline",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "ORGANISATION/COMPANY"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "job_description":{
-        "htmlAllowed":true,
-        "cssClass":"longtext field-body",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "requirements_description":{
-        "htmlAllowed":true,
-        "cssClass":"col-xs-12 field-offer-requirements",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"h4",
-            "cssClass":"field-label",
-            "content":[
-              "Offer Requirements"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "conditions_description":{
-        "htmlAllowed":true,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":2,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "employer_description":{
-        "htmlAllowed":true,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":2,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "department_description":{
-        "htmlAllowed":true,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":2,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "additional_information":{
-        "htmlAllowed":true,
-        "cssClass":"col-xs-12 field-additional-information",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "apply_link":{
-        "htmlAllowed":true,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"textual",
-        "expectedValues":{
-
-        },
-        "datatype":"url",
-        "propertyValue":""
-      },
-      "employer_link":{
-        "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "job_type":{
-        "htmlAllowed":false,
-        "cssClass":"col-xs-12 col-sm-7 value field-type-of-contract inline",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"div",
-            "cssClass":"col-xs-12 col-sm-5 title-label",
-            "content":[
-              "TYPE OF CONTRACT"
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"",
-        "expectedValues":{
-
-        },
-        "datatype":"string",
-        "propertyValue":""
-      },
-      "logo":{
-        "htmlAllowed":false,
-        "cssClass":"",
-        "tag":"",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
-            ],
-            "propertyValue":""
-          }
-        },
-        "metadataFormat":"",
-        "expectedValues":{
-
-        },
-        "datatype":"url",
-        "propertyValue":""
-      }
-    }
-
-
-
   }
 }

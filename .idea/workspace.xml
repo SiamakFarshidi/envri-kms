@@ -8,6 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,12 +50,14 @@
     <setting file="file://$PROJECT_DIR$/webSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/genericpages/templates/landingpage.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/crawlerConfig.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/adhocCrawler.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Urls.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/decisionModels.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/Metadata*/metadata*.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/urls.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -96,13 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00031" summary="okay">
-      <created>1641907110882</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1641907110882</updated>
     </task>
     <task id="LOCAL-00032" summary="okay">
       <created>1642155577512</created>
@@ -440,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644779059372</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="okay">
+      <created>1644820330139</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1644820330139</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
