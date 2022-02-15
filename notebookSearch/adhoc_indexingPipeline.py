@@ -70,7 +70,6 @@ def indexingpipeline():
             res = es.index(index="notebooks", id= indexfile["git_url"], body=newRecord)
             es.indices.refresh(index="notebooks")
             print(str(cnt)+" recode added! \n")
-
 # ----------------------------------------------------------------
 def search_repository_github(keywords):
     g = Github(ACCESS_TOKEN_Github)

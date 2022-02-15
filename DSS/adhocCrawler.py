@@ -906,10 +906,53 @@ def enableTestModel(website, url):
     config=openCrawlerConfig(website)
     indexWebpage(url)
 #-----------------------------------------------------------------------------------------------------------------------
+def open_file(file):
+    read_path = file
+    with open(read_path, "r", errors='ignore') as read_file:
+        data = json.load(read_file)
+    return data
+#-----------------------------------------------------------------------------------------------------------------------
+def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index(decisionModel, es)
 
+    if not es.indices.exists(index=decisionModel):
+        index.settings(
+            index={'mapping': {'ignore_malformed': True}}
+        )
+        index.create()
+    else:
+        es.indices.close(index=decisionModel)
+        put = es.indices.put_settings(
+            index=decisionModel,
+            body={
+                "index": {
+                    "mapping": {
+                        "ignore_malformed": True
+                    }
+                }
+            })
+        es.indices.open(index=decisionModel)
+    cnt=0
+    root=(os. getcwd()+sourceDirectory)
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            cnt=cnt+1
+            indexfile= os.path.join(path, name)
+            indexfile = open_file(indexfile)
+
+            id=""
+            if isArray:
+                id=indexfile[equalityCheckFeature][0]
+            else:
+                id=indexfile[equalityCheckFeature]
+
+            res = es.index(index=decisionModel, id= id, body=indexfile)
+            es.indices.refresh(index=decisionModel)
+            print(str(cnt)+" recode added!")
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    indexWebsite("lifewatch")
+    #indexWebsite("lifewatch")
     #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
 
     #indexWebsite("euraxess")
@@ -920,5 +963,5 @@ if __name__ == "__main__":
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
     #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
-
+    ingestIndexes("envri","/index_files/envri/","url", True)
 #-----------------------------------------------------------------------------------------------------------------------
