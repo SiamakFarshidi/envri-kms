@@ -3559,9 +3559,65 @@
         "propertyValue": ""
       }
     }
+  },
+  "envri": {
+    "seed": "https://www.dissco.eu/",
+    "permitted_urls_rules": [
+      "/services/"
+    ],
+    "denied_urls_rules": [
+
+    ],
+    "keep_parameters": "True",
+    "page_counter": [
+    ],
+    "equal_crawled_features": [
+      "url"
+    ],
+    "decision_model": "envriwebsite",
+    "allArray": "True",
+    "features":{
+      "htmlAllowed": false,
+      "cssClass": "",
+      "tag": "title",
+      "removeValue": [
+      ],
+      "searchKeywords": {
+        "infix": {
+          "tag": "div",
+          "cssClass": "fusion-text",
+          "content": [
+            ""
+          ],
+          "propertyValue": ""
+        },
+        "prefix": {
+          "index": 0,
+          "tag": "",
+          "cssClass": "",
+          "content": [
+            ""
+          ],
+          "propertyValue": ""
+        },
+        "postfix": {
+          "index": 0,
+          "tag": "",
+          "cssClass": "",
+          "content": [
+            ""
+          ],
+          "propertyValue": ""
+        }
+      },
+      "metadataFormat": "textual",
+      "expectedValues": {
+      },
+      "datatype": "string",
+      "propertyValue": ""
+    }
   }
 }
-
 
 
 

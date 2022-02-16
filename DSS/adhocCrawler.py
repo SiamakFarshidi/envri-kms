@@ -20,6 +20,12 @@ import uuid
 import os
 import datetime
 import pycountry
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+import certifi
+import ssl
+import geopy.geocoders
 #-----------------------------------------------------------------------------------------------------------------------
 # init the colorama module
 colorama.init()
@@ -43,7 +49,7 @@ headers = {
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '3600',
     'User-Agent':  'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.9',
     'Connection': 'keep-alive',
     'Cookie': 'PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120',
     'Pragma': 'no-cache',
@@ -57,7 +63,7 @@ headers = {
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
-    crawlerConfig = open('crawlerDatasetConfig.json',"r")
+    crawlerConfig = open('crawlerConfig.json',"r")
     crawlerConfig = json.loads(r''+crawlerConfig.read())
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
@@ -68,7 +74,9 @@ def openCrawlerConfig(webSiteEntity):
         "seed":crawlerConfig[webSiteEntity]['seed'],
         "decision_model":crawlerConfig[webSiteEntity]['decision_model'],
         "equal_crawled_features": crawlerConfig[webSiteEntity]['equal_crawled_features'],
-        "allArray": crawlerConfig[webSiteEntity]['allArray']
+        "allArray": crawlerConfig[webSiteEntity]['allArray'],
+        "keep_parameters_for_indexing": crawlerConfig[webSiteEntity]['keep_parameters_for_indexing'],
+        "render_html":crawlerConfig[webSiteEntity]['render_html']
     }
     print("The new configurations have been set!")
     return NewConfig
@@ -81,12 +89,34 @@ def is_valid(url):
     return bool(parsed.netloc) and bool(parsed.scheme)
 #-----------------------------------------------------------------------------------------------------------------------
 def removeURLparameters(url):
-    parsed_href = urlparse(url)
-    # remove URL GET parameters, URL fragments, etc.
-    url = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
+    global config
+    if config['keep_parameters_for_indexing']=="False":
+        parsed_href = urlparse(url)
+        url = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
     return url
 #-----------------------------------------------------------------------------------------------------------------------
+def extractHTMLbyRendering(url):
+    global config
+    html=""
+    if config['render_html']=="True":
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--incognito')
+        chrome_options.add_argument('log-level=3')
+        driver = webdriver.Chrome(os.getcwd()+"/../ChromeDriver/chromedriver", options=chrome_options)
+        driver.get(url)
+        time.sleep(2)
+        html = driver.page_source
+        driver.close()
+    else:
+        html=requests.get(url,verify=True, timeout=5, headers=headers).content
+
+    return html
+#-----------------------------------------------------------------------------------------------------------------------
 def get_all_website_links(url):
+
     """
     Returns all URLs that is found on `url` in which it belongs to the same website
     """
@@ -98,7 +128,7 @@ def get_all_website_links(url):
     cnt=0
     while soup=='':
         try:
-            soup = BeautifulSoup(requests.get(url,verify=True, timeout=5, headers=headers).content, "html.parser",from_encoding="iso-8859-1")
+            soup = BeautifulSoup(extractHTMLbyRendering(url), "html.parser",from_encoding="iso-8859-1")
             break
         except:
             print("Connection refused by the server...")
@@ -150,7 +180,7 @@ def get_all_website_links(url):
 
         for condition in config["permitted_urls_rules"]:
             if (len(re.findall(condition, href))>0) and href not in permitted_urls:
-                permitted_urls.add(href)
+                permitted_urls.add(href.replace("amp;",""))
                 print(f"{GREEN}[{len(permitted_urls)}] Permitted link: {href}{RESET}")
                 indexWebpage(href)
     return urls
@@ -160,7 +190,7 @@ def extractHTML(url):
     cnt=0
     while soup=='':
         try:
-            soup = BeautifulSoup(requests.get(url,verify=True, timeout=5, headers=headers).content, "html.parser",from_encoding="iso-8859-1")
+            soup = BeautifulSoup(extractHTMLbyRendering(url), "html.parser",from_encoding="iso-8859-1")
             break
         except:
             print("Connection refused by the server...")
@@ -214,6 +244,9 @@ def indexWebsite(website):
         total_urls_visited += 1
         print(f"{YELLOW}[*] Crawling: {url}{RESET}")
         links = get_all_website_links(url)
+
+
+
         for link in links:
             uniquelinks.add(link)
 
@@ -242,7 +275,7 @@ def remove_tags(raw_html):
         text= "\n".join([s for s in text.split("\n") if s])
     return text
 #-----------------------------------------------------------------------------------------------------------------------
-def filterByDatatype(value,datatype,expectedValues):
+def filterByDatatype(value,datatype,expectedValues, extraction_patterns):
     if datatype=="currency" or datatype=="int" or datatype=="decimal":
         trim = re.compile(r'[^\d.,]+')
         lstvalue=value.split()
@@ -263,7 +296,23 @@ def filterByDatatype(value,datatype,expectedValues):
         value=p.findall(value)
         if len(value)>0:
             return value[0]
+    elif datatype=="location":
+        return findLocation(value, extraction_patterns)
     return value
+#-----------------------------------------------------------------------------------------------------------------------
+def findLocation(location,extraction_patterns):
+    if(extraction_patterns):
+        location=re.search(extraction_patterns[0], str(location))
+        if type(location)!=type(None):
+            location = location.group(1)
+
+    ctx = ssl.create_default_context(cafile=certifi.where())
+    geopy.geocoders.options.default_ssl_context = ctx
+
+    geolocator = geopy.geocoders.Nominatim(user_agent="SecureSearchEngine")
+    location = geolocator.geocode(location)
+
+    return location
 #-----------------------------------------------------------------------------------------------------------------------
 def extarctFromMultivalue(text,expectedValues):
     for candidateValue in expectedValues:
@@ -642,6 +691,7 @@ def ingest_metadataFile(metadataFile):
 def indexWebpage(url):
     global config
     html=extractHTML(url)
+
     metadata={}
     if html!="":
         if config['allArray']=='True':
@@ -694,11 +744,16 @@ def getPropertyFromJSON(tag, feature):
                 jsonFile=jsonFile[property]
                 hasChanged=True
         if hasChanged:
-            return filterByDatatype(jsonFile,config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+            return filterByDatatype(jsonFile,config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
     return {}
 #-----------------------------------------------------------------------------------------------------------------------
 def findValue(feature, html):
     global config
+
+    staticValue=config['features'][feature]['staticValue']
+    if staticValue:
+        return staticValue
+
     value=getValue(feature, html)
     value=filterValue(value, feature)
     datatype=config['features'][feature]['datatype']
@@ -712,6 +767,13 @@ def findValue(feature, html):
             value= float(value.replace(",",""))
             if value:
                 value= int(value)
+
+    extraction_patterns=config['features'][feature]['extraction_patterns']
+
+    if(extraction_patterns):
+        res=re.search(extraction_patterns[0], str(value))
+        if type(res)!=type(None):
+            value = res.group(1)
 
     if config['allArray']=='True':
         value=[value]
@@ -733,7 +795,7 @@ def getValue(feature, html):
         if not(config['features'][feature]['htmlAllowed']):
             if(config['features'][feature]['propertyValue']):
                 tag=tag.attrs.get(config['features'][feature]['propertyValue'])
-            return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+            return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
         else:
             return str(tag)
 
@@ -776,14 +838,14 @@ def getByPostfix(feature,tag,html):
                     if tagContent == preTag:
                         property=config['features'][feature]['propertyValue']
                         if(property):
-                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
                         else:
-                            return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                            return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
             #------ Content
             for tagContent in tagContents:
                 if tagContent and tagContent in str(preTag):
                     if not(config['features'][feature]['htmlAllowed']):
-                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
                     else:
                         return (str(tag))
     return {}
@@ -807,14 +869,14 @@ def getByPrefix(feature,tag,html):
                     if tagContent == preTag:
                         property=config['features'][feature]['propertyValue']
                         if(property):
-                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                            return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
                         else:
-                            return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                            return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
             #------ Content
             for tagContent in tagContents:
                 if tagContent and tagContent in str(preTag):
                     if not(config['features'][feature]['htmlAllowed']):
-                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                        return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
                     else:
                         return (str(tag))
     return {}
@@ -833,14 +895,14 @@ def getByInfix(feature,tag):
                 if tagContent == preTag:
                     property=config['features'][feature]['propertyValue']
                     if(property):
-                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                        return filterByDatatype(tag.attrs.get(property), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
                     else:
-                        return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                        return filterByDatatype(str(tag), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
         #------ Content
         for tagContent in tagContents:
             if tagContent and tagContent in str(infix):
                 if not(config['features'][feature]['htmlAllowed']):
-                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'])
+                    return filterByDatatype(remove_tags(str(tag)), config['features'][feature]['datatype'],config['features'][feature]['expectedValues'], config['features'][feature]['extraction_patterns'])
                 else:
                     return (str(tag))
     return {}
@@ -877,7 +939,9 @@ def is_not_crawled(features):
         if feature=="url":
             query={"term": {'_id': features['url'][0]}}
         else:
-            query={"term": {feature: features[feature]}}
+            strquery='{"term": {"'+feature+'.keyword": "'+features[feature]+'"}}'
+            query= json.loads(strquery)
+            #query={"term": {feature: features[feature]}}
         query_conditions.append(query)
 
     user_request = "some_param"
@@ -934,7 +998,7 @@ def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
             })
         es.indices.open(index=decisionModel)
     cnt=0
-    root=(os. getcwd()+sourceDirectory)
+    root=(os.getcwd()+sourceDirectory)
     for path, subdirs, files in os.walk(root):
         for name in files:
             cnt=cnt+1
@@ -952,16 +1016,20 @@ def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
             print(str(cnt)+" recode added!")
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+    #indexWebsite("envri")
     #indexWebsite("lifewatch")
-    #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
-
+    #indexWebsite("daad")
     #indexWebsite("euraxess")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
 
+    #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
+    #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=w23419&q=&degree=&courselanguage=&locations=&admissionsemester=&sort=name&page=1")
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
-    #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
-    ingestIndexes("envri","/index_files/envri/","url", True)
+    enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
+    #ingestIndexes("envri","/index_files/envri/","url", True)
+    #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
+
 #-----------------------------------------------------------------------------------------------------------------------
