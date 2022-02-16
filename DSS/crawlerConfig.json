@@ -12,6 +12,7 @@
     ],
     "render_html":"False",
     "keep_parameters":"False",
+    "keep_parameters_for_indexing":"False",
     "page_counter":[
 
     ],
@@ -2321,6 +2322,7 @@
     ],
     "render_html":"False",
     "keep_parameters":"False",
+    "keep_parameters_for_indexing":"False",
     "page_counter":[
 
     ],
@@ -3423,6 +3425,7 @@
     ],
     "render_html":"False",
     "keep_parameters":"False",
+    "keep_parameters_for_indexing":"False",
     "page_counter":[
       "https://euraxess.ec.europa.eu/jobs/search?page={counter}"
     ],
@@ -4523,6 +4526,7 @@
     ],
     "render_html":"False",
     "keep_parameters":"False",
+    "keep_parameters_for_indexing":"False",
     "page_counter":[
 
     ],
