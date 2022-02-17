@@ -13,7 +13,6 @@ from collections import Counter
 import en_core_web_sm
 import lxml.html
 import validators
-nlp = en_core_web_sm.load()
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Index
 import uuid
@@ -22,10 +21,11 @@ import datetime
 import pycountry
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
 import certifi
 import ssl
 import geopy.geocoders
+nlp = en_core_web_sm.load()
+
 #-----------------------------------------------------------------------------------------------------------------------
 # init the colorama module
 colorama.init()
@@ -59,7 +59,6 @@ headers = {
     'Accept-Encoding': 'gzip,deflate',
     'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
     'Server': 'Apache/2'
-
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
@@ -90,7 +89,7 @@ def is_valid(url):
 #-----------------------------------------------------------------------------------------------------------------------
 def removeURLparameters(url):
     global config
-    if config['keep_parameters_for_indexing']=="False":
+    if not config['keep_parameters_for_indexing']:
         parsed_href = urlparse(url)
         url = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
     return url
@@ -98,7 +97,7 @@ def removeURLparameters(url):
 def extractHTMLbyRendering(url):
     global config
     html=""
-    if config['render_html']=="True":
+    if config['render_html']:
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument('--no-sandbox')
@@ -152,7 +151,7 @@ def get_all_website_links(url):
         href = urljoin(url, href)
         parsed_href = urlparse(href)
         # remove URL GET parameters, URL fragments, etc.
-        if config["keep_parameters"]=="False":
+        if not config["keep_parameters"]:
             href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
 
         if not is_valid(href):
@@ -244,8 +243,6 @@ def indexWebsite(website):
         total_urls_visited += 1
         print(f"{YELLOW}[*] Crawling: {url}{RESET}")
         links = get_all_website_links(url)
-
-
 
         for link in links:
             uniquelinks.add(link)
@@ -680,7 +677,7 @@ def ingest_metadataFile(metadataFile):
         es.indices.open(index=config['decision_model'])
 
 
-        if config['allArray']=='True':
+        if config['allArray']:
             id = metadataFile["url"][0]
         else:
             id = metadataFile["url"]
@@ -694,7 +691,7 @@ def indexWebpage(url):
 
     metadata={}
     if html!="":
-        if config['allArray']=='True':
+        if config['allArray']:
             metadata['url']=[removeURLparameters(url)]
         else:
             metadata['url']=removeURLparameters(url)
@@ -775,14 +772,17 @@ def findValue(feature, html):
         if type(res)!=type(None):
             value = res.group(1)
 
-    if config['allArray']=='True':
+    if config['allArray']:
         value=[value]
     return value
 #-----------------------------------------------------------------------------------------------------------------------
 def filterValue(value, feature):
-    removeValue=config['features'][feature]['removeValue']
-    if removeValue:
-        for rmVal in removeValue:
+    if type(value)== type(None):
+        return value
+
+    removal_patterns=config['features'][feature]['removal_patterns']
+    if removal_patterns:
+        for rmVal in removal_patterns:
             value=value.replace(rmVal,'')
     return value
 #-----------------------------------------------------------------------------------------------------------------------
@@ -934,7 +934,7 @@ def is_not_crawled(features):
 
     query_conditions=[]
     for feature in features:
-        if (config['allArray']=='True' and features[feature] == ["N/A"]) or (config['allArray']=='False' and features[feature] == "N/A"):
+        if (config['allArray'] and features[feature] == ["N/A"]) or ((not config['allArray']) and features[feature] == "N/A"):
             return False
         if feature=="url":
             query={"term": {'_id': features['url'][0]}}
@@ -1016,19 +1016,20 @@ def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
             print(str(cnt)+" recode added!")
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+    #indexWebsite("funda")
     #indexWebsite("envri")
     #indexWebsite("lifewatch")
-    #indexWebsite("daad")
+    indexWebsite("daad")
     #indexWebsite("euraxess")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
 
     #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
-    #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=w23419&q=&degree=&courselanguage=&locations=&admissionsemester=&sort=name&page=1")
+    #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=g2414431&utm_source=daad.de&utm_medium=referral&utm_campaign=HSK-Shortlink_daad.de")
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
-    enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
+    #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
     #ingestIndexes("envri","/index_files/envri/","url", True)
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
 

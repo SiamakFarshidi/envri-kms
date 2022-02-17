@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
             featureRequirements={
@@ -44,33 +45,31 @@
             }
         }
 
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    headers.append('Access-Control-Allow-Credentials', 'true');
 
+    var url = "http://127.0.0.1:8000/DSS/listOfSolutions";
+    axios.defaults.xsrfCookieName = 'csrftoken';
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios({
+    method: 'post',
+    baseURL: window.location.origin,
+    url: url,
+    // adding auth header also gives same 403 error for post request
+    // headers: {
+    //     Authorization: 'Token e77b8ca898b51cde72dcf2aa2c385942d771e972'
+    // },
+        data: featureRequirements,
+        responseType: 'json',
+    })
+        .then(function (response) {
+            console.log(' success');
+        })
 
-    // Example POST method implementation:
-    async function postData(url = '', data = {}) {
+        .catch(function (error) {
+            console.log(' error=', error.message);
+        });
 
-      req={
-            method: 'POST',
-            mode: 'no-cors',
-            cache: 'no-cache',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'text/plain'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-      }
-
-
-      response = await fetch(url, req);
-      return response;
-    }
-
-    postData('http://127.0.0.1:8000/DSS/numberOfSolutions', featureRequirements)
-      .then(data => {
-        console.log(data); // JSON data parsed by `data.json()` call
-      });
 
 
 

@@ -15,7 +15,7 @@ def listOfSolutions(request):
     featureRequirements={
         "parameters":{
             "decisionModel": "realestate",
-            "page":1            
+            "page":1
         },       
         "featureRequirements":{
             "offer_type":{
@@ -23,8 +23,12 @@ def listOfSolutions(request):
                 "priority": "must-have"
             },
             "energy_label":{
-                "value": "C",
-                "priority": "could-have"
+                "value": "B",
+                "priority": "should-have"
+            },
+             "number_of_bathrooms":{
+                  "value": "2",
+                  "priority": "should-have"
             },
             "number_of_rooms":{
                 "value": "3",
@@ -39,14 +43,15 @@ def listOfSolutions(request):
                 "priority": "should-have"
             },
             "asking_price":{
-                "value": "4000000",
-                "priority": "must-have"
+                "value": "300000",
+                "priority": "should-have"
             },
             "city":{
                 "value": "utrecht",
                 "priority": "must-have"
             }
-        }
+        },
+        "case":"Family"
     }
     
     page = featureRequirements["parameters"]["page"]

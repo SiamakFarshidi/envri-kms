@@ -205,7 +205,7 @@
       "datatype":"string",
       "qualities": ["suitability","popularity"],
       "subfeatures": [],
-      "defaultValues": [],
+      "defaultValues": ["Apartmemnt","Villa","Room"],
       "category": [],
       "caption": "",
       "id": "21"
@@ -479,6 +479,28 @@
       "category": [],
       "caption": "",
       "id": "48"
+    },
+    "house_hold" : {
+      "description": "description",
+      "datatype":"string",
+      "qualities": ["suitability","popularity","safety"],
+      "subfeatures": [],
+      "defaultValues": ["single", "couple", "family"],
+      "category": [],
+      "caption": "",
+      "id": "48",
+      "case": {
+        "single": {
+          "number_of_bedrooms": {
+            "value": 1,
+            "priority": "must-have"
+          },
+          "volume_in_cubic_meters": {
+            "value": 1,
+            "priority": "must-have"
+          }
+        }
+      }
     }
   },
   "academicpositions": {
