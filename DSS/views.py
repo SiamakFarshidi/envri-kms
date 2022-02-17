@@ -186,7 +186,7 @@ def queryBilder(featureRequirements):
     ShouldHaveWeight=0.9
     CouldHaveWeight=0.1
 
-    MustBooster=10
+    MustBooster=9
     ShouldBooster=7
     CouldBooster=3
 
@@ -215,7 +215,8 @@ def queryBilder(featureRequirements):
         elif datatype=="currency":
             query={"range": {  feature: {"lte": value , "boost": 2} }}
         else:
-            query={"match": {feature: {"query": value, "boost": 2}}}
+            query='{"term": {"'+feature+'.keyword": "'+value+'"}}'
+            query= json.loads(query)
 
         for quality in decisionModel[feature]["qualities"]:
             impactFactor=impactFactor+qualityRequirement[quality]

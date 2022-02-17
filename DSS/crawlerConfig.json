@@ -2842,9 +2842,9 @@
       "city": {
         "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": null,
-        "tag": null,
-        "extraction_patterns": [],
+        "cssClass": "col-xs-12 col-sm-7 value field-country inline",
+        "tag": "div",
+        "extraction_patterns": [" (.*?)$"],
         "removal_patterns": [],
         "searchKeywords": {
           "infix": {
@@ -2855,9 +2855,11 @@
           },
           "prefix": {
             "index": 0,
-            "tag": null,
-            "cssClass": null,
-            "content": [],
+            "tag": "div",
+            "cssClass": "col-xs-12 col-sm-5 title-label",
+            "content": [
+              "LOCATION"
+            ],
             "propertyValue": null
           },
           "postfix": {
@@ -2868,9 +2870,9 @@
             "propertyValue": null
           }
         },
-        "metadataFormat": null,
+        "metadataFormat": "xml/html",
         "expectedValues": {},
-        "datatype": null,
+        "datatype": "string",
         "propertyValue": null
       },
       "country": {
@@ -3709,9 +3711,9 @@
       "city": {
         "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": null,
-        "tag": null,
-        "extraction_patterns": [],
+        "cssClass": "col-auto col-md-8",
+        "tag": "div",
+        "extraction_patterns": ["(.*?),"],
         "removal_patterns": [],
         "searchKeywords": {
           "infix": {
@@ -3722,9 +3724,11 @@
           },
           "prefix": {
             "index": 0,
-            "tag": null,
-            "cssClass": null,
-            "content": [],
+            "tag": "div",
+            "cssClass": "col-12 col-md-4",
+            "content": [
+              "Location"
+            ],
             "propertyValue": null
           },
           "postfix": {
@@ -3737,7 +3741,7 @@
         },
         "metadataFormat": "xml/html",
         "expectedValues": {},
-        "datatype": "city",
+        "datatype": "string",
         "propertyValue": null
       },
       "country": {

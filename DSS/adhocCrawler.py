@@ -767,11 +767,16 @@ def findValue(feature, html):
 
     extraction_patterns=config['features'][feature]['extraction_patterns']
 
-    if(extraction_patterns):
-        res=re.search(extraction_patterns[0], str(value))
-        if type(res)!=type(None):
-            value = res.group(1)
-
+    potentialValue=value
+    while value and extraction_patterns:
+        potentialValue=value
+        if(extraction_patterns):
+            res=re.search(extraction_patterns[0], str(value))
+            if type(res)!=type(None):
+                value = res.group(1)
+            else:
+                break
+    value=potentialValue
     if config['allArray']:
         value=[value]
     return value
@@ -1025,7 +1030,7 @@ if __name__ == "__main__":
     #indexWebsite("academicpositions")
 
     #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
-    #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=g2414431&utm_source=daad.de&utm_medium=referral&utm_campaign=HSK-Shortlink_daad.de")
+    #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=g299380&q=&degree=24&courselanguage=&locations=&admissionsemester=&sort=name&page=516")
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
