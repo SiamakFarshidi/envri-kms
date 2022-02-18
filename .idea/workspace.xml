@@ -8,7 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/temp.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +75,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/DSS" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/CherryPickInc-main (1)/CherryPickInc-main" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
@@ -99,13 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00041" summary="okay">
-      <created>1642999814474</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1642999814474</updated>
     </task>
     <task id="LOCAL-00042" summary="okay">
       <created>1643000116009</created>
@@ -443,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645085189266</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="okay">
+      <created>1645112762085</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1645112762085</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

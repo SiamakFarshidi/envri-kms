@@ -3,7 +3,7 @@
     "seed": "https://sios-svalbard.org/metsis/search",
     "permitted_urls_rules": ["/metsis/"],
     "denied_urls_rules": [],
-    "keep_parameters":"False",
+    "keep_parameters":false,
     "page_counter":[
     ],
     "equal_crawled_features":[
@@ -14,1525 +14,1562 @@
       "title": {}
     }
   },
+  "envri": {
+    "seed": "https://www.dissco.eu/",
+    "permitted_urls_rules": [
+      "/services/"
+    ],
+    "denied_urls_rules": [
+
+    ],
+    "keep_parameters": true,
+    "page_counter": [
+    ],
+    "equal_crawled_features": [
+      "url"
+    ],
+    "decision_model": "envriwebsite",
+    "allArray": true,
+    "features":{
+      "staticValue": null,"htmlAllowed": false,
+      "cssClass": null,
+      "tag": "title",
+      "extraction_patterns": [],"removal_patterns": [
+      ],
+      "searchKeywords": {
+        "infix": {
+          "tag": "div",
+          "cssClass": "fusion-text",
+          "content": [
+            null
+          ],
+          "propertyValue": null
+        },
+        "prefix": {
+          "index": 0,
+          "tag": null,
+          "cssClass": null,
+          "content": [
+            null
+          ],
+          "propertyValue": null
+        },
+        "postfix": {
+          "index": 0,
+          "tag": null,
+          "cssClass": null,
+          "content": [
+            null
+          ],
+          "propertyValue": null
+        }
+      },
+      "metadataFormat": "textual",
+      "expectedValues": {
+      },
+      "datatype": "string",
+      "propertyValue": null
+    }
+  },
   "lifewatch": {
     "seed": "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/search?facet.q=type%2Fdataset",
     "permitted_urls_rules": [
       "/records/oai:marineinfo.org:id:dataset:"
     ],
     "denied_urls_rules": [],
-    "keep_parameters": "True",
-    "page_counter": [
-    ],
+    "render_html": false,
+    "keep_parameters": false,
+    "keep_parameters_for_indexing": false,
+    "page_counter": [],
     "equal_crawled_features": [
       "url"
     ],
-    "decision_model": "envri",
-    "allArray": "True",
+    "decision_model": "realestate",
+    "allArray": false,
     "features": {
       "name": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "title",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "description": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "gn-abstract",
         "tag": "div",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "datePublished": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Publication Date"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "date",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "language": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Dataset Language"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "creator": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Dataset Creator"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "metadataProvider": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Metadata Provider"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "contact": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Dataset Contact"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "associatedParty": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Associated Party"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "licenseInformation": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "gn-tab-content",
         "tag": "div",
-        "removeValue": [
+        "extraction_patterns": [],
+        "removal_patterns": [
           "License Information"
         ],
         "searchKeywords": {
           "infix": {
             "tag": "h3",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "License Information"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "downloadLink": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "btn btn-block btn-primary",
         "tag": "a",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
             "tag": "i",
             "cssClass": "fa fa-fw fa-link",
-            "content": [
-            ],
-            "propertyValue": ""
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "section",
             "cssClass": "gn-md-side-access",
-            "content": [
-            ],
-            "propertyValue": ""
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "url",
         "propertyValue": "href"
       },
       "keywords": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Keywords"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "geographicCoverage": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "target",
         "tag": "div",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "h2",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Geographic Coverage"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "westBoundingCoordinate": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "West Bounding Coordinate"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "eastBoundingCoordinate": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "East Bounding Coordinate"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "northBoundingCoordinate": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "North Bounding Coordinate"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "southBoundingCoordinate": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "South Bounding Coordinate"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "dateCreated": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Begin Date"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "date",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "temporalCoverageEndDate": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "End Date"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "date",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "license": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "target",
         "tag": "div",
-        "removeValue": [
+        "extraction_patterns": [],
+        "removal_patterns": [
           "Online",
           "URL",
           "\n"
         ],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "h2",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Distributiondocument"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "link",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "distribution": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "target",
         "tag": "div",
-        "removeValue": [
+        "extraction_patterns": [],
+        "removal_patterns": [
           "Online",
           "URL",
           "\n"
         ],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "h2",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Distributiondocument"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "link",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "distributionInfo": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "target",
         "tag": "div",
-        "removeValue": [
+        "extraction_patterns": [],
+        "removal_patterns": [
           "Online",
           "URL",
           "\n"
         ],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "h2",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Distributiondocument"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "link",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "identifier": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "btn btn-block btn-primary",
         "tag": "a",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
             "tag": "i",
             "cssClass": "fa fa-fw fa-link",
-            "content": [
-            ],
-            "propertyValue": ""
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "section",
             "cssClass": "gn-md-side-access",
-            "content": [
-            ],
-            "propertyValue": ""
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "url",
         "propertyValue": "href"
       },
       "accessibilitySummary": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "version": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "temporalCoverage": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "publisher": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "spatial": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "citation": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "genre": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "modificationDate": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Publication Date"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "date",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "image": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "thumbnailUrl": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "headline": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "title",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "abstract": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "gn-abstract",
         "tag": "div",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "theme": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "creditText": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "producer": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Dataset Creator"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "author": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Dataset Creator"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "spatialCoverage": {
+        "staticValue": null,
         "htmlAllowed": false,
         "cssClass": "target",
         "tag": "div",
-        "removeValue": [
+        "extraction_patterns": [],
+        "removal_patterns": [
           "Geographic Description",
           ",",
           ":",
@@ -1546,2077 +1583,1920 @@
         ],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "h2",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Geographic Coverage"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "sponsor": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "size": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "sameAs": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "publication": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "provider": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
+        "cssClass": null,
         "tag": "dd",
-        "removeValue": [
-        ],
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
             "tag": "dt",
-            "cssClass": "",
+            "cssClass": null,
             "content": [
               "Dataset Creator"
             ],
-            "propertyValue": ""
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
+        "expectedValues": {},
         "datatype": "string",
-        "propertyValue": ""
+        "propertyValue": null
       },
       "position": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "measurementTechnique": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "material": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "maintainer": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "locationCreated": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "issn": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "isPartOf": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "isBasedOn": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "isAccessibleForFree": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "includedInDataCatalog": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "editor": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "editEIDR": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "copyrightYear": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "copyrightNotice": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "copyrightHolder": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "contributor": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "contentReferenceTime": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "contentLocation": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "character": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "acquireLicensePage": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "accessModeSufficient": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "about": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "rights": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "relation": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "qualifiedRelation": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "qualifiedAttribution": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "previousVersion": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "nextVersion": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "landingPage": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "isReferencedBy": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "hasVersion": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "hasPolicy": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "hasCurrentVersion": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "useConstraints": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "status": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "spatialRepresentationType": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "scope": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "purpose": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "otherLocale": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "metadataProfile": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "metadataLinkage": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "metadataIdentifier": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "environmentDescription": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "contentInfo": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "ResearchInfrastructure": {
-        "htmlAllowed":false,
-        "cssClass":"navbar-collapse collapse",
-        "tag":"div",
-        "removeValue":[
-
-        ],
-        "searchKeywords":{
-          "infix":{
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
+        "staticValue": null,
+        "htmlAllowed": false,
+        "cssClass": "navbar-collapse collapse",
+        "tag": "div",
+        "extraction_patterns": [],
+        "removal_patterns": [],
+        "searchKeywords": {
+          "infix": {
+            "tag": null,
+            "cssClass": null,
+            "content": [
+              null
             ],
-            "propertyValue":""
+            "propertyValue": null
           },
-          "prefix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
+          "prefix": {
+            "index": 0,
+            "tag": null,
+            "cssClass": null,
+            "content": [
+              null
             ],
-            "propertyValue":""
+            "propertyValue": null
           },
-          "postfix":{
-            "index":0,
-            "tag":"",
-            "cssClass":"",
-            "content":[
-              ""
+          "postfix": {
+            "index": 0,
+            "tag": null,
+            "cssClass": null,
+            "content": [
+              null
             ],
-            "propertyValue":""
+            "propertyValue": null
           }
         },
-        "metadataFormat":"textual",
-        "expectedValues":{
+        "metadataFormat": "textual",
+        "expectedValues": {
           "LifeWatch": "LifeWatch"
         },
-        "datatype":"multivalue",
-        "propertyValue":""
+        "datatype": "multivalue",
+        "propertyValue": null
       },
       "EssentialVariables": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       },
       "potentialTopics": {
+        "staticValue": null,
         "htmlAllowed": false,
-        "cssClass": "",
-        "tag": "",
-        "removeValue": [
-        ],
+        "cssClass": null,
+        "tag": null,
+        "extraction_patterns": [],
+        "removal_patterns": [],
         "searchKeywords": {
           "infix": {
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "prefix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
-            "content": [
-            ],
-            "propertyValue": ""
+            "tag": null,
+            "cssClass": null,
+            "content": [],
+            "propertyValue": null
           },
           "postfix": {
             "index": 0,
-            "tag": "",
-            "cssClass": "",
+            "tag": null,
+            "cssClass": null,
             "content": [
-              ""
+              null
             ],
-            "propertyValue": ""
+            "propertyValue": null
           }
         },
         "metadataFormat": "textual",
-        "expectedValues": {
-        },
-        "datatype": "",
-        "propertyValue": ""
+        "expectedValues": {},
+        "datatype": null,
+        "propertyValue": null
       }
     }
-  },
-  "envri": {
-    "seed": "https://www.dissco.eu/",
-    "permitted_urls_rules": [
-      "/services/"
-    ],
-    "denied_urls_rules": [
-
-    ],
-    "keep_parameters": "True",
-    "page_counter": [
-    ],
-    "equal_crawled_features": [
-      "url"
-    ],
-    "decision_model": "envriwebsite",
-    "allArray": "True",
-    "features":{
-      "htmlAllowed": false,
-      "cssClass": "",
-      "tag": "title",
-      "removeValue": [
-      ],
-      "searchKeywords": {
-        "infix": {
-          "tag": "div",
-          "cssClass": "fusion-text",
-          "content": [
-            ""
-          ],
-          "propertyValue": ""
-        },
-        "prefix": {
-          "index": 0,
-          "tag": "",
-          "cssClass": "",
-          "content": [
-            ""
-          ],
-          "propertyValue": ""
-        },
-        "postfix": {
-          "index": 0,
-          "tag": "",
-          "cssClass": "",
-          "content": [
-            ""
-          ],
-          "propertyValue": ""
-        }
-      },
-      "metadataFormat": "textual",
-      "expectedValues": {
-      },
-      "datatype": "string",
-      "propertyValue": ""
-    }
   }
+
 }
 
 

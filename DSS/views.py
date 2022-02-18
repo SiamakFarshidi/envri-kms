@@ -6,6 +6,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Index
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from googletrans import Translator
 
 # Create your views here.
 decisionModels = open(os.getcwd()+'/DSS/decisionModels.json',"r")
@@ -56,7 +57,8 @@ def listOfSolutions(request):
     
     page = featureRequirements["parameters"]["page"]
     numHits,solutions=getSolutions(featureRequirements, page)
-    
+    #print(translate("en","fa","hello Dear Siamak "))
+
     return JsonResponse({"hits": numHits,"solutions": solutions})
 #-------------------------------------------------------------------------------------------------------------
 @csrf_exempt
@@ -279,4 +281,16 @@ def getSolutionByID(Solution):
         return 0,{}
 
     return numHits,result['hits']['hits'][0]
+#-------------------------------------------------------------------------------------------------------------
+def translate(source, target, text):
+    translator = Translator()
+    result = translator.translate(text, src=source, dest=target)
+
+    #print(result.src)
+    #print(result.dest)
+    #print(result.text)
+
+    return result.text
+
+
 #-------------------------------------------------------------------------------------------------------------

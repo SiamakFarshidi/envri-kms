@@ -75,7 +75,8 @@ def openCrawlerConfig(webSiteEntity):
         "equal_crawled_features": crawlerConfig[webSiteEntity]['equal_crawled_features'],
         "allArray": crawlerConfig[webSiteEntity]['allArray'],
         "keep_parameters_for_indexing": crawlerConfig[webSiteEntity]['keep_parameters_for_indexing'],
-        "render_html":crawlerConfig[webSiteEntity]['render_html']
+        "render_html":crawlerConfig[webSiteEntity]['render_html'],
+        "start_page_counter_from":crawlerConfig[webSiteEntity]['start_page_counter_from'],
     }
     print("The new configurations have been set!")
     return NewConfig
@@ -225,14 +226,21 @@ def indexWebsite(website):
     uniquelinks=set()
     uniquelinks.add(url)
 
+    cntMissingURL=1
     page_cnt=1
     for page_counter in config["page_counter"]:
-        page_cnt=1
-        while uniquelinks:
+        page_cnt=config['start_page_counter_from']
+        cntMissingURL=1
+        while uniquelinks or (cntMissingURL<10):
             url = page_counter.replace("{counter}", str(page_cnt))
             uniquelinks = get_all_website_links(url)
             page_cnt=page_cnt+1
             total_urls_visited += 1
+            if not uniquelinks:
+                cntMissingURL=cntMissingURL+1
+            else:
+                cntMissingURL=1
+
 
     if page_cnt>1:
         printResults()
@@ -695,8 +703,11 @@ def indexWebpage(url):
             metadata['url']=[removeURLparameters(url)]
         else:
             metadata['url']=removeURLparameters(url)
+
         for feature in config['features']:
             metadata[feature]=findValue(feature, html)
+    else:
+        return metadata
 
     if test:
         print(metadata)
@@ -941,12 +952,13 @@ def is_not_crawled(features):
     for feature in features:
         if (config['allArray'] and features[feature] == ["N/A"]) or ((not config['allArray']) and features[feature] == "N/A"):
             return False
-        if feature=="url":
+        if feature=="url" and config['allArray'] :
             query={"term": {'_id': features['url'][0]}}
+        elif feature=="url" and not config['allArray'] :
+            query={"term": {'_id': features['url']}}
         else:
-            strquery='{"term": {"'+feature+'.keyword": "'+features[feature]+'"}}'
+            strquery=str('{"term": {"'+feature+'.keyword": "'+str(features[feature]).replace("\"","'")+'"}}')
             query= json.loads(strquery)
-            #query={"term": {feature: features[feature]}}
         query_conditions.append(query)
 
     user_request = "some_param"
@@ -1019,15 +1031,19 @@ def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
             res = es.index(index=decisionModel, id= id, body=indexfile)
             es.indices.refresh(index=decisionModel)
             print(str(cnt)+" recode added!")
+
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     #indexWebsite("funda")
     #indexWebsite("envri")
     #indexWebsite("lifewatch")
-    indexWebsite("daad")
-    #indexWebsite("euraxess")
+    #indexWebsite("daad")
+    #indexWebsite("sios")
+    indexWebsite("jerico")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
+
+    #enableTestModel("sios", "https://sios-svalbard.org/metsis/search?fulltext=&start_date=&end_date=&is_parent=All&page=1")
 
     #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
     #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=g299380&q=&degree=24&courselanguage=&locations=&admissionsemester=&sort=name&page=516")
