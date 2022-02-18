@@ -24,6 +24,8 @@ from selenium.webdriver.chrome.options import Options
 import certifi
 import ssl
 import geopy.geocoders
+import csv
+
 nlp = en_core_web_sm.load()
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -77,6 +79,7 @@ def openCrawlerConfig(webSiteEntity):
         "keep_parameters_for_indexing": crawlerConfig[webSiteEntity]['keep_parameters_for_indexing'],
         "render_html":crawlerConfig[webSiteEntity]['render_html'],
         "start_page_counter_from":crawlerConfig[webSiteEntity]['start_page_counter_from'],
+        "csv_fields":crawlerConfig[webSiteEntity]['csv_fields'],
     }
     print("The new configurations have been set!")
     return NewConfig
@@ -649,6 +652,8 @@ def extractDate(strDate):
     return extractedDate
 #-----------------------------------------------------------------------------------------------------------------------
 def saveMetadataInFile(metadata):
+    global config
+
     filename= str(uuid.uuid4())
     path="index_files/"+config["decision_model"]+"/"
 
@@ -659,6 +664,16 @@ def saveMetadataInFile(metadata):
     f = open(path+config["decision_model"]+"-"+filename+".json", 'w+')
     f.write(json.dumps(metadata))
     f.close()
+
+    if config['csv_fields']:
+        newRow=[]
+        for csv_field in config['csv_fields']:
+            newRow.append(metadata[csv_field])
+
+        with open(path+config["decision_model"]+".csv", 'a+') as csvFile:
+            writer = csv.writer(csvFile)
+            writer.writerow(newRow)
+
 #-----------------------------------------------------------------------------------------------------------------------
 def ingest_metadataFile(metadataFile):
     global config
@@ -1034,24 +1049,32 @@ def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
 
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    #indexWebsite("funda")
-    #indexWebsite("envri")
-    #indexWebsite("lifewatch")
+    indexWebsite("funda")
     #indexWebsite("daad")
-    #indexWebsite("sios")
-    indexWebsite("jerico")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
-
-    #enableTestModel("sios", "https://sios-svalbard.org/metsis/search?fulltext=&start_date=&end_date=&is_parent=All&page=1")
-
-    #enableTestModel("lifewatch", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
+    #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
     #enableTestModel("daad", "https://www2.daad.de/deutschland/studienangebote/studiengang/en/?a=detail&id=g299380&q=&degree=24&courselanguage=&locations=&admissionsemester=&sort=name&page=516")
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
     #enableTestModel("euraxess", "https://euraxess.ec.europa.eu/jobs/742332")
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
     #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
+
+
+    #indexWebsite("embrc")
+    #indexWebsite("envri")
+    #indexWebsite("lifewatch")
+    #indexWebsite("sios")
+    #indexWebsite("jerico")
+    #indexWebsite("anaee")
+
+
+    #enableTestModel("lifewatch-tools", "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/fdefdc26-14fe-4095-ba5f-e55903bc4008")
+    #enableTestModel("embrc", "https://embrc.eu/services/service-catalogue/bio3ecimat-uvigo")
+
+    #enableTestModel("sios", "https://sios-svalbard.org/metsis/search?fulltext=&start_date=&end_date=&is_parent=All&page=1")
+    #enableTestModel("anaee", "https://data.anaee.eu/dataset/soil-map-of-the-pisa-hills")
+    #enableTestModel("lifewatch-datasets", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
     #ingestIndexes("envri","/index_files/envri/","url", True)
-    #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
 
 #-----------------------------------------------------------------------------------------------------------------------

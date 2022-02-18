@@ -47,7 +47,8 @@ INSTALLED_APPS = (
     'webSearch',
     'webAPI',
     'accountManagement',
-    'DSS'
+    'DSS',
+    'servicCatalogSearch'
 )
 
 MIDDLEWARE = (

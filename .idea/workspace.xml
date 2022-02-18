@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicCatalogSearch/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerConfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/temp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/index_files/academicpositions.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/academicpositions.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/index_files/academictransfer.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/academictransfer.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/index_files/daad.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/daad.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/index_files/euraxess.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/euraxess.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webAPI/DB.zip" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/DB.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +52,7 @@
     <setting file="file://$PROJECT_DIR$/opensemanticsearch/settings.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/templates/webapi_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/webSearch/indexingPipeline/ResearchInfrastructures.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/adhoc_DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
@@ -75,16 +82,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/CherryPickInc-main (1)/CherryPickInc-main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/servicCatalogSearch/templates" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/servicCatalogSearch/templates" />
+      <recent name="$PROJECT_DIR$/servicCatalogSearch" />
       <recent name="$PROJECT_DIR$/DSS" />
       <recent name="$PROJECT_DIR$/notebookSearch" />
       <recent name="$PROJECT_DIR$/static/notification" />
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/webAPI/DB/LifeWatch" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ChromeDriver" />
@@ -102,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00042" summary="okay">
-      <created>1643000116009</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1643000116009</updated>
     </task>
     <task id="LOCAL-00043" summary="okay">
       <created>1643216909654</created>
@@ -446,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645112762085</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="okay">
+      <created>1645178568349</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1645178568349</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
