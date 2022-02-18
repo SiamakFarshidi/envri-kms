@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
-      <change afterPath="$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servicCatalogSearch/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerConfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/index_files/academicpositions.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/academicpositions.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/index_files/academictransfer.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/academictransfer.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/index_files/daad.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/daad.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/index_files/euraxess.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/euraxess.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/DB.zip" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/DB.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +48,6 @@
     <setting file="file://$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/genericpages/templates/landingpage.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DSS/crawlerConfig.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/adhocCrawler.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Urls.txt" root0="FORCE_HIGHLIGHTING" />
@@ -109,20 +98,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00043" summary="okay">
-      <created>1643216909654</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1643216909654</updated>
-    </task>
-    <task id="LOCAL-00044" summary="okay">
-      <created>1643245117177</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1643245117177</updated>
     </task>
     <task id="LOCAL-00045" summary="okay">
       <created>1643245545530</created>
@@ -453,7 +428,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645178568349</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="okay">
+      <created>1645212388788</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1645212388788</updated>
+    </task>
+    <task id="LOCAL-00093" summary="okay">
+      <created>1645212475470</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1645212475470</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -64,7 +64,8 @@ headers = {
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
-    crawlerConfig = open('crawlerConfig.json',"r")
+    crawlerConfig = open('cherryPickInc-crawlerConfig.json.json',"r")
+    #crawlerConfig = open('ENVRI-crawlerConfig.json.json',"r")
     crawlerConfig = json.loads(r''+crawlerConfig.read())
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
