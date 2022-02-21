@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/DSS/temp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/templates/beautifuljson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/ENVRI-crawlerConfig.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/crawlerConfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/crawlerDatasetConfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/alt.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/cherryPickInc-crawlerConfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/crawlerConfigtemp.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/decisionModels.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/notification/cute-alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/notification/cute-alert.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -51,7 +60,6 @@
     <setting file="file://$PROJECT_DIR$/DSS/adhocCrawler.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Urls.txt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DSS/decisionModels.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/Metadata*/metadata*.json" root0="FORCE_HIGHLIGHTING" />
@@ -98,20 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00045" summary="okay">
-      <created>1643245545530</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1643245545530</updated>
-    </task>
-    <task id="LOCAL-00046" summary="okay">
-      <created>1643270900847</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1643270900847</updated>
     </task>
     <task id="LOCAL-00047" summary="okay">
       <created>1643293947580</created>
@@ -442,7 +436,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645212475470</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="okay">
+      <created>1645212915215</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1645212915215</updated>
+    </task>
+    <task id="LOCAL-00095" summary="okay">
+      <created>1645212929899</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1645212929899</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -9,9 +9,56 @@ from django.views.decorators.csrf import csrf_exempt
 from googletrans import Translator
 
 # Create your views here.
-decisionModels = open(os.getcwd()+'/DSS/decisionModels.json',"r")
+decisionModels = open(os.getcwd()+'/DSS/config/decisionModels.json',"r")
 decisionModels = json.loads(r''+decisionModels.read())
 #-------------------------------------------------------------------------------------------------------------
+def getPrioritizableFeatures(request):
+    try:
+        decisionModel = request.GET['decisionModel']
+    except:
+        decisionModel = ''
+
+    if decisionModel in decisionModels:
+        features={}
+        decisionModel=decisionModels[decisionModel]
+
+        for feature in decisionModel:
+            if decisionModel[feature]['UI']['prioritizable']:
+                datatype=decisionModel[feature]['scoreCalculation']['datatype']
+                potentialValues= decisionModel[feature]['UI']['potentialValues']
+                caption=decisionModel[feature]['UI']['caption']
+                category=decisionModel[feature]['UI']['category']
+                subfeatures=decisionModel[feature]['UI']['subfeatures']
+                description= decisionModel[feature]['UI']['description']
+
+                if datatype=='int':
+                    potentialValues='An integer number greater than or equal to zero.'
+                elif datatype=='currency':
+                    potentialValues='A decimal number greater than or equal to zero.'
+                elif datatype=='date':
+                    potentialValues='A date value based on YYYY-MM-DD template. For example, 2022-03-01'
+                elif datatype=='geo_point':
+                    potentialValues='A latitude-longitude pair or coordinate of a place based on [longitude,latitude] template. For example, [4.63392,52.37038]'
+                elif datatype=='boolean':
+                    potentialValues='A boolean value (true/false).'
+
+                features[feature]= {"caption": caption, "category": category, "subfeatures":subfeatures , "datatype":datatype, "potentialValues": potentialValues , "description": description}
+
+        return HttpResponse(json.dumps(features,  indent=3), content_type="application/json")
+    else:
+        return JsonResponse({"Message": "I cannot find the decision model for you!"})
+#-------------------------------------------------------------------------------------------------------------
+def getDecisionModel(request):
+    try:
+        decisionModel = request.GET['decisionModel']
+    except:
+        decisionModel = ''
+
+    if decisionModel in decisionModels:
+        return HttpResponse(json.dumps(decisionModels[decisionModel],  indent=3), content_type="application/json")
+    else:
+        return JsonResponse({"Message": "I cannot find the decision model for you!"})
+ #-------------------------------------------------------------------------------------------------------------
 def listOfSolutions(request):
     featureRequirements={
         "parameters":{
@@ -33,7 +80,7 @@ def listOfSolutions(request):
             },
             "number_of_rooms":{
                 "value": "3",
-                "priority": "should-have"
+                "priority": "could-have"
             },
             "volume_in_cubic_meters":{
                 "value": "100",
@@ -41,7 +88,7 @@ def listOfSolutions(request):
             },
             "number_of_bedrooms":{
                 "value": "3",
-                "priority": "should-have"
+                "priority": "could-have"
             },
             "asking_price":{
                 "value": "300000",
@@ -54,7 +101,7 @@ def listOfSolutions(request):
         },
         "case":"Family"
     }
-    
+
     page = featureRequirements["parameters"]["page"]
     numHits,solutions=getSolutions(featureRequirements, page)
     #print(translate("en","fa","hello Dear Siamak "))
@@ -153,106 +200,130 @@ def scoreCalculation(featureImpactFactores, solutions):
 #-------------------------------------------------------------------------------------------------------------
 def getSolutions(featureRequirements, page):
     solutions={}
-    decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
-    featureImpactFactores,query=queryBilder(featureRequirements)
+    featureImpactFactores,query, sort=queryBilder(featureRequirements)
     page=(page-1)*20
-
     es = Elasticsearch("http://localhost:9200")
     index = Index(featureRequirements["parameters"]["decisionModel"], es)
+    decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
 
     if not es.indices.exists(index=featureRequirements["parameters"]["decisionModel"]):
         return {}
     user_request = "some_param"
     query_body = {
         "query": query,
+        "sort": sort,
         "from": page,
         "size": 20
     }
+
     result = es.search(index=featureRequirements["parameters"]["decisionModel"], body=query_body)
     numHits=result['hits']['total']['value']
-
     solutions=scoreCalculation(featureImpactFactores, result['hits']['hits'])
 
+    for solution in solutions:
+        for feature in solution:
+            print(feature)
+            if feature in decisionModel and decisionModel[feature]['scoreCalculation']['datatype']=="enumeration":
+                lookup=decisionModel[feature]['schemaMapping']['mappingScript']['lookup']
+                for candidateValue in lookup:
+                    if lookup[candidateValue]==solution[feature]:
+                        solution[feature]=candidateValue
     return numHits, solutions
 #-------------------------------------------------------------------------------------------------------------
-def queryBilder(featureRequirements):
-    fields={}
-    shouldHaveQueries=[]
-    mustHaveQueries=[]
+def getQualityWeights(featureRequirements):
     decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
-
-    featureImpactFactores=[]
     qualityRequirement={}
     cntQualities=0
 
-    ShouldHaveWeight=0.9
-    CouldHaveWeight=0.1
-
-    MustBooster=9
-    ShouldBooster=7
-    CouldBooster=3
-
-
     for feature in featureRequirements["featureRequirements"]:
-        for quality in decisionModel[feature]["qualities"]:
+        for quality in decisionModel[feature]["scoreCalculation"]["qualities"]:
             if quality not in qualityRequirement:
                 qualityRequirement[quality]=1
             else:
                 qualityRequirement[quality]=qualityRequirement[quality]+1
             cntQualities=cntQualities+1
+
     for quality in qualityRequirement:
         qualityRequirement[quality]=qualityRequirement[quality]/cntQualities
 
+    return qualityRequirement
+#-------------------------------------------------------------------------------------------------------------
+def getFeaturesImpactFactors(featureRequirements):
+    ShouldHaveWeight=0.9
+    CouldHaveWeight=0.1
     totalImpactFactor=0
+    featureImpactFactores=[]
+
+    qualityRequirement=getQualityWeights(featureRequirements)
+    decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
+
     for feature in featureRequirements["featureRequirements"]:
 
-        impactFactor=0
-        datatype=decisionModel[feature]["datatype"]
+        datatype=decisionModel[feature]["scoreCalculation"]["datatype"]
         value= featureRequirements["featureRequirements"][feature]["value"]
         priority= featureRequirements["featureRequirements"][feature]["priority"]
+        impactFactor=0
 
-        query={}
-        if datatype=="int":
-            query= {"range": {feature: {"gte": value  , "boost": 2} }}
-        elif datatype=="currency":
-            query={"range": {  feature: {"lte": value , "boost": 2} }}
-        else:
-            query='{"term": {"'+feature+'.keyword": "'+value+'"}}'
-            query= json.loads(query)
+        if datatype=='enumeration':
+            value=decisionModel[feature]['schemaMapping']['mappingScript']['lookup'][value]
 
-        for quality in decisionModel[feature]["qualities"]:
-            impactFactor=impactFactor+qualityRequirement[quality]
+        if priority!="must-have":
+            for quality in decisionModel[feature]["scoreCalculation"]["qualities"]:
+                impactFactor=impactFactor+qualityRequirement[quality]
 
-        if not query:
-            if priority=="should-have":
-                impactFactor=impactFactor*ShouldHaveWeight
-                query["match"][feature]["boost"]=ShouldBooster
-            elif priority=="could-have":
-                impactFactor=impactFactor*CouldHaveWeight
-                query["match"][feature]["boost"]=CouldBooster
-            elif priority=="must-have":
-                query["match"][feature]["boost"]=MustBooster
+        if priority=="should-have":
+            impactFactor=impactFactor*ShouldHaveWeight
+        elif priority=="could-have":
+            impactFactor=impactFactor*CouldHaveWeight
 
-        if priority=="must-have":
-            mustHaveQueries.append(query)
-        else:
-            shouldHaveQueries.append(query)
-            featureImpactFactores.append({"feature":feature, "priority": priority, "datatype": datatype, "value":value, "impactFactor": impactFactor})
-            totalImpactFactor=totalImpactFactor+impactFactor
+        totalImpactFactor=totalImpactFactor+impactFactor
+
+        featureImpactFactores.append({"feature":feature, "priority": priority, "datatype": datatype, "value":value, "impactFactor": impactFactor})
 
     for featureIF in featureImpactFactores:
         featureIF["impactFactor"]= (featureIF["impactFactor"]/totalImpactFactor)
 
-    query={
-            "bool" : {
-                "must": mustHaveQueries,
-                "should": shouldHaveQueries,
-                "minimum_should_match" : 0,
-                "boost" : 4
-            }
-        }
+    return featureImpactFactores
+#-------------------------------------------------------------------------------------------------------------
+def queryBilder(featureRequirements):
+    featureImpactFactores=getFeaturesImpactFactors(featureRequirements)
 
-    return featureImpactFactores,query
+    must_queries=[]
+    could_should_queries=[]
+    sort=[]
+
+    for reqFeature in featureImpactFactores:
+        feature=reqFeature['feature']
+        value=reqFeature['value']
+        priority=reqFeature['priority']
+        datatype=reqFeature['datatype']
+        impactFactor=reqFeature['impactFactor']+1
+
+        if priority=='must-have':
+            if  datatype=='string':
+                must_queries.append({"term": {feature: value}})
+            elif datatype=='currency':
+                must_queries.append({"range": {feature: {"lte": value}}})
+            elif datatype=='int' or datatype=='enumeration':
+                must_queries.append({"range": {feature: {"gte": value}}})
+        elif priority=='should-have':
+            if  datatype=='string':
+                could_should_queries.append( {"constant_score": {"filter": {"match": {feature:value}}, "boost": impactFactor}})
+            elif datatype=='currency':
+                could_should_queries.append({"constant_score": {"filter": {"range": {feature: {"lte": value}}}, "boost": impactFactor}})
+                sort.append( { feature: { "order": "asc",  "mode" : "min" }})
+            elif datatype=='int' or datatype=='enumeration':
+                could_should_queries.append({"constant_score": {"filter": {"range": {feature: {"gte": value}}}, "boost": impactFactor}})
+                sort.append( { feature: { "order": "desc",  "mode" : "max"}})
+
+    query={
+        "bool": {
+            "must":must_queries,
+            "should":could_should_queries
+        }
+    }
+
+    return featureImpactFactores,query, sort
 #-------------------------------------------------------------------------------------------------------------
 def getSolutionByID(Solution):
     es = Elasticsearch("http://localhost:9200")

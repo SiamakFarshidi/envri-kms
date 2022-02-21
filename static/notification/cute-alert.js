@@ -261,7 +261,7 @@ function sendFeedback(type, query, user){
     cuteAlert({
       type: "info",
       title: "",
-      message: "Please rate the research result:",
+      message: "Please rate the search result:",
       buttonText: "Send"
     }).then(() => {
 

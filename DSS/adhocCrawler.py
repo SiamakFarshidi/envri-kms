@@ -64,8 +64,8 @@ headers = {
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
-    crawlerConfig = open('cherryPickInc-crawlerConfig.json.json',"r")
-    #crawlerConfig = open('ENVRI-crawlerConfig.json.json',"r")
+    crawlerConfig = open(os.getcwd()+'/config/cherryPickInc-crawlerConfig.json',"r")
+    #crawlerConfig = open(os.getcwd()+'/config/ENVRI-crawlerConfig.json.json',"r")
     crawlerConfig = json.loads(r''+crawlerConfig.read())
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
@@ -1049,8 +1049,122 @@ def ingestIndexes(decisionModel, sourceDirectory, equalityCheckFeature,isArray):
             print(str(cnt)+" recode added!")
 
 #-----------------------------------------------------------------------------------------------------------------------
+def schemaBuilder(decisionModel):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index(decisionModel, es)
+    sourceDirectory=  os.getcwd()+"/index_files/"+decisionModel
+    decisionModels = open(os.getcwd()+'/config/decisionModels.json',"r")
+    decisionModels = json.loads(r''+decisionModels.read())
+
+    if not es.indices.exists(index='siamak'+decisionModel):
+        features={}
+        for feature in decisionModels[decisionModel]:
+            datatype=decisionModels[decisionModel][feature]['schemaMapping']['schemaDataType']
+            if datatype!='artificial':
+                features[feature]={"type": datatype}
+        schema={
+            "settings" : {
+                "number_of_shards": 1,
+                "number_of_replicas": 1
+            },
+            "mappings": {
+                "properties":features
+            }
+        }
+        print(schema)
+        es.indices.create(index =decisionModel, body = schema)
+    cnt=0
+    root=sourceDirectory
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            cnt=cnt+1
+            indexfile= os.path.join(path, name)
+            indexfile = open_file(indexfile)
+            features={}
+            for feature in decisionModels[decisionModel]:
+                datatype=decisionModels[decisionModel][feature]['scoreCalculation']['datatype']
+                schemaDataType=decisionModels[decisionModel][feature]['schemaMapping']['schemaDataType']
+                defaultValue=decisionModels[decisionModel][feature]['schemaMapping']['defaultValue']
+                isDrived=decisionModels[decisionModel][feature]['schemaMapping']['isDrived']
+
+                if datatype!='artificial':
+                    if not isDrived:
+                        #............................................................
+                        if indexfile[feature]=="N/A":
+                            features[feature]=defaultValue
+                            continue
+                        #............................................................
+                        if datatype=='enumeration':
+                            lookup=decisionModels[decisionModel][feature]['schemaMapping']['mappingScript']['lookup']
+
+                            for candidateValue in lookup:
+                                if candidateValue in indexfile[feature]:
+                                    indexfile[feature]=candidateValue
+                                    break
+
+                            if indexfile[feature] in lookup:
+                                features[feature]= lookup[indexfile[feature]]
+                            else:
+                                features[feature]=defaultValue
+                            continue
+                        #............................................................
+                        elif datatype=='int':
+                            features[feature]=int(only_numerics(indexfile[feature]))
+                        elif datatype=='currency':
+                            features[feature]=float(only_numerics(indexfile[feature]))
+                        else:
+                            features[feature]=indexfile[feature]
+                    else: # drived features
+                        operation=decisionModels[decisionModel][feature]['schemaMapping']['mappingScript']['operation']
+                        lookup=decisionModels[decisionModel][feature]['schemaMapping']['mappingScript']['lookup']
+                        format=decisionModels[decisionModel][feature]['schemaMapping']['mappingScript']['format']
+
+                        if operation=="mapping":
+                            #............................................................
+                            if format=="list":
+                                list=[]
+                                for item in lookup:
+                                    list.append(indexfile[item])
+                                features[feature]=list
+                            #............................................................
+                        elif operation=="comparison":
+                            potentialValues=[]
+                            for item in lookup:
+                                op=item['op']
+                                field=item['field']
+                                value=item['value']
+                                trueBody=item['trueBody']
+                                falseBody=item['falseBody']
+                                #............................................................
+                                if op=="gte" and indexfile[field]!="N/A":
+                                    if int(indexfile[field])>=value:
+                                        potentialValues.append(trueBody)
+                                    else:
+                                        potentialValues.append(falseBody)
+                                #............................................................
+                            if schemaDataType=="text":
+                                features[feature]=""
+                                for item in potentialValues:
+                                    features[feature]= features[feature]+ item+ " "
+                                features[feature]=features[feature].strip()
+            id=indexfile['url']
+            res = es.index(index=decisionModel, id= id, body=features)
+            es.indices.refresh(index=decisionModel)
+            print(str(cnt)+" recode added!")
+#-----------------------------------------------------------------------------------------------------------------------
+def only_numerics(seq):
+    seq=str(seq)
+    seq_type= type(seq)
+
+    seq= seq_type().join(filter(seq_type.isdigit, seq))
+
+    if len(seq)==0:
+        return 0
+    else:
+        return seq
+#-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    indexWebsite("funda")
+    #indexWebsite("funda")
     #indexWebsite("daad")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
@@ -1061,14 +1175,12 @@ if __name__ == "__main__":
     #enableTestModel("academictransfer", "https://www.academictransfer.com/en/309400/phd-candidate-for-software-correctness/")
     #enableTestModel("funda", "https://www.funda.nl/koop/hellevoetsluis/huis-88055352-burchtpad-174/")
 
-
     #indexWebsite("embrc")
     #indexWebsite("envri")
     #indexWebsite("lifewatch")
     #indexWebsite("sios")
     #indexWebsite("jerico")
     #indexWebsite("anaee")
-
 
     #enableTestModel("lifewatch-tools", "https://metadatacatalogue.lifewatch.eu/srv/eng/catalog.search#/metadata/fdefdc26-14fe-4095-ba5f-e55903bc4008")
     #enableTestModel("embrc", "https://embrc.eu/services/service-catalogue/bio3ecimat-uvigo")
@@ -1077,5 +1189,9 @@ if __name__ == "__main__":
     #enableTestModel("anaee", "https://data.anaee.eu/dataset/soil-map-of-the-pisa-hills")
     #enableTestModel("lifewatch-datasets", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
     #ingestIndexes("envri","/index_files/envri/","url", True)
+
+
+    schemaBuilder("realestate")
+
 
 #-----------------------------------------------------------------------------------------------------------------------
