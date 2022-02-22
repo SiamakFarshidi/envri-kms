@@ -1,0 +1,1870 @@
+{
+  "realestate": {
+    "offer_type": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "koop",
+          "huur"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Offer type"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "1"
+    },
+    "kind_of_house": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "eengezinswoning",
+          "tussenwoning",
+          "2-onder-1-kapwoning",
+          "villa",
+          "vrijstaande woning",
+          "herenhuis",
+          "eindwoning",
+          "hoekwoning"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Kind of house"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "2"
+    },
+    "type_of_apartment": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "Penthouse",
+          "Maisonnette",
+          "Portiekflat",
+          "Benedenwoning",
+          "Bovenwoning",
+          "Galerijflat",
+          "Tussenverdieping",
+          "Dubbel bovenhuis"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Type of apartment"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "3"
+    },
+    "type_of_construction": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "Bestaande bouw",
+          "Nieuwbouw"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Type of construction"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "4"
+    },
+    "number_of_rooms": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Number of rooms"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "5"
+    },
+    "number_of_bathrooms": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Number of bathrooms"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "6"
+    },
+    "number_of_bedrooms": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Number of bedrooms"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "7"
+    },
+    "bathroom_facilities": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "ligbad",
+          "douche en toilete"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Bathroom facilities"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "8"
+    },
+    "number_of_floors": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Number of floors"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "9"
+    },
+    "outdoor_space": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Outdoor Space"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "10"
+    },
+    "facilities": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "TV kabel",
+          "airconditioning",
+          "buitenzonwering",
+          "glasvezelkabel",
+          "mechanische ventilatie",
+          "schuifpui",
+          "zonnepanelen",
+          "dakraam",
+          "zwembad",
+          "natuurlijke ventilatie"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Facilities"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "11"
+    },
+    "volume_in_cubic_meters": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Volume in cubic meters"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "12"
+    },
+    "living_area": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Living area"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "13"
+    },
+    "plot_size": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Plot size"
+      },
+      "schemaMapping": {
+        "schemaDataType": "integer",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "14"
+    },
+    "external_storage_space": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "External storage space"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "15"
+    },
+    "back_garden": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Back garden"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "16"
+    },
+    "asking_price": {
+      "scoreCalculation": {
+        "datatype": "currency",
+        "qualities": [
+          "suitability"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Asking price"
+      },
+      "schemaMapping": {
+        "schemaDataType": "double",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": 999999999
+      },
+      "id": "17"
+    },
+    "asking_price_per_square_meter": {
+      "scoreCalculation": {
+        "datatype": "currency",
+        "qualities": [
+          "suitability"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Asking price per square meter"
+      },
+      "schemaMapping": {
+        "schemaDataType": "double",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": 999999999
+      },
+      "id": "18"
+    },
+    "rental_price": {
+      "scoreCalculation": {
+        "datatype": "currency",
+        "qualities": [
+          "suitability"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Rental price"
+      },
+      "schemaMapping": {
+        "schemaDataType": "double",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": 999999999
+      },
+      "id": "19"
+    },
+    "deposit": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "20"
+    },
+    "rental_agreement": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "tijdelijke verhuur",
+          "onbepaalde tijd"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Rental agreement"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "21"
+    },
+    "language": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "nl",
+          "en"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Language"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "22"
+    },
+    "description": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "23"
+    },
+    "image": {
+      "scoreCalculation": {
+        "datatype": "url",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "24"
+    },
+    "construction_year": {
+      "scoreCalculation": {
+        "datatype": "int",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Construction year"
+      },
+      "schemaMapping": {
+        "schemaDataType": "short",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": -1
+      },
+      "id": "25"
+    },
+    "energy_label": {
+      "scoreCalculation": {
+        "datatype": "enumeration",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Energy label"
+      },
+      "schemaMapping": {
+        "schemaDataType": "byte",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": {
+          "operation": "mapping",
+          "lookup": {
+            "A": 7,
+            "B": 6,
+            "C": 5,
+            "D": 4,
+            "E": 3,
+            "F": 2,
+            "G": 1
+          },
+          "format": "singleValue"
+        },
+        "defaultValue": -1
+      },
+      "id": "26"
+    },
+    "type_of_roof": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "zadeldak",
+          "samengesteld",
+          "schilddak",
+          "plat dak",
+          "mansarde dak"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Type of roof"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "27"
+    },
+    "heating": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "cv-ketel",
+          "elektrische verwarming",
+          "gedeeltelijke vloerverwarming",
+          "warmtepomp",
+          "stadsverwarming",
+          "gehele vloerverwarming",
+          "pellet burner"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Heating"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "28"
+    },
+    "hot_water": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "cv-ketel",
+          "elektrische boiler",
+          "centrale voorziening",
+          "zonneboiler",
+          "geiser",
+          "zonnecollectoren"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Hot water"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "29"
+    },
+    "boiler": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "Nefit",
+          "ATAG",
+          "Intergas",
+          "Remeha",
+          "combiketel",
+          "lease",
+          "NEFIT",
+          "Vaillant",
+          "Atag",
+          "HR"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Boiler"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "30"
+    },
+    "location": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety",
+          "accessibility"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "in centrum",
+          "open ligging",
+          "vrij uitzicht",
+          "in woonwijk",
+          "gelegen op het westen",
+          "gelegen op het noordwesten bereikbaar via achterom",
+          "aan rustige weg",
+          "aan water",
+          "aan vaarwater"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Location"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "31"
+    },
+    "garden": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "achtertuin",
+          "voortuin",
+          "zijtuin",
+          "tuin rondom",
+          "patio/atrium",
+          "zonneterras"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Garden"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "32"
+    },
+    "garden_location": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "Gelegen op het zuiden bereikbaar via achtero",
+          "Gelegen op het westen",
+          "Gelegen op het oosten",
+          "Gelegen op het zuidooste",
+          "Gelegen op het zuidwesten",
+          "Gelegen op het noorden",
+          "Gelegen op het zuiden",
+          "Gelegen op het noordoosten",
+          "Gelegen op het noordoosten bereikbaar via achterom",
+          "Gelegen op het zuidwesten bereikbaar via achterom"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Garden location"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "33"
+    },
+    "balcony": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "balkon aanwezig",
+          "frans balkon aanwezig",
+          "dakterras aanwezig"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Balcony"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "34"
+    },
+    "type_of_parking": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "openbaar parkeren",
+          "op eigen terrein",
+          "op afgesloten terrein",
+          "parkeergarage",
+          "betaald parkeren",
+          "parkeervergunningen",
+          "garage"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Type of parking"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "35"
+    },
+    "garage": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "Garage met carport",
+          "Parkeerkelder",
+          "Garagebox",
+          "Vrijstaande houten garage",
+          "Aangebouwde stenen garage",
+          "Niet aanwezig",
+          "Wel mogelijk",
+          "Parkeerplaats",
+          "Carport"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Garage"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "36"
+    },
+    "zipcode": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "37"
+    },
+    "street": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "38"
+    },
+    "house_number": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "39"
+    },
+    "city": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "40"
+    },
+    "province": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "41"
+    },
+    "lat": {
+      "scoreCalculation": {
+        "datatype": "coordinate",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "double",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": 0
+      },
+      "id": "42"
+    },
+    "lng": {
+      "scoreCalculation": {
+        "datatype": "coordinate",
+        "qualities": [
+          "N/A"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": false,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": ""
+      },
+      "schemaMapping": {
+        "schemaDataType": "double",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": 0
+      },
+      "id": "43"
+    },
+    "coordinate": {
+      "scoreCalculation": {
+        "datatype": "geo_point",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Coordinate"
+      },
+      "schemaMapping": {
+        "schemaDataType": "geo_point",
+        "isDrived": true,
+        "drivedFeatures": [
+          "lng",
+          "lat"
+        ],
+        "mappingScript": {
+          "operation": "mapping",
+          "lookup": ["lng", "lat"],
+          "format": "list"
+        },
+        "defaultValue": [0, 0 ]
+      },
+      "id": "45"
+    },
+    "distance": {
+      "scoreCalculation": {
+        "datatype": "artificial",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": ["A distance value in kilometers. For example, 10km"],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Distance"
+      },
+      "schemaMapping": {
+        "schemaDataType": "artificial",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "0km"
+      },
+      "id": "46"
+    },
+    "offered_since": {
+      "scoreCalculation": {
+        "datatype": "date",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Offered since"
+      },
+      "schemaMapping": {
+        "schemaDataType": "date",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "2000-01-01"
+      },
+      "id": "47"
+    },
+    "status": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "inonderhandeling",
+          "beschikbaar",
+          "verkocht"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Status"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "48"
+    },
+    "business_space": {
+      "scoreCalculation": {
+        "datatype": "boolean",
+        "qualities": [
+          "suitability",
+          "popularity"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Business space"
+      },
+      "schemaMapping": {
+        "schemaDataType": "boolean",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": false
+      },
+      "id": "49"
+    },
+    "neighborhood": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "vredeveldbuurt",
+          "populierenbuurt",
+          "bleyenburg",
+          "delierwest",
+          "egelantierstraatmariendaalstraateo",
+          "hemellichamenbuurt",
+          "oostloon",
+          "elsrijkoost",
+          "natuurkundigenbuurtwest",
+          "ondiep",
+          "abcoven",
+          "randwijckoost",
+          "binnenstadbuurt",
+          "stadshart",
+          "overwherenoord",
+          "startbaanbuurt",
+          "kortendijkl",
+          "risdamnoordbuurt",
+          "centrumgebiedwestrijen",
+          "kortendijka",
+          "kortendijkc",
+          "platteweg",
+          "klingenbosch"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "Neighborhood"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": false,
+        "drivedFeatures": [],
+        "mappingScript": [],
+        "defaultValue": "N/A"
+      },
+      "id": "50"
+    },
+    "house_hold": {
+      "scoreCalculation": {
+        "datatype": "string",
+        "qualities": [
+          "suitability",
+          "popularity",
+          "safety"
+        ]
+      },
+      "UI": {
+        "description": "description",
+        "prioritizable": true,
+        "potentialValues": [
+          "family",
+          "couple",
+          "single"
+        ],
+        "subfeatures": [],
+        "category": "",
+        "caption": "House hold"
+      },
+      "schemaMapping": {
+        "schemaDataType": "text",
+        "isDrived": true,
+        "drivedFeatures": [
+          "number_of_rooms"
+        ],
+        "mappingScript": {
+          "operation": "comparison",
+          "lookup": [
+            {"op": "gte" ,"field": "number_of_rooms", "value": 3 , "trueBody": "family", "falseBody": ""},
+            {"op": "gte" ,"field": "number_of_rooms", "value": 2 , "trueBody": "couple", "falseBody": ""},
+            {"op": "gte" ,"field": "number_of_rooms", "value": 1 , "trueBody": "single", "falseBody": ""}
+          ],
+          "format": "multivalue"
+        },
+        "defaultValue": "N/A"
+      },
+      "id": "51"
+    }
+  },
+  "academicpositions": {
+    "title": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "1"
+    },
+    "publish_date": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "date",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "2"
+    },
+    "deadline": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "date",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "3"
+    },
+    "location": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "location",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "4"
+    },
+    "city": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "location",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "5"
+    },
+    "country": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "location",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "6"
+    },
+    "position": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "7"
+    },
+    "field": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "8"
+    },
+    "salary": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "currency",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "9"
+    },
+    "max_working_hours": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "int",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "10"
+    },
+    "employer": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "11"
+    },
+    "job_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "12"
+    },
+    "requirements_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "13"
+    },
+    "conditions_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "14"
+    },
+    "employer_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "15"
+    },
+    "department_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "16"
+    },
+    "additional_information": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "17"
+    },
+    "apply_link": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "18"
+    },
+    "employer_link": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "19"
+    },
+    "job_type": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "20"
+    },
+    "logo": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "21"
+    },
+    "coordinate": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "21"
+    }
+  },
+  "dataBaseManagementSystems": {},
+  "modelDrivenDevelopmentPlatforms": {},
+  "cloudServiceProviders": {},
+  "blockchainPlatforms": {},
+  "architecturalPatterns": {},
+  "programmingLanguages": {},
+  "businessProcessModelingLanguages": {},
+  "decentralizedAutonomousOrganizationPlatform": {}
+}
