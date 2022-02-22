@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>service Catalog Search</title>
+    <title>Service Catalog Search</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -175,10 +175,24 @@
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
-                            <li class="active">
-                                <a href="javascript:void(0)" >
+                            <li class="">
+                                <a href="../notebookSearch/genericsearch?term={{ searchTerm }}&page=1" >
                                     <span class="pcoded-micon"><i class="ti-package"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Notebooks</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="javascript:void(0)" >
+                                    <span class="pcoded-micon"><i class="ti-harddrives"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.dash.main">Service Catalogs</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="../toolSearch/genericsearch?term={{ searchTerm }}&page=1" >
+                                    <span class="pcoded-micon"><i class="ti-hummer"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.dash.main">Tools</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -252,14 +266,14 @@
                                 <br>
                                 {% if suggestedSearchTerm != "" %}
                                 Did you mean:
-                                <b><a href="../notebookSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1">{{ suggestedSearchTerm }}</a></b>
+                                <b><a href="../servicCatalogSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1">{{ suggestedSearchTerm }}</a></b>
                                 {% endif %}
                                 <script>
                                         //sessionStorage.setItem("SearchFailed","Yes");
                                         sessionStorage.setItem("searchValue", "");
                                     </script>
                                 {% endif %}
-                                <a style="color:blue;font-size:xx-small;" href="#" onclick="sendFeedback('notebooks', '{{searchTerm}}', 'guestUser');"> (Feedback)</a>
+                                <a style="color:blue;font-size:xx-small;" href="#" onclick="sendFeedback('servicecatalogs', '{{searchTerm}}', 'guestUser');"> (Feedback)</a>
                                 <br>
                                 <br>
 
@@ -287,7 +301,7 @@
 
                                                     <h5 class="m-b-10 titleTrimming">
                                                         <a href="{{ resultItem.html_url}}" target="_blank"  style="color:darkblue;">
-                                                            <img src="{% static 'images/JPNk.png' %}" style="width:25px; left: 10px; margin-right:6px;"/>
+                                                            <img src="{% static 'images/servicecatalogs.jpg' %}" style="width:25px; left: 10px; margin-right:6px;"/>
                                                             {{ resultItem.name }}
                                                         </a>
                                                     </h5>
@@ -307,14 +321,12 @@
                                                     </p>
                                                     <ul class="breadcrumb-title b-t-default p-t-10">
                                                         <li class="breadcrumb-item"><a href="#!">
-                                                            <div style="display:inline-block;"> Size: {{ resultItem.size }} KB</div>
+                                                            <div style="display:inline-block;"> {{ resultItem.category }}</div>
                                                             <span style="padding:10px; color:lightgray;"> | </span>
-                                                            <div style="display:inline-block;"> Stars: {{ resultItem.stargazers_count }}</div>
-                                                            <span style="padding:10px; color:lightgray;"> | </span>
-                                                            <div style="display:inline-block;"> <a href="{{ resultItem.git_url }}" target="_blank"> Git </a> </div>
+                                                            <div style="display:inline-block;"> {{ resultItem.country }}</div>
                                                         </a>
 
-                                                            <a href="#" onclick="modifyBasket('add','Notebooks',&quot;{{ resultItem.name }}&quot;, &quot;{{ resultItem.html_url}}&quot;, 'id');">
+                                                            <a href="#" onclick="modifyBasket('add','ServiceCatalogs',&quot;{{ resultItem.name }}&quot;, &quot;{{ resultItem.url}}&quot;, 'id');">
                                                                 <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
 
                                                         </li>
@@ -504,6 +516,13 @@ function modifyCart(data) {
       else if(data['type']=='Notebooks'){
         icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-package"></i>';
       }
+      else if(data['type']=='ServiceCatalogs'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-harddrives"></i>';
+      }
+      else if(data['type']=='tools'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-hummer"></i>';
+      }
+
       li.innerHTML= '<div class="media">'+
                         icon+
                         '<div class="media-body">'+

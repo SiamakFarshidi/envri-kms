@@ -5,10 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de10.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de11.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/toolSearch/templates/tools_results.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/toolSearch/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/index_files/servicecatalog.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/servicecatalog.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DSS/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/temp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/templates/beautifuljson.html" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/templates/beautifuljson.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/RnDTeam.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/graphV.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/graphV.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/landingpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/landingpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/pieChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/pieChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genericpages/templates/publications.html" beforeDir="false" afterPath="$PROJECT_DIR$/genericpages/templates/publications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/notebookSearch/templates/notebook_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicCatalogSearch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/servicCatalogSearch/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/imagesearch_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webSearch/templates/webcontent_results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,27 +62,37 @@
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/notebookSearch/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/webAPI/templates/webapi_results.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/toolSearch/templates/tools_results.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/servicCatalogSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/adhoc_DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/adhocCrawler.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/opensemanticsearch/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/templates/webcontent_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/admin.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/genericpages/views.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DSS/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/opensemanticsearch/settings.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/webAPI/templates/webapi_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/templates/dataset_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/indexingPipeline/ResearchInfrastructures.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/adhoc_DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/temp.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/servicCatalogSearch/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DSS/config/ENVRI-crawlerConfig.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/genericpages/templates/landingpage.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DSS/adhocCrawler.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/toolSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webSearch/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Urls.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/Metadata*/metadata*.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DSS/urls.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/toolSearch/views.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,16 +108,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/servicCatalogSearch/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/DSS/index_files/tools" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DSS/index_files/tools" />
+      <recent name="$PROJECT_DIR$/toolSearch/templates" />
+      <recent name="$PROJECT_DIR$/toolSearch" />
       <recent name="$PROJECT_DIR$/servicCatalogSearch/templates" />
       <recent name="$PROJECT_DIR$/servicCatalogSearch" />
-      <recent name="$PROJECT_DIR$/DSS" />
-      <recent name="$PROJECT_DIR$/notebookSearch" />
-      <recent name="$PROJECT_DIR$/static/notification" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ChromeDriver" />
@@ -97,13 +135,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00048" summary="okay">
-      <created>1643355629591</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1643355629591</updated>
     </task>
     <task id="LOCAL-00049" summary="okay">
       <created>1643355641405</created>
@@ -441,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645441262566</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="okay">
+      <created>1645496633499</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1645496633500</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

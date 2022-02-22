@@ -64,8 +64,8 @@ headers = {
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
-    crawlerConfig = open(os.getcwd()+'/config/cherryPickInc-crawlerConfig.json',"r")
-    #crawlerConfig = open(os.getcwd()+'/config/ENVRI-crawlerConfig.json.json',"r")
+    #crawlerConfig = open(os.getcwd()+'/config/cherryPickInc-crawlerConfig.json',"r")
+    crawlerConfig = open(os.getcwd()+'/config/ENVRI-crawlerConfig.json',"r")
     crawlerConfig = json.loads(r''+crawlerConfig.read())
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
@@ -1168,7 +1168,7 @@ def only_numerics(seq):
         return seq
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    #indexWebsite("funda")
+    #indexWebsite("lifewatch-tools")
     #indexWebsite("daad")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
@@ -1193,9 +1193,10 @@ if __name__ == "__main__":
     #enableTestModel("anaee", "https://data.anaee.eu/dataset/soil-map-of-the-pisa-hills")
     #enableTestModel("lifewatch-datasets", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
     #ingestIndexes("envri","/index_files/envri/","url", True)
+    ingestIndexes("tools","/index_files/tools/","url", False)
 
 
-    schemaBuilder("realestate")
+    #schemaBuilder("realestate")
 
 
 #-----------------------------------------------------------------------------------------------------------------------

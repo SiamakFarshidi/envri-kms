@@ -183,6 +183,21 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a href="../servicCatalogSearch/genericsearch?term={{ searchTerm }}&page=1" >
+                                    <span class="pcoded-micon"><i class="ti-harddrives"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.dash.main">Service Catalogs</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="../toolSearch/genericsearch?term={{ searchTerm }}&page=1" >
+                                    <span class="pcoded-micon"><i class="ti-hummer"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.dash.main">Tools</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+
+                            <li class="">
                                 <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1&searchtype=imagesearch"  >
                                     <span class="pcoded-micon"><i class="ti-gallery"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Images</span>
@@ -545,6 +560,13 @@ function modifyCart(data) {
       else if(data['type']=='Notebooks'){
         icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-package"></i>';
       }
+      else if(data['type']=='ServiceCatalogs'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-harddrives"></i>';
+      }
+      else if(data['type']=='tools'){
+        icon='<i style="font-size:10pt; font-weight: bold; padding-right:5px;" class="ti-hummer"></i>';
+      }
+
       li.innerHTML= '<div class="media">'+
                         icon+
                         '<div class="media-body">'+
