@@ -1124,7 +1124,11 @@ def schemaBuilder(decisionModel):
                             if format=="list":
                                 list=[]
                                 for item in lookup:
-                                    list.append(indexfile[item])
+                                    if indexfile[item]!="N/A":
+                                        list.append(indexfile[item])
+                                    else:
+                                        features[feature]= defaultValue
+                                        break
                                 features[feature]=list
                             #............................................................
                         elif operation=="comparison":

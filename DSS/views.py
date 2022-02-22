@@ -94,10 +94,6 @@ def listOfSolutions(request):
                 "value": "300000",
                 "priority": "should-have"
             },
-            "city":{
-                "value": "utrecht",
-                "priority": "must-have"
-            }
         },
         "case":"Family"
     }
@@ -106,7 +102,7 @@ def listOfSolutions(request):
     numHits,solutions=getSolutions(featureRequirements, page)
     #print(translate("en","fa","hello Dear Siamak "))
 
-    return JsonResponse({"hits": numHits,"solutions": solutions})
+    return HttpResponse(json.dumps({"hits": numHits,"solutions": solutions},  indent=3), content_type="application/json")
 #-------------------------------------------------------------------------------------------------------------
 @csrf_exempt
 def numberOfSolutions(request):
@@ -155,6 +151,8 @@ def numberOfSolutions(request):
     numHits,solutions=getSolutions(featureRequirements, page)
 
     return JsonResponse({'hits': numHits, "solutions":{}})
+    return HttpResponse(json.dumps({"hits": numHits,"solutions": {}},  indent=3), content_type="application/json")
+
 #-------------------------------------------------------------------------------------------------------------
 def detailedSolution(request):
 
@@ -164,37 +162,25 @@ def detailedSolution(request):
     }
 
     numHits,solutions=getSolutionByID(solution)
-    return JsonResponse({"hits": numHits,"solutions": solutions})
+    return HttpResponse(json.dumps({"hits": numHits,"solutions": solutions},  indent=3), content_type="application/json")
+
 #-------------------------------------------------------------------------------------------------------------
 def scoreCalculation(featureImpactFactores, solutions):
-
     rankedSolutions=[]
-
-    maxValue=0
     for solution in solutions:
         score=0
         alternativeSolution=solution["_source"]
         alternativeSolution['id']=solution["_id"]
-        for feature in featureImpactFactores:
-            featureTitle=feature['feature']
-            if alternativeSolution[featureTitle]!="N/A" and feature["datatype"]=="int" and int(alternativeSolution[featureTitle]) >= int(feature["value"]):
-                score=score+feature["impactFactor"]
-            elif alternativeSolution[featureTitle]!="N/A" and  feature["datatype"]=="currency" and int(alternativeSolution[featureTitle]) <= int(feature["value"]) :
-                score=score+feature["impactFactor"]
-            elif alternativeSolution[featureTitle]!="N/A" and  str(feature["value"]) in str(alternativeSolution[featureTitle]):
-                score=score+feature["impactFactor"]
 
-        if not featureImpactFactores:
-            score=1
+        if solution["_score"]>1:
+            solution["_score"]=1
 
-        if score == 1:
-            alternativeSolution['score']= 100
+        if solution["_score"]==1:
+            alternativeSolution['score']= "100 %"
         else:
-            alternativeSolution['score']= "{:.2f}".format(score*100)
+            alternativeSolution['score']= "{:.2f} %".format(solution["_score"]*100)
 
         rankedSolutions.append(alternativeSolution)
-
-    #rankedSolutions.sort(key=lambda k:k['score'], reverse=True)
 
     return rankedSolutions
 #-------------------------------------------------------------------------------------------------------------
@@ -216,13 +202,86 @@ def getSolutions(featureRequirements, page):
         "size": 20
     }
 
+    query_body={
+        "query": {
+            "function_score": {
+                "query": {
+                    "bool": {
+                        "should": [
+                            {
+                                "match": {
+                                    "house_hold": {
+                                        "query": "couple",
+                                        "boost": 0.2
+                                    }
+                                }
+                            },
+                            {
+                                "distance_feature": {
+                                    "field": "offered_since",
+                                    "pivot": "7d",
+                                    "origin": "now",
+                                    "boost": 0.2
+                                }
+                            },
+                            {
+                                "distance_feature": {
+                                    "field": "coordinate",
+                                    "pivot": "1000m",
+                                    "origin": [
+                                        3.746995,
+                                        51.58452
+                                    ],
+                                    "boost": 0.2
+                                }
+                            }
+                        ],
+                        "filter": [
+                            {
+                                "term": {
+                                    "offer_type": "koop"
+                                }
+                            },
+                            {
+                                "range": {
+                                    "volume_in_cubic_meters": {
+                                        "gte": "900"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "script_score": {
+                    "script": {
+                        "params": {
+                            "number_of_rooms": 4,
+                            "number_of_bathrooms": 2,
+                            "number_of_bedrooms": 3,
+                            "asking_price": 300000,
+                            "weight_number_of_rooms": 0.2,
+                            "weight_number_of_bathrooms": 0.1,
+                            "weight_number_of_bedrooms": 0.2,
+                            "weight_asking_price": 0.3
+                        },
+                        "inline": "_score=0;if (doc[\"number_of_rooms\"].value>= params.number_of_rooms ){_score= _score+ ( (1-params.number_of_rooms/ doc[\"number_of_rooms\"].value)* params.weight_number_of_rooms+params.weight_number_of_rooms);}else {_score= _score - ((1-doc[\"number_of_rooms\"].value/params.number_of_rooms)* params.weight_number_of_rooms);}if (  doc[\"number_of_bathrooms\"].value  >=  params.number_of_bathrooms ){_score= _score - ( ( 1- params.number_of_bathrooms/ doc[\"number_of_bathrooms\"].value ) * params.weight_number_of_bathrooms );}else{_score= _score - ( ( 1- doc[\"number_of_bathrooms\"].value/params.number_of_bathrooms ) * params.weight_number_of_bathrooms );}if ( doc[\"number_of_bedrooms\"].value >= params.number_of_bedrooms ) {_score= _score+params.weight_number_of_bedrooms+ ( (1- params.number_of_bedrooms/doc[\"number_of_bedrooms\"].value) * params.weight_number_of_bedrooms);}else{_score= _score - ( (1-doc[\"number_of_bedrooms\"].value/params.number_of_bedrooms) * params.weight_number_of_bedrooms);}if ( doc[\"asking_price\"].value <= params.asking_price ) {_score= _score+params.weight_asking_price+ ((1- doc[\"asking_price\"].value/params.asking_price)  * params.weight_asking_price);}else{_score= _score - ((1- params.asking_price/doc[\"asking_price\"].value)  * params.weight_asking_price);}if( _score <0){_score=0;}return _score;"
+                    }
+                },
+                "boost_mode": "sum",
+                "max_boost": 1
+            }
+        },
+        "size": 100,
+        "from": 0,
+        "sort": []
+    }
+
     result = es.search(index=featureRequirements["parameters"]["decisionModel"], body=query_body)
     numHits=result['hits']['total']['value']
     solutions=scoreCalculation(featureImpactFactores, result['hits']['hits'])
 
     for solution in solutions:
         for feature in solution:
-            print(feature)
             if feature in decisionModel and decisionModel[feature]['scoreCalculation']['datatype']=="enumeration":
                 lookup=decisionModel[feature]['schemaMapping']['mappingScript']['lookup']
                 for candidateValue in lookup:
