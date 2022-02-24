@@ -9,6 +9,16 @@ from django.views.decorators.csrf import csrf_exempt
 from googletrans import Translator
 from datetime import datetime
 
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.authtoken.models import Token
+from rest_framework.status import HTTP_400_BAD_REQUEST
+# More rest imports as needed
+from django.contrib.auth import authenticate
+from datetime import date, timedelta
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -16,11 +26,12 @@ from django.views.decorators.csrf import csrf_exempt
 decisionModels = open(os.getcwd()+'/DSS/config/decisionModels.json',"r")
 decisionModels = json.loads(r''+decisionModels.read())
 #-------------------------------------------------------------------------------------------------------------
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
 def getPrioritizableFeatures(request):
-    try:
-        decisionModel = request.GET['decisionModel']
-    except:
-        decisionModel = ''
+
+    decisionModel = json.loads(request.body)['decisionModel']
 
     if decisionModel in decisionModels:
         features={}
@@ -52,89 +63,50 @@ def getPrioritizableFeatures(request):
     else:
         return JsonResponse({"Message": "I cannot find the decision model for you!"})
 #-------------------------------------------------------------------------------------------------------------
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
 def getDecisionModel(request):
-    try:
-        decisionModel = request.GET['decisionModel']
-    except:
-        decisionModel = ''
+
+    decisionModel = json.loads(request.body)['decisionModel']
 
     if decisionModel in decisionModels:
         return HttpResponse(json.dumps(decisionModels[decisionModel],  indent=3), content_type="application/json")
     else:
         return JsonResponse({"Message": "I cannot find the decision model for you!"})
 #-------------------------------------------------------------------------------------------------------------
-@csrf_exempt
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
 def listOfSolutions(request):
     solutions={}
     numHits=0
-    if request.method == 'POST':
-        featureRequirements = json.loads(request.body) # request.raw_post_data w/ Django < 1.4
-        print(featureRequirements)
-        page = featureRequirements["parameters"]["page"]
-        numHits,solutions=getSolutions(featureRequirements, page)
-        #print(translate("en","fa","hello Dear Siamak "))
-    return HttpResponse({"hits": numHits,"solutions": solutions}, content_type="application/json")
+    featureRequirements = json.loads(request.body)
+    #print(featureRequirements)
+    page = featureRequirements["parameters"]["page"]
+    numHits,solutions=getSolutions(featureRequirements, page)
+    #print(translate("en","fa","hello Dear Siamak "))
+    return Response({"hits": numHits,"solutions": solutions})
 #-------------------------------------------------------------------------------------------------------------
-@csrf_exempt
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
 def numberOfSolutions(request):
-    if request.method == "POST":
-        print("ok")
 
-
-    featureRequirements={
-        "parameters":{
-            "decisionModel": "realestate",
-            "page":1
-        },
-        "featureRequirements":{
-            "offer_type":{
-                "value": "koop",
-                "priority": "must-have"
-            },
-            "energy_label":{
-                "value": "C",
-                "priority": "could-have"
-            },
-            "number_of_rooms":{
-                "value": "3",
-                "priority": "should-have"
-            },
-            "volume_in_cubic_meters":{
-                "value": "100",
-                "priority": "must-have"
-            },
-            "number_of_bedrooms":{
-                "value": "3",
-                "priority": "should-have"
-            },
-            "asking_price":{
-                "value": "4000000",
-                "priority": "must-have"
-            },
-            "city":{
-                "value": "utrecht",
-                "priority": "must-have"
-            }
-        }
-    }
-
+    featureRequirements = json.loads(request.body)
+    #print(featureRequirements)
     page = featureRequirements["parameters"]["page"]
     numHits,solutions=getSolutions(featureRequirements, page)
 
-    return JsonResponse({'hits': numHits, "solutions":{}})
-    return HttpResponse(json.dumps({"hits": numHits,"solutions": {}},  indent=3), content_type="application/json")
-
+    return Response({"hits": numHits,"solutions": {}})
 #-------------------------------------------------------------------------------------------------------------
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
 def detailedSolution(request):
-
-    solution={
-        "decisionModel": "realestate",
-        "id":"https://www.funda.nl/koop/hippolytushoef/huis-42501003-elft-13/"
-    }
-
+    solution = json.loads(request.body)
     numHits,solutions=getSolutionByID(solution)
-    return HttpResponse(json.dumps({"hits": numHits,"solutions": solutions},  indent=3), content_type="application/json")
-
+    return Response({"hits": numHits,"solutions": solutions})
 #-------------------------------------------------------------------------------------------------------------
 def scoreCalculation(featureImpactFactores, solutions):
     rankedSolutions=[]
@@ -495,12 +467,26 @@ def getSolutionByID(Solution):
 def translate(source, target, text):
     translator = Translator()
     result = translator.translate(text, src=source, dest=target)
-
     #print(result.src)
     #print(result.dest)
     #print(result.text)
-
     return result.text
-
-
 #-------------------------------------------------------------------------------------------------------------
+#URL /signin/
+#Note that in a real Django project, signin and signup would most likely be
+#handled by a seperate app. For signup on this example, use the admin panel.
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def api_signin(request):
+    try:
+        username = request.data['username']
+        password = request.data['password']
+    except:
+        return Response({'error': 'Please provide correct username and password'},
+                        status=HTTP_400_BAD_REQUEST)
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({'authenticated': True, 'token': "Token " + token.key})
+    else:
+        return Response({'authenticated': False, 'token': None})

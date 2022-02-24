@@ -8,5 +8,8 @@ urlpatterns = [
     url(r'^listOfSolutions', views.listOfSolutions, name='listOfSolutions'),
     url(r'^detailedSolution', views.detailedSolution, name='detailedSolution'),
     url(r'^getDecisionModel', views.getDecisionModel, name='getDecisionModel'),
-    url(r'^getPrioritizableFeatures', views.getPrioritizableFeatures, name='getPrioritizableFeatures')
+    url(r'^getPrioritizableFeatures', views.getPrioritizableFeatures, name='getPrioritizableFeatures'),
+    url('signin/', views.api_signin, name='api_signin'),
+
+
 ]

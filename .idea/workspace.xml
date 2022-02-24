@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay" />
+    <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/DSS/decorators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DSS/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toolSearch/templates/tools_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/toolSearch/templates/tools_results.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,16 +93,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/django_taskmanager-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/DSS" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DSS" />
       <recent name="$PROJECT_DIR$/DSS/index_files/tools" />
       <recent name="$PROJECT_DIR$/toolSearch/templates" />
       <recent name="$PROJECT_DIR$/toolSearch" />
       <recent name="$PROJECT_DIR$/servicCatalogSearch/templates" />
-      <recent name="$PROJECT_DIR$/servicCatalogSearch" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ChromeDriver" />
@@ -109,13 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00056" summary="okay">
-      <created>1643544044711</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1643544044711</updated>
     </task>
     <task id="LOCAL-00057" summary="okay">
       <created>1643544054702</created>
@@ -453,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645668808151</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="okay">
+      <created>1645669261948</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1645669261948</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
