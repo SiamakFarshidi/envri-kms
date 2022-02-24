@@ -1,0 +1,430 @@
+{
+  "academicpositions": {
+    "title": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "1"
+    },
+    "publish_date": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "date",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "2"
+    },
+    "deadline": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "date",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "3"
+    },
+    "location": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "location",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "4"
+    },
+    "city": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "location",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "5"
+    },
+    "country": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "location",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "6"
+    },
+    "position": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "7"
+    },
+    "field": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "8"
+    },
+    "salary": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "currency",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "9"
+    },
+    "max_working_hours": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "int",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "10"
+    },
+    "employer": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "11"
+    },
+    "job_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "12"
+    },
+    "requirements_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "13"
+    },
+    "conditions_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "14"
+    },
+    "employer_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "15"
+    },
+    "department_description": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "16"
+    },
+    "additional_information": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "string",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "17"
+    },
+    "apply_link": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "18"
+    },
+    "employer_link": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "19"
+    },
+    "job_type": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "20"
+    },
+    "logo": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "21"
+    },
+    "coordinate": {
+      "prioritizable": true,
+      "description": "description",
+      "datatype": "url",
+      "schemaDataType": "text",
+      "isDrived": false,
+      "drivedFeatures": [],
+      "mappingScript": [],
+      "qualities": [
+        "suitability",
+        "popularity"
+      ],
+      "subfeatures": [],
+      "potentialValues": [],
+      "defaultValue": "",
+      "category": "",
+      "caption": "",
+      "id": "21"
+    }
+  },
+  "dataBaseManagementSystems": {},
+  "modelDrivenDevelopmentPlatforms": {},
+  "cloudServiceProviders": {},
+  "blockchainPlatforms": {},
+  "architecturalPatterns": {},
+  "programmingLanguages": {},
+  "businessProcessModelingLanguages": {},
+  "decentralizedAutonomousOrganizationPlatform": {}
+}
