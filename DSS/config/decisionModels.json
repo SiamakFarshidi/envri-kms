@@ -1255,8 +1255,8 @@
       },
       "UI": {
         "description": "description",
-        "prioritizable": true,
-        "potentialValues": ["A distance value in kilometers. For example, 10km"],
+        "prioritizable": false,
+        "potentialValues": ["A distance value is a non-negative integer number that indicates the distance in kilometers."],
         "subfeatures": [],
         "category": "",
         "caption": "Distance"
@@ -1266,7 +1266,7 @@
         "isDrived": false,
         "drivedFeatures": [],
         "mappingScript": [],
-        "defaultValue": "0km"
+        "defaultValue": 0
       },
       "id": "46"
     },

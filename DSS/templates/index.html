@@ -3,75 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script>
-            featureRequirements={
-            "parameters":{
-                "decisionModel": "realestate",
-                "page":1
-            },
-            "featureRequirements":{
-                "offer_type":{
-                    "value": "koop",
-                    "priority": "must-have"
-                },
-                "energy_label":{
-                    "value": "C",
-                    "priority": "could-have"
-                },
-                "number_of_rooms":{
-                    "value": "3",
-                    "priority": "should-have"
-                },
-                "volume_in_cubic_meters":{
-                    "value": "100",
-                    "priority": "must-have"
-                },
-                "number_of_bedrooms":{
-                    "value": "3",
-                    "priority": "should-have"
-                },
-                "asking_price":{
-                    "value": "4000000",
-                    "priority": "must-have"
-                },
-                "city":{
-                    "value": "utrecht",
-                    "priority": "must-have"
-                }
-            }
+<script>
+featureRequirements={
+   "parameters":{
+      "decisionModel":"realestate",
+      "page":1
+   },
+   "featureRequirements":{
+      "offer_type":{
+         "value":"koop",
+         "priority":"should-have"
+      },
+      "number_of_bathrooms":{
+         "value":"2",
+         "priority":"should-have"
+      },
+      "offered_since":{
+         "value":"1990-01-01",
+         "priority":"should-have"
+      },
+      "coordinate":{
+         "value":[
+            4.273584,
+            51.49562,
+            5
+         ],
+         "priority":"must-have"
+      },
+      "number_of_rooms":{
+         "value":"3",
+         "priority":"should-have"
+      },
+      "volume_in_cubic_meters":{
+         "value":"100",
+         "priority":"must-have"
+      },
+      "number_of_bedrooms":{
+         "value":"3",
+         "priority":"should-have"
+      },
+      "asking_price":{
+         "value":"300000",
+         "priority":"must-have"
+      }
+   }
+}
+function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    }
+    else
+    {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+        end = dc.length;
         }
-
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
-    headers.append('Access-Control-Allow-Credentials', 'true');
-
-    var url = "http://127.0.0.1:8000/DSS/listOfSolutions";
-    axios.defaults.xsrfCookieName = 'csrftoken';
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios({
-    method: 'post',
-    baseURL: window.location.origin,
-    url: url,
-    // adding auth header also gives same 403 error for post request
-    // headers: {
-    //     Authorization: 'Token e77b8ca898b51cde72dcf2aa2c385942d771e972'
-    // },
-        data: featureRequirements,
-        responseType: 'json',
-    })
-        .then(function (response) {
-            console.log(' success');
-        })
-
-        .catch(function (error) {
-            console.log(' error=', error.message);
-        });
-
-
-
+    }
+    // because unescape has been deprecated, replaced with decodeURI
+    //return unescape(dc.substring(begin + prefix.length, end));
+    return decodeURI(dc.substring(begin + prefix.length, end));
+}
+fetch('http://127.0.0.1:8000/DSS/listOfSolutions', {
+  method: 'POST',
+      mode: 'no-cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'include', // include, *same-origin, omit
+  headers: {
+     'Content-Type': 'application/json',
+      'Connection': 'close',
+      'X-CSRFToken': getCookie('csrftoken'),
+  },
+      redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'same-origin', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+   body: JSON.stringify(featureRequirements)
+})
+  .then(res => res.json())
+  .then(data => {
+   // enter you logic when the fetch is successful
+    console.log(data)
+  })
+  .catch(error => {
+  // enter your logic for when there is an error (ex. error toast)
+   console.log(error)
+  });
 
 
     </script>

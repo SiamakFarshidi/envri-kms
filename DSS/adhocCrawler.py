@@ -64,8 +64,8 @@ headers = {
 }
 #-----------------------------------------------------------------------------------------------------------------------
 def openCrawlerConfig(webSiteEntity):
-    #crawlerConfig = open(os.getcwd()+'/config/cherryPickInc-crawlerConfig.json',"r")
-    crawlerConfig = open(os.getcwd()+'/config/ENVRI-crawlerConfig.json',"r")
+    crawlerConfig = open(os.getcwd()+'/config/cherryPickInc-crawlerConfig.json',"r")
+    #crawlerConfig = open(os.getcwd()+'/config/ENVRI-crawlerConfig.json',"r")
     crawlerConfig = json.loads(r''+crawlerConfig.read())
     NewConfig={
         "permitted_urls_rules":crawlerConfig[webSiteEntity]['permitted_urls_rules'],
@@ -1169,7 +1169,7 @@ def only_numerics(seq):
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     #indexWebsite("lifewatch-tools")
-    #indexWebsite("daad")
+    indexWebsite("funda")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
@@ -1193,7 +1193,7 @@ if __name__ == "__main__":
     #enableTestModel("anaee", "https://data.anaee.eu/dataset/soil-map-of-the-pisa-hills")
     #enableTestModel("lifewatch-datasets", "https://metadatacatalogue.lifewatch.eu/srv/api/records/oai:marineinfo.org:id:dataset:610")
     #ingestIndexes("envri","/index_files/envri/","url", True)
-    ingestIndexes("tools","/index_files/tools/","url", False)
+    #ingestIndexes("tools","/index_files/tools/","url", False)
 
 
     #schemaBuilder("realestate")

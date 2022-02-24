@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay" />
+    <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/config/decisionModels.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/config/decisionModels.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/temp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opensemanticsearch/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/opensemanticsearch/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,13 +36,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/servicCatalogSearch/templates/servicecatalogs_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/notebookSearch/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webAPI/templates/webapi_results.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/toolSearch/templates/tools_results.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DSS/index_files/tools/tools-aa86dfcf-e6c1-4800-bef7-9ff5da17f6de.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/servicCatalogSearch/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dataset_elastic/indexingPipeline/adhoc_DatasetRecords.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/notebookSearch/adhoc_indexingPipeline.py" root0="FORCE_HIGHLIGHTING" />
@@ -75,7 +90,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/DSS/index_files/tools" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/django_taskmanager-master" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
@@ -102,34 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00051" summary="okay">
-      <created>1643388105020</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1643388105021</updated>
-    </task>
-    <task id="LOCAL-00052" summary="okay">
-      <created>1643464163748</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1643464163748</updated>
-    </task>
-    <task id="LOCAL-00053" summary="okay">
-      <created>1643498578130</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1643498578130</updated>
-    </task>
-    <task id="LOCAL-00054" summary="okay">
-      <created>1643499089523</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1643499089523</updated>
     </task>
     <task id="LOCAL-00055" summary="okay">
       <created>1643509421395</created>
@@ -446,7 +433,35 @@
       <option name="project" value="LOCAL" />
       <updated>1645515837278</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="okay">
+      <created>1645516266095</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1645516266095</updated>
+    </task>
+    <task id="LOCAL-00101" summary="okay">
+      <created>1645516371885</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1645516371885</updated>
+    </task>
+    <task id="LOCAL-00102" summary="okay">
+      <created>1645516377391</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1645516377391</updated>
+    </task>
+    <task id="LOCAL-00103" summary="okay">
+      <created>1645516382569</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1645516382569</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

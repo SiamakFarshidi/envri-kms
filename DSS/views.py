@@ -7,6 +7,10 @@ from elasticsearch_dsl import Search, Index
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from googletrans import Translator
+from datetime import datetime
+
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 decisionModels = open(os.getcwd()+'/DSS/config/decisionModels.json',"r")
@@ -38,7 +42,7 @@ def getPrioritizableFeatures(request):
                 elif datatype=='date':
                     potentialValues='A date value based on YYYY-MM-DD template. For example, 2022-03-01'
                 elif datatype=='geo_point':
-                    potentialValues='A latitude-longitude pair or coordinate of a place based on [longitude,latitude] template. For example, [4.63392,52.37038]'
+                    potentialValues='A triple <longitude, latitude, distance> that indicates the coordinate of the desired place and permitted distance in kilometers (km) from it and should be defined based on [longitude, latitude, distance] template. For example, [4.63392,52.37038,10]'
                 elif datatype=='boolean':
                     potentialValues='A boolean value (true/false).'
 
@@ -58,51 +62,18 @@ def getDecisionModel(request):
         return HttpResponse(json.dumps(decisionModels[decisionModel],  indent=3), content_type="application/json")
     else:
         return JsonResponse({"Message": "I cannot find the decision model for you!"})
- #-------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------
+@csrf_exempt
 def listOfSolutions(request):
-    featureRequirements={
-        "parameters":{
-            "decisionModel": "realestate",
-            "page":1
-        },       
-        "featureRequirements":{
-            "offer_type":{
-                "value": "koop",
-                "priority": "must-have"
-            },
-            "energy_label":{
-                "value": "B",
-                "priority": "should-have"
-            },
-             "number_of_bathrooms":{
-                  "value": "2",
-                  "priority": "should-have"
-            },
-            "number_of_rooms":{
-                "value": "3",
-                "priority": "could-have"
-            },
-            "volume_in_cubic_meters":{
-                "value": "100",
-                "priority": "must-have"
-            },
-            "number_of_bedrooms":{
-                "value": "3",
-                "priority": "could-have"
-            },
-            "asking_price":{
-                "value": "300000",
-                "priority": "should-have"
-            },
-        },
-        "case":"Family"
-    }
-
-    page = featureRequirements["parameters"]["page"]
-    numHits,solutions=getSolutions(featureRequirements, page)
-    #print(translate("en","fa","hello Dear Siamak "))
-
-    return HttpResponse(json.dumps({"hits": numHits,"solutions": solutions},  indent=3), content_type="application/json")
+    solutions={}
+    numHits=0
+    if request.method == 'POST':
+        featureRequirements = json.loads(request.body) # request.raw_post_data w/ Django < 1.4
+        print(featureRequirements)
+        page = featureRequirements["parameters"]["page"]
+        numHits,solutions=getSolutions(featureRequirements, page)
+        #print(translate("en","fa","hello Dear Siamak "))
+    return HttpResponse({"hits": numHits,"solutions": solutions}, content_type="application/json")
 #-------------------------------------------------------------------------------------------------------------
 @csrf_exempt
 def numberOfSolutions(request):
@@ -186,7 +157,7 @@ def scoreCalculation(featureImpactFactores, solutions):
 #-------------------------------------------------------------------------------------------------------------
 def getSolutions(featureRequirements, page):
     solutions={}
-    featureImpactFactores,query, sort=queryBilder(featureRequirements)
+    featureImpactFactores,query=queryBilder(featureRequirements, page, 20)
     page=(page-1)*20
     es = Elasticsearch("http://localhost:9200")
     index = Index(featureRequirements["parameters"]["decisionModel"], es)
@@ -194,91 +165,15 @@ def getSolutions(featureRequirements, page):
 
     if not es.indices.exists(index=featureRequirements["parameters"]["decisionModel"]):
         return {}
-    user_request = "some_param"
-    query_body = {
-        "query": query,
-        "sort": sort,
-        "from": page,
-        "size": 20
-    }
 
-    query_body={
-        "query": {
-            "function_score": {
-                "query": {
-                    "bool": {
-                        "should": [
-                            {
-                                "match": {
-                                    "house_hold": {
-                                        "query": "couple",
-                                        "boost": 0.2
-                                    }
-                                }
-                            },
-                            {
-                                "distance_feature": {
-                                    "field": "offered_since",
-                                    "pivot": "7d",
-                                    "origin": "now",
-                                    "boost": 0.2
-                                }
-                            },
-                            {
-                                "distance_feature": {
-                                    "field": "coordinate",
-                                    "pivot": "1000m",
-                                    "origin": [
-                                        3.746995,
-                                        51.58452
-                                    ],
-                                    "boost": 0.2
-                                }
-                            }
-                        ],
-                        "filter": [
-                            {
-                                "term": {
-                                    "offer_type": "koop"
-                                }
-                            },
-                            {
-                                "range": {
-                                    "volume_in_cubic_meters": {
-                                        "gte": "900"
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                },
-                "script_score": {
-                    "script": {
-                        "params": {
-                            "number_of_rooms": 4,
-                            "number_of_bathrooms": 2,
-                            "number_of_bedrooms": 3,
-                            "asking_price": 300000,
-                            "weight_number_of_rooms": 0.2,
-                            "weight_number_of_bathrooms": 0.1,
-                            "weight_number_of_bedrooms": 0.2,
-                            "weight_asking_price": 0.3
-                        },
-                        "inline": "_score=0;if (doc[\"number_of_rooms\"].value>= params.number_of_rooms ){_score= _score+ ( (1-params.number_of_rooms/ doc[\"number_of_rooms\"].value)* params.weight_number_of_rooms+params.weight_number_of_rooms);}else {_score= _score - ((1-doc[\"number_of_rooms\"].value/params.number_of_rooms)* params.weight_number_of_rooms);}if (  doc[\"number_of_bathrooms\"].value  >=  params.number_of_bathrooms ){_score= _score - ( ( 1- params.number_of_bathrooms/ doc[\"number_of_bathrooms\"].value ) * params.weight_number_of_bathrooms );}else{_score= _score - ( ( 1- doc[\"number_of_bathrooms\"].value/params.number_of_bathrooms ) * params.weight_number_of_bathrooms );}if ( doc[\"number_of_bedrooms\"].value >= params.number_of_bedrooms ) {_score= _score+params.weight_number_of_bedrooms+ ( (1- params.number_of_bedrooms/doc[\"number_of_bedrooms\"].value) * params.weight_number_of_bedrooms);}else{_score= _score - ( (1-doc[\"number_of_bedrooms\"].value/params.number_of_bedrooms) * params.weight_number_of_bedrooms);}if ( doc[\"asking_price\"].value <= params.asking_price ) {_score= _score+params.weight_asking_price+ ((1- doc[\"asking_price\"].value/params.asking_price)  * params.weight_asking_price);}else{_score= _score - ((1- params.asking_price/doc[\"asking_price\"].value)  * params.weight_asking_price);}if( _score <0){_score=0;}return _score;"
-                    }
-                },
-                "boost_mode": "sum",
-                "max_boost": 1
-            }
-        },
-        "size": 100,
-        "from": 0,
-        "sort": []
-    }
-
-    result = es.search(index=featureRequirements["parameters"]["decisionModel"], body=query_body)
+    result = es.search(index=featureRequirements["parameters"]["decisionModel"], body=query)
     numHits=result['hits']['total']['value']
     solutions=scoreCalculation(featureImpactFactores, result['hits']['hits'])
+    solutions= labelEnumerations(solutions, decisionModel)
+
+    return numHits, solutions
+#-------------------------------------------------------------------------------------------------------------
+def labelEnumerations(solutions, decisionModel):
 
     for solution in solutions:
         for feature in solution:
@@ -287,7 +182,8 @@ def getSolutions(featureRequirements, page):
                 for candidateValue in lookup:
                     if lookup[candidateValue]==solution[feature]:
                         solution[feature]=candidateValue
-    return numHits, solutions
+
+    return solutions
 #-------------------------------------------------------------------------------------------------------------
 def getQualityWeights(featureRequirements):
     decisionModel=decisionModels[featureRequirements["parameters"]["decisionModel"]]
@@ -308,7 +204,7 @@ def getQualityWeights(featureRequirements):
     return qualityRequirement
 #-------------------------------------------------------------------------------------------------------------
 def getFeaturesImpactFactors(featureRequirements):
-    ShouldHaveWeight=0.9
+    ShouldHaveWeight=0.8
     CouldHaveWeight=0.1
     totalImpactFactor=0
     featureImpactFactores=[]
@@ -344,45 +240,229 @@ def getFeaturesImpactFactors(featureRequirements):
 
     return featureImpactFactores
 #-------------------------------------------------------------------------------------------------------------
-def queryBilder(featureRequirements):
+def queryBilder(featureRequirements, page, size):
     featureImpactFactores=getFeaturesImpactFactors(featureRequirements)
-
+    page=(page-1)*size
     must_queries=[]
     could_should_queries=[]
     sort=[]
+    script_score=""
 
     for reqFeature in featureImpactFactores:
         feature=reqFeature['feature']
         value=reqFeature['value']
         priority=reqFeature['priority']
         datatype=reqFeature['datatype']
-        impactFactor=reqFeature['impactFactor']+1
+        impactFactor=reqFeature['impactFactor']
 
         if priority=='must-have':
             if  datatype=='string':
-                must_queries.append({"term": {feature: value}})
+                query , script= getStringQuery(value,"must-have",feature, impactFactor)
+                must_queries.append(query)
+                script_score=script_score+ script
             elif datatype=='currency':
-                must_queries.append({"range": {feature: {"lte": value}}})
+                query , script= getCurrencyQuery(value,"must-have",feature,impactFactor)
+                must_queries.append(query)
+                script_score=script_score+ script
             elif datatype=='int' or datatype=='enumeration':
-                must_queries.append({"range": {feature: {"gte": value}}})
-        elif priority=='should-have':
+                query , script= getNumericQuery(value,"must-have", feature,impactFactor)
+                must_queries.append(query)
+                script_score=script_score+ script
+            elif datatype=='geo_point':
+                query , script= getGeoDistanceQuery(value,"must-have", feature,impactFactor)
+                must_queries.append(query)
+                script_score=script_score+ script
+            elif datatype=='date':
+                toDate=datetime.today().strftime('%Y-%m-%d')
+                query , script= getDateQuery(value, toDate, priority, feature, impactFactor)
+                must_queries.append(query)
+                script_score=script_score+ script
+
+        elif priority=='should-have' or priority=='could-have':
             if  datatype=='string':
-                could_should_queries.append( {"constant_score": {"filter": {"match": {feature:value}}, "boost": impactFactor}})
+                query , script= getStringQuery(value,"should-have or could-have",feature,impactFactor)
+                could_should_queries.append(query)
+                script_score=script_score+ script
             elif datatype=='currency':
-                could_should_queries.append({"constant_score": {"filter": {"range": {feature: {"lte": value}}}, "boost": impactFactor}})
-                sort.append( { feature: { "order": "asc",  "mode" : "min" }})
+                query , script= getCurrencyQuery(value,"should-have or could-have",feature,impactFactor)
+                script_score=script_score+ script
             elif datatype=='int' or datatype=='enumeration':
-                could_should_queries.append({"constant_score": {"filter": {"range": {feature: {"gte": value}}}, "boost": impactFactor}})
-                sort.append( { feature: { "order": "desc",  "mode" : "max"}})
+                query , script= getNumericQuery(value,"should-have or could-have",feature,impactFactor)
+                script_score=script_score+ script
+            elif datatype=='geo_point':
+                query , script= getGeoDistanceQuery(value,"should-have or could-have", feature,impactFactor)
+                script_score=script_score+ script
+            elif datatype=='date':
+                toDate=datetime.today().strftime('%Y-%m-%d')
+                query , script= getDateQuery(value, toDate, priority, feature, impactFactor)
+                could_should_queries.append(query)
+                script_score=script_score+ script
 
     query={
-        "bool": {
-            "must":must_queries,
-            "should":could_should_queries
-        }
+        "query": {
+            "function_score": {
+                "query": {
+                    "bool": {
+                        "should": could_should_queries,
+                        "filter": must_queries
+                    }
+                },
+                "script_score": {
+                    "script": {
+                        "params": {
+                        },
+                        "inline": script_score+ "if( _score <0) {_score=0;} return _score;"
+                    }
+                },
+                "boost_mode": "sum",
+                "max_boost": 10
+            }
+        },
+        "size": size,
+        "from": page
     }
 
-    return featureImpactFactores,query, sort
+    #print(str(query).replace("\"","\\\"").replace("'","\""))
+
+    return featureImpactFactores,query
+#-------------------------------------------------------------------------------------------------------------
+def getGeoDistanceQuery(geoPoint, priority, field , weight):
+    query={}
+    script=""
+    if  geoPoint==[] or priority=="" or field=="":
+        return query,script
+
+    if priority=="must-have":
+        query={
+            "geo_distance": {
+                "distance": str(geoPoint[2])+"km",
+                field: {
+                    "lat": geoPoint[1],
+                    "lon": geoPoint[0]
+                }
+            }
+        }
+        lon=str(geoPoint[0])
+        lat=str(geoPoint[1])
+        distance=str(geoPoint[2])
+        script="double origin_lon="+lon+";double origin_lat="+lat+";" \
+              "double actualDistance=(Math.asin(Math.sqrt((Math.pow(Math.sin((Math.toRadians(doc[\"lat\"].value) - Math.toRadians(origin_lat)) / 2), 2)+ " \
+              "Math.cos(Math.toRadians(origin_lat)) * Math.cos(Math.toRadians(doc[\"lat\"].value))* Math.pow(Math.sin((Math.toRadians(doc[\"lng\"].value) - " \
+              "Math.toRadians(origin_lon)) / 2),2)))) * 12742); " \
+              "_score= _score + ((1 - (actualDistance/"+distance+"))*0.001); "
+    else:
+        lon=str(geoPoint[0])
+        lat=str(geoPoint[1])
+        distance=str(geoPoint[2])
+        weight=str(weight)
+        script="double origin_lon="+lon+";double origin_lat="+lat+";" \
+               "double actualDistance=(Math.asin(Math.sqrt((Math.pow(Math.sin((Math.toRadians(doc[\"lat\"].value) - Math.toRadians(origin_lat)) / 2), 2)+ " \
+               "Math.cos(Math.toRadians(origin_lat)) * Math.cos(Math.toRadians(doc[\"lat\"].value))* Math.pow(Math.sin((Math.toRadians(doc[\"lng\"].value) - " \
+               "Math.toRadians(origin_lon)) / 2),2)))) * 12742); " \
+               "if (actualDistance<="+distance+") " \
+                    "{_score= _score + ((1 - (actualDistance/"+distance+"))*"+weight+");} " \
+               "else {_score= _score - ((1 - ("+distance+"/actualDistance))*"+weight+"); }"
+    return query,script
+#-------------------------------------------------------------------------------------------------------------
+def getDateQuery(fromDate, toDate, priority, field, weight):
+    query={}
+    script=""
+
+    if  fromDate=="" or toDate=="" or priority=="" or field=="":
+        return query,script
+
+    if priority=="must-have":
+        query={
+          "range": {
+              field: {
+                  "gte": fromDate,
+                  "lt": toDate
+              }
+          }
+        }
+    else:
+        query={
+            "range": {
+                field: {
+                    "gte": fromDate,
+                    "lt": toDate,
+                    "boost": weight
+                }
+            }
+        }
+
+    return query,script
+#-------------------------------------------------------------------------------------------------------------
+def getNumericQuery(gte, priority, field, weight):
+    query={}
+    script=""
+
+    if priority=="" or field=="":
+        return query
+
+    if priority=="must-have":
+        query={
+            "range": {
+                field: {
+                    "gte": gte
+                }
+            }
+        }
+        gte=str(gte)
+        script=  "_score= _score+ ((1- "+gte+" / doc[\""+field+"\"].value)*0.001);"
+    else:
+        gte=str(gte)
+        weight=str(weight)
+        script=  "if (doc[\""+field+"\"].value>= "+gte+"){_score= _score+ ( (1- ("+gte+" / doc[\""+field+"\"].value)) * "+weight+");}"+\
+                "else {_score= _score - ((1-(doc[\""+field+"\"].value/"+gte+"))* "+weight+");}"
+    return query,script
+#-------------------------------------------------------------------------------------------------------------
+def getCurrencyQuery(lte, priority, field, weight):
+    query={}
+    script=""
+
+    if priority=="" or field=="":
+        return query,script
+
+    if priority=="must-have":
+        query={
+            "range": {
+                field: {
+                    "lte": lte
+                }
+            }
+        }
+        gte=str(lte)
+        script=  "_score= _score+ ((1- doc[\""+field+"\"].value/"+lte+")*0.001);"
+    else:
+        gte=str(lte)
+        weight=str(weight)
+        script=  "if ( doc[\""+field+"\"].value <= "+lte+" ) {_score= _score+ ((1- (doc[\""+field+"\"].value/"+lte+")) * "+weight+");}"+\
+                "else{_score= _score - ((1- ("+lte+"/doc[\""+field+"\"].value)) * "+weight+");}"
+    return query,script
+#-------------------------------------------------------------------------------------------------------------
+def getStringQuery(term, priority, field, weight):
+    query={}
+    script=""
+    if priority=="" or field=="" or term=="":
+        return query,script
+
+    if priority=="must-have":
+        query={
+              "term": {
+                  field: term
+              }
+          }
+    else:
+        query= {
+              "match": {
+                  field: {
+                      "query": term,
+                      "boost": weight
+                  }
+              }
+          }
+    return query,script
 #-------------------------------------------------------------------------------------------------------------
 def getSolutionByID(Solution):
     es = Elasticsearch("http://localhost:9200")
