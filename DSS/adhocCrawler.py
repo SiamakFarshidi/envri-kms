@@ -1167,9 +1167,95 @@ def only_numerics(seq):
     else:
         return seq
 #-----------------------------------------------------------------------------------------------------------------------
+def getGeolocationNames(type):
+    world_cities = open(os.getcwd()+'/config/world-cities_json.json',"r")
+    world_cities = json.loads(r''+world_cities.read())
+
+    world_universities_and_domains = open(os.getcwd()+'/config/world_universities_and_domains.json',"r")
+    world_universities_and_domains = json.loads(r''+world_universities_and_domains.read())
+
+    requiredSet=set()
+
+    if type=="country":
+        for item in world_cities:
+            requiredSet.add(item['country'])
+    elif type=="city":
+        for item in world_cities:
+            requiredSet.add(item['name'])
+    elif type=="geonameid":
+        for item in world_cities:
+            requiredSet.add(item['geonameid'])
+    elif type=="province":
+        for item in world_cities:
+            requiredSet.add(item['subcountry'])
+    elif type=="university":
+        for item in world_universities_and_domains:
+            requiredSet.add(item['name'])
+
+    requiredSet= sorted(requiredSet)
+
+    with open(os.getcwd()+'/config/'+type+'.txt', "w") as output:
+        output.write( json.dumps(requiredSet))
+#-----------------------------------------------------------------------------------------------------------------------
+def getUniqueValues(field, filepath, delimeters, forbiddenValues):
+    requiredSet=set()
+    for filename in filepath:
+        JSON_file = open(os.getcwd()+'/config/'+filename+'.json',"r")
+        JSON_file = json.loads(r''+JSON_file.read())
+        for item in JSON_file['hits']['hits']:
+            potentialValues=set()
+            candidates=camel_case_split(str(item[field]))
+            for candidate in candidates:
+                for delimeter in delimeters:
+                    values=candidate.split(delimeter)
+                    for value in values:
+                        value=re.sub(r'[^A-Za-z ]+', '', value)
+                        potentialValues.add(value)
+
+            for value in potentialValues:
+                if type(value) != type(None):
+                    value=value.strip()
+                    value=fixBrokenSentence(value)
+                    if value not in forbiddenValues and len(value)>1 and \
+                            (sum(1 for c in value if c.isupper())!= len(value) ) and \
+                            (sum(1 for c in value if c.islower())!= len(value)) :
+                        requiredSet.add(value)
+                        print(value+"\n")
+
+    #requiredSet= sorted(requiredSet)
+    requiredSet= list(requiredSet)
+    with open(os.getcwd()+'/config/'+field+'.txt', "w") as output:
+        output.write(json.dumps(requiredSet))
+#-----------------------------------------------------------------------------------------------------------------------
+def fixBrokenSentence(value):
+    potentialEndings=[" in", " with", " of", " a", " and", " und", " the", " to", " including", " for", " and  more"]
+
+    for ending in potentialEndings:
+        if value.endswith(ending):
+            value=value.replace(ending,"")
+
+    return value
+#-----------------------------------------------------------------------------------------------------------------------
+def camel_case_split(s):
+    idx = list(map(str.isupper, s))
+    # mark change of case
+    l = [0]
+    for (i, (x, y)) in enumerate(zip(idx, idx[1:])):
+        if x and not y:  # "Ul"
+            l.append(i)
+        elif not x and y:  # "lU"
+            l.append(i+1)
+    l.append(len(s))
+    # for "lUl", index of "U" will pop twice, have to filter that
+    return [s[x:y] for x, y in zip(l, l[1:]) if x < y]
+#-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+
+    #getUniqueValues("field",["search (1)","search (2)", "search (3)", "search (4)"],["âº", ",", ";", " | "], ["NA", "N| A" ,"","All","Other", "\n", "See httpswwwthnuernbergdestudiengangbetriebswirtschaftba"])
+    #getGeolocationNames("university")
+
     #indexWebsite("lifewatch-tools")
-    indexWebsite("funda")
+    #indexWebsite("funda")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
     #enableTestModel("academicpositions", "https://academicpositions.com/ad/university-akureyri/2022/vacant-position-for-an-assistant-professor-in-vocational-studies-gerontology-and-home-care-nursing-for-licensed-practical-nurses-within-the-school-of-health-sciences/175163")
@@ -1196,7 +1282,7 @@ if __name__ == "__main__":
     #ingestIndexes("tools","/index_files/tools/","url", False)
 
 
-    #schemaBuilder("realestate")
+    schemaBuilder("academicpositions")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
