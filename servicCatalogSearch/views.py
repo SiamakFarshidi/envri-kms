@@ -110,7 +110,12 @@ def getSearchResults(request, facet, filter, page, term):
                     "must": {
                         "multi_match" : {
                             "query": term,
-                            "fields": [ "name", "description"],
+                            "fields": [ "description", "keywords", "contact", "publisher", "citation",
+                                        "genre", "creator", "headline", "abstract", "theme", "producer", "author",
+                                        "sponsor", "provider", "name", "measurementTechnique", "maintainer", "editor",
+                                        "copyrightHolder", "contributor", "contentLocation", "about", "rights", "useConstraints",
+                                        "status", "scope", "metadataProfile", "metadataIdentifier", "distributionInfo", "dataQualityInfo",
+                                        "contentInfo", "ResearchInfrastructure", "EssentialVariables", "potentialTopics"],
                             "type": "best_fields",
                             "minimum_should_match": "50%"
                         }

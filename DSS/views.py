@@ -20,6 +20,7 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from django.contrib.auth import authenticate
 from datetime import date, timedelta
 from django.views.decorators.csrf import csrf_exempt
+import numpy as np
 
 
 # Create your views here.
@@ -108,6 +109,99 @@ def detailedSolution(request):
     numHits,solutions=getSolutionByID(solution)
     return Response({"hits": numHits,"solutions": solutions})
 #-------------------------------------------------------------------------------------------------------------
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
+def assetSearch(request):
+    requirements = json.loads(request.body)
+
+    try:
+        page = requirements["parameters"]["page"]
+        decisionModel = requirements["parameters"]["assetType"]
+        term = requirements["parameters"]["keywords"]
+        filter= requirements["parameters"]["filter"]
+        facet= requirements["parameters"]["facet"]
+    except:
+        return JsonResponse({"Message": "I cannot find anythink for you because of ill-formed requirements!"})
+
+    results= getSearchResults(facet, filter, page, term, decisionModel)
+    return Response({"hits": 0,"solutions": results})
+#-------------------------------------------------------------------------------------------------------------
+def getSearchResults(facet, filter, page, term, decisionModel):
+    es = Elasticsearch("http://localhost:9200")
+    page=(int(page)-1)*10
+    result={}
+    fields=[]
+    if decisionModel=="datasets":
+        decisionModel="envri"
+        fields= [ "description", "keywords", "contact", "publisher", "citation",
+                  "genre", "creator", "headline", "abstract", "theme", "producer", "author",
+                  "sponsor", "provider", "name", "measurementTechnique", "maintainer", "editor",
+                  "copyrightHolder", "contributor", "contentLocation", "about", "rights", "useConstraints",
+                  "status", "scope", "metadataProfile", "metadataIdentifier", "distributionInfo", "dataQualityInfo",
+                  "contentInfo", "ResearchInfrastructure", "EssentialVariables", "potentialTopics"]
+
+    elif  decisionModel=="documents":
+        decisionModel="webcontents"
+        fields=[ "title", "pageContetnts", "organizations", "topics",
+                 "people", "workOfArt", "files", "locations", "dates",
+                 "researchInfrastructure"]
+
+    elif  decisionModel=="notebooks":
+        decisionModel="notebooks"
+        fields=[ "name", "description"]
+
+    elif  decisionModel=="webapis":
+        decisionModel="webapi"
+        fields=[ "name", "description", "category", "provider", "serviceType", "architecturalStyle"]
+
+    elif decisionModel=='servicecatalogs':
+        decisionModel="servicecatalog"
+        fields= [ "description", "keywords", "contact", "publisher", "citation",
+                  "genre", "creator", "headline", "abstract", "theme", "producer", "author",
+                  "sponsor", "provider", "name", "measurementTechnique", "maintainer", "editor",
+                  "copyrightHolder", "contributor", "contentLocation", "about", "rights", "useConstraints",
+                  "status", "scope", "metadataProfile", "metadataIdentifier", "distributionInfo", "dataQualityInfo",
+                  "contentInfo", "ResearchInfrastructure", "EssentialVariables", "potentialTopics"]
+
+    if term=="*" or term=="top10":
+        result = es.search(
+            index=decisionModel,
+            body={
+                "from" : page,
+                "size" : 10,
+                "query": {
+                    "bool" : {
+                        "must" : {
+                            "match_all": {}
+                        }
+                    }
+                }
+            }
+        )
+    else:
+        user_request = "some_param"
+        query_body = {
+            "from" : page,
+            "size" : 10,
+            "query": {
+                "bool": {
+                    "must": {
+                        "multi_match" : {
+                            "query": term,
+                            "fields": fields,
+                            "type": "best_fields",
+                            "minimum_should_match": "50%"
+                        }
+                    }
+                }
+            }
+        }
+
+        result = es.search(index=decisionModel, body=query_body)
+
+    return result
+#-----------------------------------------------------------------------------------------------------------------------
 def scoreCalculation(featureImpactFactores, solutions):
     rankedSolutions=[]
     for solution in solutions:

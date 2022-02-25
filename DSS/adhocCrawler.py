@@ -1254,7 +1254,7 @@ if __name__ == "__main__":
     #getUniqueValues("field",["search (1)","search (2)", "search (3)", "search (4)"],["âº", ",", ";", " | "], ["NA", "N| A" ,"","All","Other", "\n", "See httpswwwthnuernbergdestudiengangbetriebswirtschaftba"])
     #getGeolocationNames("university")
 
-    #indexWebsite("lifewatch-tools")
+    indexWebsite("lifewatch-tools")
     #indexWebsite("funda")
     #indexWebsite("academictransfer")
     #indexWebsite("academicpositions")
@@ -1282,7 +1282,7 @@ if __name__ == "__main__":
     #ingestIndexes("tools","/index_files/tools/","url", False)
 
 
-    schemaBuilder("academicpositions")
+    #schemaBuilder("academicpositions")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
