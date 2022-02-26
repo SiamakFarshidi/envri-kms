@@ -833,7 +833,7 @@ def graphV_webAPI(id,searchValue):
                 "must": {
                     "multi_match" : {
                         "query": searchValue,
-                        "fields": [ "name", "description", "category", "provider", "serviceType", "architecturalStyle"],
+                        "fields": [ "name", "description", "primaryCategory", "provider", "type", "architecturalStyle", "secondaryCategories", "authentication_Model", "supportedRequestFormats", "supportedResponseFormats"],
                         "type": "best_fields",
                         "minimum_should_match": "50%"
                     }
@@ -869,7 +869,7 @@ def graphV_webAPI(id,searchValue):
             edges.append(createEdge(ResearchInfrastructures[RI]['id'], lstWebAPIs[RI]))
             id=id+1
 
-        nodes.append(createNode(id, caption, url, tooltip,img))
+        nodes.append(createNode(id, [caption], url, tooltip,img))
         edges.append(createEdge(lstWebAPIs[RI],id))
 
 

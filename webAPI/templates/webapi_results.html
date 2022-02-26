@@ -181,12 +181,12 @@
                                             <i class="ti-reload"></i> &nbsp; Reset filters </a> <br> <br>
                                          </span>
 
-                                    {% if facets.category %}
+                                    {% if facets.primaryCategory %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              Categories:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.category%}
+                                    {%for facet in facets.primaryCategory%}
                                     <li class=" " >
                                         <a href="#"  onclick="facetSearch('category','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -232,12 +232,12 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.serviceType %}
+                                    {% if facets.type %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              Service Types:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.serviceType %}
+                                    {%for facet in facets.type %}
                                     <li class=" ">
                                         <a href="#" onclick="facetSearch('serviceType','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -249,12 +249,83 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.sslSupprt %}
+                                    {% if facets.SSL_Support %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              SSL Supprt:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.sslSupprt %}
+                                    {%for facet in facets.SSL_Support %}
+                                    <li class=" ">
+                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
+                                                    {{ facet.key|truncatechars:15 }}
+                                                    ({{ facet.doc_count }})
+                                                </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+
+                                    {% if facets.authentication_Model %}
+                                    <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
+                                            Authentication Model:
+                                         </span>
+                                    {% endif %}
+                                    {%for facet in facets.authentication_Model %}
+                                    <li class=" ">
+                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
+                                                    {{ facet.key|truncatechars:15 }}
+                                                    ({{ facet.doc_count }})
+                                                </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+
+                                    {% if facets.supportedRequestFormats %}
+                                    <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
+                                            Request Formats:
+                                         </span>
+                                    {% endif %}
+                                    {%for facet in facets.supportedRequestFormats %}
+                                    <li class=" ">
+                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
+                                                    {{ facet.key|truncatechars:15 }}
+                                                    ({{ facet.doc_count }})
+                                                </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+
+                                    {% if facets.supportedResponseFormats %}
+                                    <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
+                                            Response Formats:
+                                         </span>
+                                    {% endif %}
+                                    {%for facet in facets.supportedResponseFormats %}
+                                    <li class=" ">
+                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
+                                                    {{ facet.key|truncatechars:15 }}
+                                                    ({{ facet.doc_count }})
+                                                </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    {% if facets.restrictedAccess %}
+                                    <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
+                                            Restricted Access:
+                                         </span>
+                                    {% endif %}
+                                    {%for facet in facets.restrictedAccess %}
                                     <li class=" ">
                                         <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -398,12 +469,10 @@
 
                                                         <h5 class="m-b-10 titleTrimming">
 
-                                                            <a href="{{ resultItem.url.0 }}" target="_blank"  style="color:darkblue;">
+                                                            <a href="{{ resultItem.url }}" target="_blank"  style="color:darkblue;">
                                                                 <img src="{% static 'images/api.jpg' %}" style="width:15px; left: 10px; margin-right:6px;"/>
-                                                            {%for title in resultItem.name %}
-                                                                    {{ title }} .
-                                                            {% endfor %}
-                                                            {% if resultItem.sslSupprt.0 == "Yes" %}
+                                                                {{ resultItem.name }}
+                                                            {% if resultItem.SSL_Support == "Yes" %}
                                                             <img style="margin-top:-10px;;position:absolute; right:20px; ;width:70px;" src="{% static 'images/ssl-logo.png' %}" />
                                                             {% endif %}
                                                         </a>
@@ -421,9 +490,7 @@
                                                     <div class="card-block">
                                                         <br>
                                                         <p class="show-read-more">
-                                                            {%for text in resultItem.description %}
-                                                                {{ text }}
-                                                            {% endfor %}
+                                                                {{ resultItem.description }}
                                                         </p>
 
 
@@ -433,9 +500,14 @@
                                                         <a style="display:inline-block;" href="{{resultItem.endpointUrl.0}}" target="_blank"> Endpoint </a>
                                                         <span style="padding:10px; color:lightgray;"> | </span>
                                                         --->
-                                                        <div style="display:inline-block;">{{resultItem.architecturalStyle.0}}</div>
+                                                        <div style="display:inline-block;">{{resultItem.architecturalStyle}}</div>
                                                         <span style="padding:10px; color:lightgray;"> | </span>
-                                                        <div style="display:inline-block;">{{resultItem.serviceType.0}}</div>
+                                                        <div style="display:inline-block;">{{resultItem.type}}</div>
+                                                        <span style="padding:10px; color:lightgray;"> | </span>
+                                                        <div style="display:inline-block;">{{resultItem.supportedResponseFormats}}</div>
+                                                        <span style="padding:10px; color:lightgray;"> | </span>
+                                                        <div style="display:inline-block;"><a href="{{resultItem.homePage}}" target="_blank"> DOC </a> </div>
+
                                                         <a href="#" onclick="modifyBasket('add','WebAPIs',&quot;{%for title in resultItem.name %}{{ title }} . {% endfor %}&quot;, &quot;{{ resultItem.url.0 }}&quot;, 'id');">
                                                             <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
 

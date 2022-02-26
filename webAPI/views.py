@@ -13,9 +13,9 @@ from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
 
 aggregares={
-    "category":{
+    "primaryCategory":{
         "terms":{
-            "field": "category.keyword",
+            "field": "primaryCategory.keyword",
             "size": 20,
         }
     },
@@ -25,9 +25,9 @@ aggregares={
             "size": 20,
         }
     },
-    "serviceType":{
+    "type":{
         "terms":{
-            "field": "serviceType.keyword",
+            "field": "type.keyword",
             "size": 20,
         }
     },
@@ -37,14 +37,37 @@ aggregares={
             "size": 20,
         }
     },
-    "sslSupprt":{
+    "SSL_Support":{
         "terms":{
-            "field": "sslSupprt.keyword",
+            "field": "SSL_Support.keyword",
+            "size": 20,
+        }
+    },
+    "supportedRequestFormats":{
+        "terms":{
+            "field": "supportedRequestFormats.keyword",
+            "size": 20,
+        }
+    },
+    "supportedResponseFormats":{
+        "terms":{
+            "field": "supportedResponseFormats.keyword",
+            "size": 20,
+        }
+    },
+    "authentication_Model":{
+        "terms":{
+            "field": "authentication_Model.keyword",
+            "size": 20,
+        }
+    },
+    "restrictedAccess":{
+        "terms":{
+            "field": "restrictedAccess.keyword",
             "size": 20,
         }
     },
 }
-
 #-----------------------------------------------------------------------------------------------------------------------
 def aggregates(request):
 
@@ -139,7 +162,7 @@ def getSearchResults(request, facet, filter, page, term):
                     "must": {
                         "multi_match" : {
                             "query": term,
-                            "fields": [ "name", "description", "category", "provider", "serviceType", "architecturalStyle"],
+                            "fields": [ "name", "description", "primaryCategory", "provider", "type", "architecturalStyle", "secondaryCategories", "authentication_Model", "supportedRequestFormats", "supportedResponseFormats"],
                             "type": "best_fields",
                             "minimum_should_match": "50%"
                         }
@@ -160,57 +183,97 @@ def getSearchResults(request, facet, filter, page, term):
         lstResults.append(searchResult['_source'])
     #......................
     provider=[]
-    category=[]
-    sslSupprt=[]
+    primaryCategory=[]
+    SSL_Support=[]
     architecturalStyle=[]
-    serviceType=[]
+    type=[]
+    supportedRequestFormats=[]
+    supportedResponseFormats=[]
+    authentication_Model=[]
+    restrictedAccess=[]
+    #......................
+    for searchResult in result['aggregations']['restrictedAccess']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
+            pro={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            restrictedAccess.append (pro)
+    #......................
+    for searchResult in result['aggregations']['authentication_Model']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
+            pro={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            authentication_Model.append (pro)
+    #......................
+    for searchResult in result['aggregations']['supportedRequestFormats']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
+            pro={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            supportedRequestFormats.append (pro)
+    #......................
+    for searchResult in result['aggregations']['supportedResponseFormats']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
+            pro={
+                'key':searchResult['key'],
+                'doc_count': searchResult['doc_count']
+            }
+            supportedResponseFormats.append (pro)
     #......................
     for searchResult in result['aggregations']['provider']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!=""):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
             pro={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
             provider.append (pro)
     #......................
-    for searchResult in result['aggregations']['category']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!=""):
+    for searchResult in result['aggregations']['primaryCategory']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
             cat={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            category.append (cat)
+            primaryCategory.append (cat)
     #......................
-    for searchResult in result['aggregations']['sslSupprt']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!=""):
+    for searchResult in result['aggregations']['SSL_Support']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
             ssl={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            sslSupprt.append (ssl)
+            SSL_Support.append (ssl)
     #......................
     for searchResult in result['aggregations']['architecturalStyle']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!=""):
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
             arch={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
             architecturalStyle.append (arch)
     #......................
-    for searchResult in result['aggregations']['serviceType']['buckets']:
-        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!=""):
+    for searchResult in result['aggregations']['type']['buckets']:
+        if(searchResult['key']!="None" and searchResult['key']!="unknown" and searchResult['key']!="Unknown" and searchResult['key']!="Data" and searchResult['key']!="Unspecified" and searchResult['key']!="" and searchResult['key']!="N/A"):
             service={
                 'key':searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            serviceType.append (service)
+            type.append (service)
     #......................
     facets={
         'provider':provider,
-        'category':category,
-        'sslSupprt':sslSupprt,
+        'primaryCategory':primaryCategory,
+        'SSL_Support':SSL_Support,
         'architecturalStyle':architecturalStyle,
-        'serviceType':serviceType
+        'type':type,
+        'supportedRequestFormats':supportedRequestFormats,
+        'supportedResponseFormats':supportedResponseFormats,
+        'authentication_Model':authentication_Model,
+        'restrictedAccess':restrictedAccess
     }
 
     numHits=result['hits']['total']['value']
@@ -287,25 +350,12 @@ def indexingpipeline(request):
         es.indices.open(index='webapi')
 
     root=(os. getcwd()+"/webAPI/DB/")
+    print (root)
     for path, subdirs, files in os.walk(root):
         for name in files:
             indexfile= os.path.join(path, name)
             indexfile = open_file(indexfile)
-            newRecord={
-                "name":indexfile["API name"],
-                "description":indexfile["Description"],
-                "url":indexfile["Url"],
-                "category":indexfile["Category"],
-                "provider":indexfile["Provider"],
-                "serviceType":indexfile["ServiceType"],
-                "documentation":indexfile["Documentation"],
-                "architecturalStyle": indexfile["Architectural Style"],
-                "endpointUrl":indexfile["Endpoint Url"],
-                "sslSupprt":indexfile["Support SSL"],
-                "logo":indexfile["Logo"]
-            }
-
-            res = es.index(index="webapi", id= uuid.uuid4(), body=newRecord)
+            res = es.index(index="webapi", id= indexfile['url'], body=indexfile)
             es.indices.refresh(index="webapi")
 
     return render(request,'webcontent_results.html',{})
