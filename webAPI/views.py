@@ -353,6 +353,7 @@ def indexingpipeline(request):
     print (root)
     for path, subdirs, files in os.walk(root):
         for name in files:
+            print(name)
             indexfile= os.path.join(path, name)
             indexfile = open_file(indexfile)
             res = es.index(index="webapi", id= indexfile['url'], body=indexfile)

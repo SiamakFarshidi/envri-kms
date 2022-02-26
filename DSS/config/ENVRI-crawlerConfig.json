@@ -16274,7 +16274,7 @@
     }
   },
   "webapiseacrh": {
-    "seed": "https://www.programmableweb.com/category/environment/api",
+    "seed": "https://www.programmableweb.com/category/environment",
     "permitted_urls_rules": [
       "-api-\\w+\\d+$"
     ],

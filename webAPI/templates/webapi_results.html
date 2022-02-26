@@ -508,7 +508,7 @@
                                                         <span style="padding:10px; color:lightgray;"> | </span>
                                                         <div style="display:inline-block;"><a href="{{resultItem.homePage}}" target="_blank"> DOC </a> </div>
 
-                                                        <a href="#" onclick="modifyBasket('add','WebAPIs',&quot;{%for title in resultItem.name %}{{ title }} . {% endfor %}&quot;, &quot;{{ resultItem.url.0 }}&quot;, 'id');">
+                                                        <a href="#" onclick="modifyBasket('add','WebAPIs',&quot;{{resultItem.name }}&quot;, &quot;{{ resultItem.url }}&quot;, 'id');">
                                                             <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
 
 
