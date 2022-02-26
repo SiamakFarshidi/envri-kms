@@ -283,13 +283,13 @@ def getSearchResults(request, facet, filter, page, term):
         upperBoundPage=11
 
     result={
-                      "facets":facets,
-                      "results":lstResults,
-                      "NumberOfHits": numHits,
-                      "page_range": range(1,upperBoundPage),
-                      "cur_page": (page/10+1),
-                      "searchTerm":term,
-                      "functionList": getAllfunctionList(request)
+              "facets":facets,
+              "results":lstResults,
+              "NumberOfHits": numHits,
+              "page_range": range(1,upperBoundPage),
+              "cur_page": (page/10+1),
+              "searchTerm":term,
+              "functionList": getAllfunctionList(request)
                   }
     return result
 #-----------------------------------------------------------------------------------------------------------------------

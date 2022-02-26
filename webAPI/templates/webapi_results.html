@@ -188,7 +188,7 @@
                                     {% endif %}
                                     {%for facet in facets.primaryCategory%}
                                     <li class=" " >
-                                        <a href="#"  onclick="facetSearch('category','{{facet.key}}');">
+                                        <a href="#"  onclick="facetSearch('primaryCategory','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -239,7 +239,7 @@
                                     {% endif %}
                                     {%for facet in facets.type %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('serviceType','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('type','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -274,7 +274,7 @@
                                     {% endif %}
                                     {%for facet in facets.authentication_Model %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('authentication_Model','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -292,7 +292,7 @@
                                     {% endif %}
                                     {%for facet in facets.supportedRequestFormats %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('supportedRequestFormats','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -310,7 +310,7 @@
                                     {% endif %}
                                     {%for facet in facets.supportedResponseFormats %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('supportedResponseFormats','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -327,7 +327,7 @@
                                     {% endif %}
                                     {%for facet in facets.restrictedAccess %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('sslSupprt','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('restrictedAccess','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}

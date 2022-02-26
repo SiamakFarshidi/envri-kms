@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DSS/config/ENVRI-crawlerConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/config/ENVRI-crawlerConfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/views.py" afterDir="false" />
     </list>
@@ -116,13 +115,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00063" summary="okay">
-      <created>1643590007208</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1643590007208</updated>
     </task>
     <task id="LOCAL-00064" summary="okay">
       <created>1643590424963</created>
@@ -460,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645843687042</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="okay">
+      <created>1645873885232</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1645873885232</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
