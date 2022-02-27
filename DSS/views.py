@@ -135,11 +135,9 @@ def getFeaturesImpactFactors(featureRequirements):
 #-------------------------------------------------------------------------------------------------------------
 def queryBilder(featureRequirements, page, size):
     featureImpactFactores=getFeaturesImpactFactors(featureRequirements)
-    page=(page-1)*size
     must_queries=[]
     sort=[]
     script_score=""
-
     for reqFeature in featureImpactFactores:
         feature=reqFeature['feature']
         value=reqFeature['value']
@@ -208,10 +206,10 @@ def queryBilder(featureRequirements, page, size):
             }
         },
         "size": size,
-        "from": 0
+        "from": page
     }
 
-    print(str(query).replace("\"","\\\"").replace("'","\""))
+  #  print(str(query).replace("\"","\\\"").replace("'","\""))
 
     return featureImpactFactores,query
 #-------------------------------------------------------------------------------------------------------------
@@ -359,8 +357,8 @@ def getStringQuery(term, priority, field, weight):
               }
           }
     else:
-        print("string:")
-        print(weight)
+        #print("string:")
+        #print(weight)
         weight=str(weight)
         term=str(term)
         script=  "String fieldValue =doc[\""+field+"\"].value; if(fieldValue.contains(\""+term+"\")){_score= _score+ "+weight+";}" \
