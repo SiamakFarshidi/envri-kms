@@ -1061,7 +1061,11 @@ def schemaBuilder(decisionModel):
         for feature in decisionModels[decisionModel]:
             datatype=decisionModels[decisionModel][feature]['schemaMapping']['schemaDataType']
             if datatype!='artificial':
-                features[feature]={"type": datatype}
+                if (datatype=="text"):
+                    features[feature]={"type": "text", "fielddata": True}
+                else:
+                    features[feature]={"type": datatype}
+
         schema={
             "settings" : {
                 "number_of_shards": 1,
@@ -1281,10 +1285,10 @@ if __name__ == "__main__":
     #ingestIndexes("tools","/index_files/tools/","url", False)
 
 
-    #schemaBuilder("academicpositions")
+    schemaBuilder("realestate")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-    indexWebsite("webapiseacrh")
+    #indexWebsite("webapiseacrh")
     #enableTestModel("webapiseacrh", "https://www.programmableweb.com/api/clean-power-research-solar-simulations-rest-api-v20")

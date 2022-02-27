@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b881a72b-d0b5-4437-92c8-8d48f6655ffe" name="Changes" comment="okay">
+      <change afterPath="$PROJECT_DIR$/DSS/testScripts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/templates/webapi_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/adhocCrawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/adhocCrawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/index_files/webapiseacrh.zip" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/index_files/webapiseacrh.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/temp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DSS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/VRE.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/VRE.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/serviceCatalogs.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/serviceCatalogs.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/servicecatalogs.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/servicecatalogs.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/tools.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/tools.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webAPI/DB/webapiseacrh.zip" beforeDir="false" afterPath="$PROJECT_DIR$/webAPI/DB/webapiseacrh.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -100,11 +110,11 @@
       <recent name="$PROJECT_DIR$/DSS/index_files/tools" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DSS" />
       <recent name="$PROJECT_DIR$/webAPI/DB" />
       <recent name="$PROJECT_DIR$/DSS/config" />
       <recent name="$PROJECT_DIR$/ChromeDriver" />
       <recent name="$PROJECT_DIR$/static/notification" />
-      <recent name="$PROJECT_DIR$/static" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -115,13 +125,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639717804705</updated>
-    </task>
-    <task id="LOCAL-00064" summary="okay">
-      <created>1643590424963</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1643590424963</updated>
     </task>
     <task id="LOCAL-00065" summary="okay">
       <created>1643981582964</created>
@@ -459,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645873885232</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="okay">
+      <created>1645878706956</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1645878706956</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
