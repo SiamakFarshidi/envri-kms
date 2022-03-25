@@ -1285,10 +1285,10 @@ if __name__ == "__main__":
     #ingestIndexes("tools","/index_files/tools/","url", False)
 
 
-    schemaBuilder("realestate")
+    #schemaBuilder("realestate")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-    #indexWebsite("webapiseacrh")
+    indexWebsite("webapiseacrh")
     #enableTestModel("webapiseacrh", "https://www.programmableweb.com/api/clean-power-research-solar-simulations-rest-api-v20")

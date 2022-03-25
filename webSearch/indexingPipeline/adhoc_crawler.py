@@ -450,7 +450,7 @@ def ingest_metadataFile(metadataFile):
 def envriCrawler():
     counter=1
     for IR in ResearchInfrastructures:
-        if counter<27:
+        if counter<1:
             counter=counter+1
             continue
         internal_urls.clear()
@@ -465,9 +465,8 @@ def envriCrawler():
     #print(validators.url(url))
 #-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    runCrawler("funda")
     #printResults()
-    #envriCrawler()
+    envriCrawler()
 #-----------------------------------------------------------------------------------------------------------------------
 
 
