@@ -1253,7 +1253,47 @@ def camel_case_split(s):
     # for "lUl", index of "U" will pop twice, have to filter that
     return [s[x:y] for x, y in zip(l, l[1:]) if x < y]
 #-----------------------------------------------------------------------------------------------------------------------
+def elasticSearchIndexer(IndexName, ID, content):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index(IndexName, es)
+
+    if not es.indices.exists(index=IndexName):
+        index.settings(
+            index={'mapping': {'ignore_malformed': True}}
+        )
+        index.create()
+    else:
+        es.indices.close(index=IndexName)
+        put = es.indices.put_settings(
+            index=IndexName,
+            body={
+                "index": {
+                    "mapping": {
+                        "ignore_malformed": True
+                    }
+                }
+            })
+    es.indices.open(index=IndexName)
+    res = es.index(index=IndexName, id= ID, body=content)
+    es.indices.refresh(index=IndexName)
+#-----------------------------------------------------------------------------------------------------------------------
+def indexingSelectedIndexes(filePath,index):
+    root=(os. getcwd()+"/index_files/"+filePath+"/")
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            indexfile= os.path.join(path, name)
+            indexfile = open_file(indexfile)
+            elasticSearchIndexer(index, indexfile["url"], indexfile)
+            print("Added " + name)
+
+#-----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+
+    #schemaBuilder("realestate")
+    schemaBuilder("academicpositions")
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 
     #getUniqueValues("field",["search (1)","search (2)", "search (3)", "search (4)"],["âº", ",", ";", " | "], ["NA", "N| A" ,"","All","Other", "\n", "See httpswwwthnuernbergdestudiengangbetriebswirtschaftba"])
     #getGeolocationNames("university")
@@ -1290,5 +1330,6 @@ if __name__ == "__main__":
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-    indexWebsite("webapiseacrh")
+    #indexWebsite("webapiseacrh")
     #enableTestModel("webapiseacrh", "https://www.programmableweb.com/api/clean-power-research-solar-simulations-rest-api-v20")
+
