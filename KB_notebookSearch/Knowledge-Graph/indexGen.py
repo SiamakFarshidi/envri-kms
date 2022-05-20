@@ -415,7 +415,7 @@ def indexingSelectedIndexes(filePath,index):
 
 #----------------------------------------------------------------------------------------------------------------------- Pipeline
 #indexGen()
-indexingpipeline()
+#indexingpipeline()
 #----------------------------------------------------------------------------------------------------------------------- Testing and analysis
 #classifyIndexes()
 #indexingSelectedIndexes('Selected_perfect_files','selectedperfect')

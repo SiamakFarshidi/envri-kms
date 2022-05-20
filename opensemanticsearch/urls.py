@@ -11,6 +11,7 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	url(r'^dataset_elastic/', include(('dataset_elastic.urls', 'dataset_elastic'), namespace="dataset_elastic")),
 	url(r'^notebookSearch/', include(('notebookSearch.urls', 'notebookSearch'), namespace="notebookSearch")),
+	url(r'^KB_notebookSearch/', include(('KB_notebookSearch.urls', 'KB_notebookSearch'), namespace="KB_notebookSearch")),
 	url(r'^servicCatalogSearch/', include(('servicCatalogSearch.urls', 'servicCatalogSearch'), namespace="servicCatalogSearch")),
 	url(r'^toolSearch/', include(('toolSearch.urls', 'toolSearch'), namespace="toolSearch")),
 	url(r'^webSearch/', include(('webSearch.urls', 'webSearch'), namespace="webSearch")),
