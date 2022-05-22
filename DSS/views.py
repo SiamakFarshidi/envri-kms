@@ -26,6 +26,10 @@ import numpy as np
 decisionModels = open(os.getcwd()+'/DSS/config/decisionModels.json',"r")
 decisionModels = json.loads(r''+decisionModels.read())
 #-------------------------------------------------------------------------------------------------------------
+def main(request):
+    searchResults={}
+    return render(request,'main.html',searchResults )
+#-------------------------------------------------------------------------------------------------------------
 def scoreCalculation(featureImpactFactores, solutions):
     rankedSolutions=[]
     for solution in solutions:
