@@ -15,6 +15,30 @@ import json
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
+from django.shortcuts import render
+import json
+import os
+from django.http import JsonResponse
+from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search, Index
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from googletrans import Translator
+from datetime import datetime
+
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.authtoken.models import Token
+from rest_framework.status import HTTP_400_BAD_REQUEST
+# More rest imports as needed
+from django.contrib.auth import authenticate
+from datetime import date, timedelta
+from django.views.decorators.csrf import csrf_exempt
+import numpy as np
+
 
 es = Elasticsearch("http://localhost:9200")
 #-------------------------------------------------------------------------------------------
@@ -80,6 +104,25 @@ def genericsearch(request):
 
     return render(request,'kb_notebook_results.html',searchResults )
 #-----------------------------------------------------------------------------------------------------------------------
+@api_view(['POST'])
+@authentication_classes((SessionAuthentication, BasicAuthentication, TokenAuthentication))
+@permission_classes((IsAuthenticated,))
+def searchNotebooks(request):
+    print("hello")
+    requirements = json.loads(request.body)
+
+    try:
+        page = requirements["page"]
+        term = requirements["keywords"]
+        filter= requirements["filter"]
+        facet= requirements["facet"]
+    except:
+        return JsonResponse({"Message": "I cannot find anythink for you because of ill-formed requirements!"})
+
+    searchResults=getSearchResults(request, facet, filter, page, term, False)
+
+    return JsonResponse(searchResults)
+#-----------------------------------------------------------------------------------------------------------------------
 def potentialSearchTerm(term):
     alternativeSearchTerm=""
 
@@ -108,7 +151,7 @@ def potentialSearchTerm(term):
     return alternativeSearchTerm
 #-----------------------------------------------------------------------------------------------------------------------
 
-def getSearchResults(request, facet, filter, page, term):
+def getSearchResults(request, facet, filter, page, term, convert=True):
     if filter!="" and facet!="":
         saved_list = request.session['filters']
         saved_list.append({"term": {facet+".keyword": filter}})
@@ -145,7 +188,7 @@ def getSearchResults(request, facet, filter, page, term):
                     "must": {
                         "multi_match" : {
                             "query": term,
-                            "fields": [ "name", "description"],
+                            "fields": [ "name", "description", "full_name", "script", "entities", "extra"],
                             "type": "best_fields",
                             "minimum_should_match": "50%"
                         }
@@ -178,8 +221,10 @@ def getSearchResults(request, facet, filter, page, term):
         "searchTerm":term,
         "functionList": getAllfunctionList(request)
     }
+    if convert:
+        return results
 
-    return results
+    return result
 
 #-----------------------------------------------------------------------------------------------------------------------
 def synonyms(term):
