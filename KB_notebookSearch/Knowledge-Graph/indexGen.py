@@ -148,7 +148,8 @@ def isCorrectSentence(sentence):
 #-----------------------------------------------------------------------------------------------------------------------
 def indexingpipeline():
     cnt=0
-    root=(os. getcwd()+"/index_files/")
+    root=(os. getcwd()+"/Analysis/Testset")
+    print(root)
     for path, subdirs, files in os.walk(root):
         for name in files:
             cnt=cnt+1
@@ -349,24 +350,7 @@ def get_jaccard_sim(str1, str2):
     else :
         sim=0
     return sim
-#-----------------------------------------------------------------------------------------------------------------------
-def getPositiveNagativeSets(query, threshold, filePath):
-    lstpositives=set()
-    lstnegatives=set()
-    root=(os. getcwd()+"/Analysis/"+filePath+"/")
 
-    for path, subdirs, files in os.walk(root):
-        for name in files:
-            indexfile= os.path.join(path, name)
-            indexfile = open_file(indexfile)
-            text=indexfile['description']+indexfile['script']+indexfile['entities']+indexfile['extra']
-
-            if get_jaccard_sim(query, text) >= threshold:
-                lstpositives.add(indexfile['git_url'])
-            else:
-                lstnegatives.add(indexfile['git_url'])
-
-    return list(lstpositives), list(lstnegatives)
 #-----------------------------------------------------------------------------------------------------------------------
 def calculateMetrics(query, index, queryFields, positives, negatives):
     lstResults=getSearchResults(query,index, queryFields)
@@ -427,7 +411,7 @@ def getSearchResults(query, index, searchFields):
                         "query": query,
                         "fields": searchFields,
                         "type": "best_fields",
-                        "minimum_should_match": "50%"
+                        "minimum_should_match": "100%"
                     }
                 },
             }
@@ -541,9 +525,60 @@ def findPotentialQueries():
                     print(str(cnt)+" : "+ dir+ " : " + name)
                     cnt=cnt+1
 #-----------------------------------------------------------------------------------------------------------------------
+def getPositiveNagativeSets(query, threshold, filePath):
+    lstpositives=set()
+    lstnegatives=set()
+    root=(os. getcwd()+"/Analysis/"+filePath+"/")
+
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            indexfile= os.path.join(path, name)
+            indexfile = open_file(indexfile)
+            text=indexfile['description']+indexfile['script']+indexfile['entities']+indexfile['extra']
+
+            if get_jaccard_sim(query, text) >= threshold:
+                lstpositives.add(indexfile['git_url'])
+            else:
+                lstnegatives.add(indexfile['git_url'])
+
+    return list(lstpositives), list(lstnegatives)
+#-----------------------------------------------------------------------------------------------------------------------
+def experimentDB():
+
+    for query in indexfile:
+        print(query)
+        results=getSearchResults(query, "testset", ['description', 'script', 'entities', 'extra'])
+        if len(results)>0:
+            results=results[0]['_source']
+            text= str(results['description'])+str(results['script'])+str(results['entities'])+str(results['extra'])
+            print(get_jaccard_sim(query, text))
+        print("--------------------")
+#-----------------------------------------------------------------------------------------------------------------------
+def getMetrics(testFieldQueries,testField, searchSpace):
+    TP=0
+    FP=0
+    FN=0
+    TN=0
+
+    queries = open_file(os. getcwd()+"/Analysis/queries.json")
+
+    for query in queries:
+        if query not in searchSpace:
+            TN=TN+1
+
+    for query in testFieldQueries:
+        if query in testField:
+            TP=TP+1
+        else:
+            FP=FP+1
+
+    FN=len(queries)-(TP+FP+TN)
+    return str(TP), str(FP), str(TN),str(FN)
+#-----------------------------------------------------------------------------------------------------------------------
 def calculateStatistics():
     root=(os. getcwd()+"/Analysis/Testset")
-    csvFile="label, descriptions, scripts, entities, extra, all ,names, url\n"
+    queries = open_file(os. getcwd()+"/Analysis/queries.json")
+    csvFile="url,label, descriptions, scripts, entities, extra, all ,names, TP_desc, FP_desc, TN_desc,FN_desc,  TP_script, FP_script, TN_script,FN_script,  TP_ent, FP_ent, TN_ent,FN_ent , TP_extra, FP_extra, TN_extra, FN_extra \n"
     cnt=1
     for path, subdirs, files in os.walk(root):
         for name in files:
@@ -553,14 +588,127 @@ def calculateStatistics():
             indexfile= os.path.join(path, name)
             indexfile = open_file(indexfile)
 
-            row =indexfile['label']+','+ \
+            TP=0
+            FP=0
+            FN=0
+            TN=0
+
+            description=indexfile['description'].split()
+            script=indexfile['script'].split()
+            entities=indexfile['entities'].split()
+            extra=indexfile['extra'].split()
+
+
+            TP_desc, FP_desc, TN_desc,FN_desc = getMetrics(indexfile['potential_description_queries'],indexfile['description'],
+                                       [*indexfile['potential_description_queries'],*description, *script, *entities, *extra] )
+
+            TP_script, FP_script, TN_script,FN_script = getMetrics(indexfile['potential_script_queries'],indexfile['script'],
+                                       [*indexfile['potential_description_queries'], *indexfile['potential_script_queries'],*description, *script, *entities, *extra] )
+
+            TP_ent, FP_ent, TN_ent,FN_ent = getMetrics(indexfile['potential_entities_queries'],indexfile['entities'],
+                                       [*indexfile['potential_description_queries'], *indexfile['potential_entities_queries'],*description, *script, *entities, *extra] )
+
+            TP_extra, FP_extra, TN_extra, FN_extra = getMetrics(indexfile['potential_extra_queries'],indexfile['extra'],
+                                       [*indexfile['potential_description_queries'], *indexfile['potential_extra_queries'], *description, *script, *entities, *extra] )
+
+
+            row =indexfile['html_url']+","+ \
+                 indexfile['label']+','+ \
                  str(indexfile['potential_description_queries_len'])+','+ \
                  str(indexfile['potential_script_queries_len'])+','+ \
                  str(indexfile['potential_entities_queries_len'])+','+ \
                  str(indexfile['potential_extra_queries_len'])+','+ \
                  str(indexfile['all_components_potential_queries_len'])+','+ \
                  indexfile['name']+','+ \
-                 indexfile['html_url']+"\n"
+                 TP_desc+','+ \
+                 FP_desc+','+ \
+                 TN_desc+','+ \
+                 FN_desc+','+ \
+                 TP_script+','+ \
+                 FP_script+','+ \
+                 TN_script+','+ \
+                 FN_script+','+ \
+                 TP_ent+','+ \
+                 FP_ent+','+ \
+                 TN_ent+','+ \
+                 FN_ent +','+ \
+                 TP_extra+','+ \
+                 FP_extra+','+ \
+                 TN_extra+','+ \
+                 FN_extra +'\n'
+
+            csvFile=csvFile+row
+
+    f = open("Analysis/analysis.csv", 'w')
+    f.write(csvFile)
+    f.close()
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+def totalCalculateStatistics():
+    root=(os. getcwd()+"/Analysis/Testset")
+    queries = open_file(os. getcwd()+"/Analysis/queries.json")
+    csvFile="url,label, descriptions, scripts, entities, extra, all ,names, TP,FP, TN, FN \n"
+    cnt=1
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            print(cnt)
+            print(name)
+            cnt=cnt+1
+            indexfile= os.path.join(path, name)
+            indexfile = open_file(indexfile)
+
+            TP=0
+            FP=0
+            FN=0
+            TN=0
+
+            for query in queries:
+                if ((query  not in indexfile['potential_description_queries']) and (query  not in indexfile['description'].split())) and \
+                        ((query not in indexfile['potential_script_queries']) and (query not in indexfile['script'].split())) and \
+                        ((query not in indexfile['potential_entities_queries']) and (query not in indexfile['entities'].split())) and \
+                        ((query  not in indexfile['potential_extra_queries']) and (query not in indexfile['extra'].split())):
+                    TN=TN+1
+                else:
+                    FN=FN+1
+
+            for query in indexfile['potential_description_queries']:
+                if query in indexfile['description']:
+                    TP=TP+1
+                else:
+                    FP=FP+1
+
+            for query in indexfile['potential_script_queries']:
+                if query in indexfile['script']:
+                    TP=TP+1
+                else:
+                    FP=FP+1
+
+            for query in indexfile['potential_entities_queries']:
+                if query in indexfile['entities']:
+                    TP=TP+1
+                else:
+                    FP=FP+1
+
+            for query in indexfile['potential_extra_queries']:
+                if query in indexfile['extra']:
+                    TP=TP+1
+                else:
+                    FP=FP+1
+
+            row =indexfile['html_url']+","+\
+                 indexfile['label']+','+ \
+                 str(indexfile['potential_description_queries_len'])+','+ \
+                 str(indexfile['potential_script_queries_len'])+','+ \
+                 str(indexfile['potential_entities_queries_len'])+','+ \
+                 str(indexfile['potential_extra_queries_len'])+','+ \
+                 str(indexfile['all_components_potential_queries_len'])+','+ \
+                 indexfile['name']+','+ \
+                 str (TP)+","+ \
+                 str(FP)+","+ \
+                 str(TN)+","+ \
+                 str((TP+FP+TN)-len(queries)) +"\n"
+
 
             csvFile=csvFile+row
 
@@ -576,6 +724,6 @@ def calculateStatistics():
 #findPotentialQueries()
 #calculateStatistics()
 #-----------------------------------------------------------------------------------------------------------------------
-
 #calculate_similarity('Testset','testset')
 #addExtraContextualInformation("")
+indexingpipeline()
