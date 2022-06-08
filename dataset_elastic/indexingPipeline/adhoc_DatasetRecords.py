@@ -1494,7 +1494,41 @@ def if_URL_exist(url):
     result = es.search(index="envri", body=query_body)
     numHits=result['hits']['total']['value']
     return True if numHits>0 else False
+# ----------------------------------------------------------------------
+def indexingpipeline():
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('envri', es)
 
+    if not es.indices.exists(index='envri'):
+        index.settings(
+            index={'mapping': {'ignore_malformed': True}}
+        )
+        index.create()
+    else:
+        es.indices.close(index='envri')
+        put = es.indices.put_settings(
+            index='envri',
+            body={
+                "index": {
+                    "mapping": {
+                        "ignore_malformed": True
+                    }
+                }
+            })
+        es.indices.open(index='envri')
+
+    root=(os. getcwd()+"/index files/Run 15/")
+    print (root)
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            print(name)
+            indexfile= os.path.join(path, name)
+            indexfile = open_file(indexfile)
+            res = es.index(index="envri", id= indexfile['url'], body=indexfile)
+            es.indices.refresh(index="envri")
+# ----------------------------------------------------------------------
+
+indexingpipeline()
 #getDatasetRecords__SeaDataNet_EDMED()
 #getDatasetRecords__SeaDataNet_CDI()
 #getDatasetRecords__LifeWatch()
@@ -1532,12 +1566,11 @@ def if_URL_exist(url):
 #invertedIndexing("SeaDataNet_EDMED_")
 #invertedIndexing("ICOS_")
 #--------------------
-deleteAllIndexFilesByExtension(".json")
-deleteAllIndexFilesByExtension(".csv")
+#deleteAllIndexFilesByExtension(".json")
+#deleteAllIndexFilesByExtension(".csv")
 #--------------------
 #Run_indexingPipeline_SeaDataNet_CDI()
 #Run_indexingPipeline_SeaDataNet_EDMED()
-Run_indexingPipeline_ICOS()
-
+#Run_indexingPipeline_ICOS()
 #--------------------
 #datasetProcessing_ICOS("https://meta.icos-cp.eu/objects/0ST81nXCND5VfAQdOCSJDveT")

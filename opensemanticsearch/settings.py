@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'DSS',
     'servicCatalogSearch',
     'toolSearch',
-    'KB_notebookSearch'
+    'KB',
 )
 
 MIDDLEWARE = (

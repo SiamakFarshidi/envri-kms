@@ -15,6 +15,8 @@ import json
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
+import datetime
+import uuid
 
 es = Elasticsearch("http://localhost:9200")
 #-------------------------------------------------------------------------------------------
@@ -88,7 +90,43 @@ def genericsearch(request):
             searchResults["searchTerm"]=term
             searchResults["suggestedSearchTerm"]=suggestedSearchTerm
 
+    SearchQuery={}
+    SearchQuery['term']=term
+    SearchQuery['page']=page
+    SearchQuery['facet']=facet
+    SearchQuery['filter']=filter
+    SearchQuery['type']='notebookSearch'
+    SearchQuery['numberOfHits']=searchResults["NumberOfHits"]
+    SearchQuery['userID']='guest'
+    SearchQuery['dateTime']=datetime.datetime.now()
+
+    saveSearchQuery(SearchQuery)
     return render(request,'notebook_results.html',searchResults )
+#-----------------------------------------------------------------------------------------------------------------------
+def saveSearchQuery(SearchQuery):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('searchqueries', es)
+
+    if not es.indices.exists(index='searchqueries'):
+        index.settings(
+            index={'mapping': {'ignore_malformed': True}}
+        )
+        index.create()
+    else:
+        es.indices.close(index='searchqueries')
+        put = es.indices.put_settings(
+            index='searchqueries',
+            body={
+                "index": {
+                    "mapping": {
+                        "ignore_malformed": True
+                    }
+                }
+            })
+        es.indices.open(index='searchqueries')
+
+    res = es.index(index="searchqueries", id= uuid.uuid4(), body=SearchQuery)
+    es.indices.refresh(index="searchqueries")
 #-----------------------------------------------------------------------------------------------------------------------
 def potentialSearchTerm(term):
     alternativeSearchTerm=""

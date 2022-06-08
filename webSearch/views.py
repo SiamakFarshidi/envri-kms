@@ -28,6 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
 import uuid
+import datetime
 
 nltk.download('words')
 words = set(nltk.corpus.words.words())
@@ -641,6 +642,18 @@ def genericsearch(request):
     else:
         htmlrender='webcontent_results.html'
 
+    SearchQuery={}
+    SearchQuery['term']=term
+    SearchQuery['page']=page
+    SearchQuery['facet']=facet
+    SearchQuery['filter']=filter
+    SearchQuery['type']='webSearch'
+    SearchQuery['numberOfHits']=searchResults["NumberOfHits"]
+    SearchQuery['userID']='guest'
+    SearchQuery['dateTime']=datetime.datetime.now()
+
+    saveSearchQuery(SearchQuery)
+
     return render(request,htmlrender,searchResults )
 #-----------------------------------------------------------------------------------------------------------------------
 def potentialSearchTerm(term):
@@ -991,4 +1004,29 @@ def sendFeedback(request):
 
         return JsonResponse(data)
     return JsonResponse({'status': 'Invalid request'}, status=400)
+#-----------------------------------------------------------------------------------------------------------------------
+def saveSearchQuery(SearchQuery):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('searchqueries', es)
+
+    if not es.indices.exists(index='searchqueries'):
+        index.settings(
+            index={'mapping': {'ignore_malformed': True}}
+        )
+        index.create()
+    else:
+        es.indices.close(index='searchqueries')
+        put = es.indices.put_settings(
+            index='searchqueries',
+            body={
+                "index": {
+                    "mapping": {
+                        "ignore_malformed": True
+                    }
+                }
+            })
+        es.indices.open(index='searchqueries')
+
+    res = es.index(index="searchqueries", id= uuid.uuid4(), body=SearchQuery)
+    es.indices.refresh(index="searchqueries")
 #-----------------------------------------------------------------------------------------------------------------------

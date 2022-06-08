@@ -11,6 +11,7 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 from spellchecker import SpellChecker
+import datetime
 
 aggregares={
     "primaryCategory":{
@@ -114,8 +115,45 @@ def genericsearch(request):
             searchResults["searchTerm"]=term
             searchResults["suggestedSearchTerm"]=suggestedSearchTerm
 
-    return render(request,'webapi_results.html',searchResults)
 
+    SearchQuery={}
+    SearchQuery['term']=term
+    SearchQuery['page']=page
+    SearchQuery['facet']=facet
+    SearchQuery['filter']=filter
+    SearchQuery['type']='webApiSearch'
+    SearchQuery['numberOfHits']=searchResults["NumberOfHits"]
+    SearchQuery['userID']='guest'
+    SearchQuery['dateTime']=datetime.datetime.now()
+
+    saveSearchQuery(SearchQuery)
+
+    return render(request,'webapi_results.html',searchResults)
+#-----------------------------------------------------------------------------------------------------------------------
+def saveSearchQuery(SearchQuery):
+    es = Elasticsearch("http://localhost:9200")
+    index = Index('searchqueries', es)
+
+    if not es.indices.exists(index='searchqueries'):
+        index.settings(
+            index={'mapping': {'ignore_malformed': True}}
+        )
+        index.create()
+    else:
+        es.indices.close(index='searchqueries')
+        put = es.indices.put_settings(
+            index='searchqueries',
+            body={
+                "index": {
+                    "mapping": {
+                        "ignore_malformed": True
+                    }
+                }
+            })
+        es.indices.open(index='searchqueries')
+
+    res = es.index(index="searchqueries", id= uuid.uuid4(), body=SearchQuery)
+    es.indices.refresh(index="searchqueries")
 #-----------------------------------------------------------------------------------------------------------------------
 def getSearchResults(request, facet, filter, page, term):
     es = Elasticsearch("http://localhost:9200")
@@ -349,7 +387,7 @@ def indexingpipeline(request):
             })
         es.indices.open(index='webapi')
 
-    root=(os. getcwd()+"/webAPI/DB/")
+    root=(os. getcwd()+"/webAPI/DB/webapiseacrh/")
     print (root)
     for path, subdirs, files in os.walk(root):
         for name in files:
