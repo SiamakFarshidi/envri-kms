@@ -591,7 +591,6 @@ def aggregates(request):
 #-----------------------------------------------------------------------------------------------------------------------
 def genericsearch(request):
 
-
     try:
         term = request.GET['term']
         term=term.rstrip()
@@ -651,7 +650,6 @@ def genericsearch(request):
     SearchQuery['numberOfHits']=searchResults["NumberOfHits"]
     SearchQuery['userID']='guest'
     SearchQuery['dateTime']=datetime.datetime.now()
-
     saveSearchQuery(SearchQuery)
 
     return render(request,htmlrender,searchResults )

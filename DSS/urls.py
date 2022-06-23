@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^getPrioritizableFeatures', views.getPrioritizableFeatures, name='getPrioritizableFeatures'),
     url('signin/', views.api_signin, name='api_signin'),
     url('assetSearch', views.assetSearch, name='assetSearch'),
-    url('main', views.main, name='main'),
 ]

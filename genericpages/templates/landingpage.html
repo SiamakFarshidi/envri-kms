@@ -357,6 +357,52 @@ function modifyCart(data) {
 
 cnt=document.querySelectorAll("#MyCart li").length-1;
 $('#MyCartCount').text(cnt);
+//---------------------------------------------------------------------
+function goToLink(url){
+    sourcepage =sessionStorage.getItem("envrihub");
+    if(sourcepage==="null" || sourcepage===null){
+        window.location.href =url;
+    }
+    else{
+        window.location.href =url+"&envrihub="+sourcepage;
+    }
+}
+//---------------------------------------------------------------------
+function goToENVRIHUB(){
+
+    var queryParams = new URLSearchParams(window.location.search);
+    if (queryParams.has('envrihub')){
+        sourcepage = queryParams.get("envrihub");
+
+        if (sourcepage.trim()==="main" || sourcepage.trim()==="main#"  || sourcepage.trim()==="null"  || sourcepage.trim()===null){
+            window.location.href = "https://hubtest.envri-fair.eu/";
+            return 0;
+        }
+
+        window.location.href ="https://hubtest.envri-fair.eu/"+sourcepage;
+
+    }
+    else{
+        window.location.href = "https://hubtest.envri-fair.eu/";
+    }
+
+}
+//--------------------------------------------------------------------- Iniitialization
+var queryParams = new URLSearchParams(window.location.search);
+if (queryParams.has('envrihub')){
+    sourcepage = queryParams.get("envrihub");
+    if(sourcepage===""){
+       sourcepage =sessionStorage.getItem("envrihub");
+       if (sourcepage!==null){
+            queryParams.set("envrihub", sourcepage);
+            history.replaceState(null, null, "?"+queryParams.toString());
+        }
+    }
+    else{
+        sessionStorage.setItem("envrihub", sourcepage);
+    }
+}
+//---------------------------------------------------------------------
 </script>
 </body>
 </html>

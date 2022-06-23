@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -52,10 +53,14 @@ INSTALLED_APPS = (
     'servicCatalogSearch',
     'toolSearch',
     'KB',
+    'academicPositions'
 )
 
 MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # translation
+    'django.middleware.locale.LocaleMiddleware',
+    # translation
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,6 +132,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# translation
+LANGUAGES = [
+    ('fa', _('Persian')),
+    ('en', _('English')),
+]
+# translation
+
 
 # djangotemplates/djangotemplates/settings.py
 

@@ -207,7 +207,6 @@ def potentialSearchTerm(term):
 
     return alternativeSearchTerm
 #-----------------------------------------------------------------------------------------------------------------------
-
 def getSearchResults(request, facet, filter, page, term, fields,convert=True, indexName=""):
     if filter!="" and facet!="":
         saved_list = request.session['filters']

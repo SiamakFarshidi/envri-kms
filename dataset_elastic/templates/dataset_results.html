@@ -166,10 +166,20 @@
                                 <span class="search-icon" ><i class="ti-search" aria-hidden="true" onclick="search(2);"></i></span>
                             </div>
                         </div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="pcoded">
+                                <a href="#" onclick="goToENVRIHUB();">
+                                    <span class="pcoded-micon"><i class="ti-star"></i><b>D</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">ENVRI-HUB</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                        </ul>
+
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Search Space</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="">
-                                <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1" >
+                                <a href="javascript: goToLink('../webSearch/genericsearch?term={{ searchTerm }}&page=1')" >
                                     <span class="pcoded-micon"><i class="ti-world"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Webpages</span>
                                     <span class="pcoded-mcaret"></span>
@@ -183,7 +193,7 @@
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
-                                        <a href="../dataset_elastic/genericsearch?term={{ searchTerm }}&page=1">
+                                        <a href="javascript: goToLink('../dataset_elastic/genericsearch?term={{ searchTerm }}&page=1')">
                                             <i class="ti-reload"></i> &nbsp; Reset filters </a> <br> <br>
                                          </span>
 
@@ -275,14 +285,14 @@
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="../webAPI/genericsearch?term={{ searchTerm }}&page=1" >
+                                <a href="javascript: goToLink('../webAPI/genericsearch?term={{ searchTerm }}&page=1')" >
                                     <span class="pcoded-micon"><i class="ti-control-shuffle"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Web APIs</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="../notebookSearch/genericsearch?term={{ searchTerm }}&page=1" >
+                                <a href="javascript: goToLink('../notebookSearch/genericsearch?term={{ searchTerm }}&page=1')" >
                                     <span class="pcoded-micon"><i class="ti-package"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Notebooks</span>
                                     <span class="pcoded-mcaret"></span>
@@ -305,7 +315,7 @@
                             </li>
                             -->
                             <li class="">
-                                <a href="../webSearch/genericsearch?term={{ searchTerm }}&page=1&searchtype=imagesearch" >
+                                <a href="javascript: goToLink('../webSearch/genericsearch?term={{ searchTerm }}&page=1&searchtype=imagesearch')" >
                                     <span class="pcoded-micon"><i class="ti-gallery"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.dash.main">Images</span>
                                     <span class="pcoded-mcaret"></span>
@@ -315,14 +325,14 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Visualization</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li>
-                                <a href="../genericpages/genericpages?page=graphV&term={{ searchTerm }}" target="_blank">
+                                <a href="javascript: goToLink('../genericpages/genericpages?page=graphV&term={{ searchTerm }}')">
                                     <span class="pcoded-micon"><i class="ti-vector"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Graph based</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../genericpages/genericpages?page=pieChart&term={{ searchTerm }}">
+                                <a href="javascript: goToLink('../genericpages/genericpages?page=pieChart&term={{ searchTerm }}')">
                                     <span class="pcoded-micon"><i class="ti-pie-chart"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pie chart</span>
                                     <span class="pcoded-mcaret"></span>
@@ -334,14 +344,14 @@
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Info</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li>
-                                <a href="../genericpages/genericpages?page=publications&term={{ searchTerm }}" >
+                                <a href="javascript: goToLink('../genericpages/genericpages?page=publications&term={{ searchTerm }}')" >
                                     <span class="pcoded-micon"><i class="ti-write"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Publications</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../genericpages/genericpages?page=RnD&term={{ searchTerm }}" >
+                                <a href="javascript: goToLink('../genericpages/genericpages?page=RnD&term={{ searchTerm }}')" >
                                     <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">R&amp;D team</span>
                                     <span class="pcoded-mcaret"></span>
@@ -376,7 +386,7 @@
                                 <br>
                                 {% if suggestedSearchTerm != "" %}
                                 Did you mean:
-                                <b><a href="../dataset_elastic/genericsearch?term={{ suggestedSearchTerm }}&page=1">{{ suggestedSearchTerm }}</a></b>
+                                <b><a href="javascript: goToLink('../dataset_elastic/genericsearch?term={{ suggestedSearchTerm }}&page=1')">{{ suggestedSearchTerm }}</a></b>
                                 {% endif %}
                                 <script>
                                         //sessionStorage.setItem("SearchFailed","Yes");
@@ -727,6 +737,52 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 {% for geo in spatialCoverage %}
       insertLocation('{{ geo.location }}', '{{ geo.RI }}');
 {% endfor %}
+//---------------------------------------------------------------------
+function goToLink(url){
+    sourcepage =sessionStorage.getItem("envrihub");
+    if(sourcepage==="null" || sourcepage===null){
+        window.location.href =url;
+    }
+    else{
+        window.location.href =url+"&envrihub="+sourcepage;
+    }
+}
+//---------------------------------------------------------------------
+function goToENVRIHUB(){
+
+    var queryParams = new URLSearchParams(window.location.search);
+    if (queryParams.has('envrihub')){
+        sourcepage = queryParams.get("envrihub");
+
+        if (sourcepage.trim()==="main" || sourcepage.trim()==="main#"  || sourcepage.trim()==="null"  || sourcepage.trim()===null){
+            window.location.href = "https://hubtest.envri-fair.eu/";
+            return 0;
+        }
+
+        window.location.href ="https://hubtest.envri-fair.eu/"+sourcepage;
+
+    }
+    else{
+        window.location.href = "https://hubtest.envri-fair.eu/";
+    }
+
+}
+//--------------------------------------------------------------------- Iniitialization
+var queryParams = new URLSearchParams(window.location.search);
+if (queryParams.has('envrihub')){
+    sourcepage = queryParams.get("envrihub");
+    if(sourcepage===""){
+       sourcepage =sessionStorage.getItem("envrihub");
+       if (sourcepage!==null){
+            queryParams.set("envrihub", sourcepage);
+            history.replaceState(null, null, "?"+queryParams.toString());
+        }
+    }
+    else{
+        sessionStorage.setItem("envrihub", sourcepage);
+    }
+}
+//---------------------------------------------------------------------
 </script>
 </body>
 </html>
